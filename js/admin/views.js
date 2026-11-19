@@ -343,7 +343,7 @@
 
   /* =============== PUBLISH =============== */
   V.publish = function (root) {
-    var cfg = Object.assign({ owner: "", repo: "", branch: "main" }, AS.getConfig());
+    var cfg = Object.assign({ owner: "ramwadhwa1031", repo: "smart-play", branch: "main" }, AS.getConfig());
     var changed = AS.changedFiles(), G = AS.gh;
     root.appendChild(head("Publish & backup", "Two modes: keep working in your local draft, or publish to GitHub."));
     root.appendChild(el("div", { class: "notice" }, [el("strong", { text: "How secure is this? " }), "This is a backend-free approach, not a multi-user CMS. Your GitHub token is held only in this browser tab's memory (never saved, never committed) and is gone when you close or reload the tab. Anyone with access to this browser session could inspect it, so use a dedicated repository, a fine-grained token limited to that single repository with only ", el("em", { text: "Contents: Read and write" }), " permission, a short expiry, and close the tab after publishing. For stronger authentication a trusted server-side or GitHub Actions workflow would be required."]));

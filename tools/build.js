@@ -148,6 +148,12 @@ if (!check) {
   if (sm) fs.writeFileSync(path.join(root, "sitemap.xml"), sm); else if (fs.existsSync(path.join(root, "sitemap.xml"))) fs.unlinkSync(path.join(root, "sitemap.xml"));
   fs.writeFileSync(path.join(root, "robots.txt"), "User-agent: *\nAllow: /\nDisallow: /admin/\n" + (base ? `\nSitemap: ${base}sitemap.xml\n` : ""));
   fs.writeFileSync(path.join(root, ".nojekyll"), "");
+  try {
+    const host = base ? new URL(base).hostname : "";
+    if (host && !host.endsWith(".github.io") && host !== "localhost") {
+      fs.writeFileSync(path.join(root, "CNAME"), host + "\n");
+    }
+  } catch (e) {}
 }
 // Data checks: every image referenced in JSON exists
 const text = Object.values(data).map(v => JSON.stringify(v)).join(" ");

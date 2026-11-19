@@ -61,7 +61,7 @@
     return l || "#";
   }
   function ext(u) { return /^https?:/i.test(u || "") ? ' target="_blank" rel="noopener"' : ""; }
-  function pageUrl(c, pid) { return c.base ? c.base + (pid === "index" ? "" : FILES[pid]) : ""; }
+  function pageUrl(c, pid) { return c.base ? c.base + (pid === "index" ? "" : FILES[pid].replace(/\.html$/i, "")) : ""; }
   function abs(c, u) { return !u ? "" : (/^https?:/i.test(u) ? u : (c.base ? c.base + u.replace(/^\//, "") : "")); }
 
   /* ---------- context ---------- */

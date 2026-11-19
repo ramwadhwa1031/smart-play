@@ -105,7 +105,25 @@
     if (p && f.elements.programme) { [].forEach.call(f.elements.programme.options, function (o) { if (o.value === p) f.elements.programme.value = p; }); }
   }
 
+  function cleanUrlBar() {
+    if (!/^https?:$/.test(location.protocol) || !window.history || !history.replaceState) return;
+    var p = location.pathname;
+    if (/\/index\.html$/i.test(p)) {
+      history.replaceState(null, "", p.replace(/index\.html$/i, "") + location.search + location.hash);
+    } else if (/\.html$/i.test(p)) {
+      var clean = p.replace(/\.html$/i, "");
+      if (!/^(localhost|127\.0\.0\.1)$/i.test(location.hostname)) {
+        history.replaceState(null, "", clean + location.search + location.hash);
+      } else {
+        fetch(clean, { method: "HEAD" }).then(function (r) {
+          if (r.ok) history.replaceState(null, "", clean + location.search + location.hash);
+        }).catch(function () {});
+      }
+    }
+  }
+
   function init() {
+    cleanUrlBar();
     SS.nav.init(); SS.gallery.init(); SS.anim.init(); bindForm(); prefill(); startReelsAuto();
     var y = document.querySelector("[data-year]"); if (y) y.textContent = new Date().getFullYear();
   }

@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://smart-start-school.github.io/smart-start/sitemap.xml
+Sitemap: https://sstps.in/sitemap.xml

@@ -48,6 +48,9 @@
   AS.router = router;
 
   function boot() {
+    if (/^https?:$/.test(location.protocol) && window.history && history.replaceState && /\/index\.html$/i.test(location.pathname)) {
+      history.replaceState(null, "", location.pathname.replace(/index\.html$/i, "") + location.search + location.hash);
+    }
     var root = document.getElementById("view");
     var menuBtn = document.getElementById("side-toggle");
     if (menuBtn) {
