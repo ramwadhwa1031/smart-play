@@ -72,22 +72,24 @@ button{font:inherit;cursor:pointer}
 /* ---------- header ---------- */
 .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:box-shadow .3s}
 .site-header.is-stuck{box-shadow:0 6px 24px rgba(30,34,80,.12)}
-.header-inner{display:flex;align-items:center;justify-content:space-between;height:var(--header-h);gap:1rem}
-.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--navy)}
-.brand img{width:56px;height:56px;border-radius:50%;box-shadow:0 3px 10px rgba(30,34,80,.18);transition:transform .4s}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:var(--header-h);gap:.65rem;width:min(100% - 2rem,1320px)}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--navy);flex-shrink:0;white-space:nowrap}
+.brand img{width:54px;height:54px;border-radius:50%;box-shadow:0 3px 10px rgba(30,34,80,.18);transition:transform .4s;flex-shrink:0}
 .brand:hover img{transform:rotate(-8deg) scale(1.06)}
-.brand__txt{display:flex;flex-direction:column;line-height:1.05}
-.brand__txt b{font-family:var(--font-d);font-size:1.45rem;color:var(--magenta);font-weight:700}
-.brand__txt small{font-size:.72rem;letter-spacing:.08em;font-weight:800;color:var(--purple);text-transform:uppercase}
-.nav{display:flex;align-items:center;gap:1rem}
-.nav>ul{display:flex;list-style:none;gap:.15rem;align-items:center}
-.nav li{position:relative}
-.nav a:not(.btn){display:block;padding:.55rem .8rem;border-radius:99px;text-decoration:none;color:var(--navy);font-weight:700;font-size:.97rem;position:relative;transition:background .2s,color .2s}
+.brand__txt{display:flex;flex-direction:column;line-height:1.08;white-space:nowrap}
+.brand__txt b{font-family:var(--font-d);font-size:1.42rem;color:var(--magenta);font-weight:700;white-space:nowrap}
+.brand__txt small{font-size:.69rem;letter-spacing:.07em;font-weight:800;color:var(--purple);text-transform:uppercase;white-space:nowrap}
+.nav{display:flex;align-items:center;gap:.55rem}
+.nav>ul{display:flex;list-style:none;gap:.05rem;align-items:center}
+.nav li{position:relative;white-space:nowrap}
+.nav a:not(.btn){display:block;padding:.5rem .62rem;border-radius:99px;text-decoration:none;color:var(--navy);font-weight:700;font-size:.94rem;position:relative;white-space:nowrap;transition:background .2s,color .2s}
 .nav a:not(.btn):hover{background:var(--lilac);color:var(--purple)}
 .nav a[aria-current=page]{color:var(--purple);background:var(--lilac)}
 .nav a[aria-current=page]::after{content:"";position:absolute;left:50%;bottom:2px;width:22px;height:5px;transform:translateX(-50%);background:var(--yellow);border-radius:4px;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 5'%3E%3Cpath d='M1 3c3-3 5-3 7 0s5 3 7 0 4-2 6 0' stroke='%23000' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 5'%3E%3Cpath d='M1 3c3-3 5-3 7 0s5 3 7 0 4-2 6 0' stroke='%23000' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat}
-.has-sub{display:flex;align-items:center}
-.sub-toggle{background:none;border:0;width:28px;height:28px;margin-left:-.7rem;color:var(--purple);display:grid;place-items:center;border-radius:50%}
+.has-sub{display:flex;align-items:center;white-space:nowrap}
+.sub-toggle{background:none;border:0;width:24px;height:24px;margin-left:-.48rem;color:var(--purple);display:grid;place-items:center;border-radius:50%;flex-shrink:0}
+.nav__cta{flex-shrink:0}
+.nav__cta .btn{white-space:nowrap;padding:.52rem 1.05rem}
 .sub-toggle .ic{transition:transform .25s}
 .has-sub.open .sub-toggle .ic,.has-sub:hover .sub-toggle .ic{transform:rotate(180deg)}
 .sub{position:absolute;top:100%;left:0;min-width:230px;background:#fff;border-radius:20px;box-shadow:var(--shadow-lg);padding:.6rem;list-style:none;opacity:0;visibility:hidden;transform:translateY(10px) scale(.98);transform-origin:top left;transition:.22s;z-index:5;border:2px solid var(--lilac)}
