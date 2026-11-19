@@ -1,0 +1,81 @@
+{
+  "story": {
+    "eyebrow": "Our story",
+    "title": "A second home, built with love",
+    "paragraphs": [
+      "Smart Start – The Premium School began with a simple belief: when you leave your little one at our door, your world becomes our responsibility.",
+      "We are a premium pre-school in Delhi built around the Multiple Intelligence concept. Our vision was never just to teach A-B-C. It was to create a place where children are nourished in mind and heart, where they learn how to hold confidence, not just a pencil.",
+      "Every child gets personal love, personal attention and personal care, and every parent becomes a partner in the journey."
+    ],
+    "image": { "src": "assets/images/annual-day-play.webp", "alt": "Teachers and children performing a village-themed play on stage" }
+  },
+  "vision": {
+    "eyebrow": "Our vision",
+    "title": "Nurture happy, confident & curious learners",
+    "official": "At Smart Start The Premium School, our vision is to create a second home for your child. We believe that the first 5 years are not just about learning A-B-C, but about building a beautiful human being. Our vision is to provide a premium, safe, and loving environment where every child feels confident, curious, and cared for. We don't just prepare children for school, we prepare them for life, with strong values, good manners, clear communication, and a happy heart.",
+    "short": "We dream of a place where learning is not a burden, but a joyful celebration.",
+    "motto": "Smart Start – Where Childhood Blossoms & Futures Begin."
+  },
+  "promises": {
+    "eyebrow": "Our promises to parents",
+    "title": "Two promises we keep",
+    "items": [
+      { "title": "We will nourish your child", "text": "Every child will get personal love, personal attention and personal care. We work on their confidence, communication, values and happiness." },
+      { "title": "We will build a bond with you", "text": "We want you to be our partner, not just a parent who drops and picks up. Our door is always open and your worries are our worries." }
+    ]
+  },
+  "approach": {
+    "eyebrow": "Learning approach",
+    "title": "Learning that feels like play",
+    "items": [
+      { "icon": "brain", "title": "Multiple Intelligence", "text": "We recognise eight kinds of intelligence and nurture each one." },
+      { "icon": "hand", "title": "Activity-based learning", "text": "Children learn by doing, touching, moving, making and singing." },
+      { "icon": "nolock", "title": "No rote learning", "text": "Understanding and joy come first, not memorising under pressure." },
+      { "icon": "globe", "title": "International curriculum", "text": "A broad, modern early-years framework with local values." }
+    ]
+  },
+  "values": {
+    "eyebrow": "Values we live by",
+    "title": "Sanskars along with smartness",
+    "items": [
+      { "title": "Respect", "text": "Good manners and kindness to everyone.", "color": "purple" },
+      { "title": "Sharing", "text": "Learning to give, include and care.", "color": "magenta" },
+      { "title": "Gratitude", "text": "Saying thank you with a happy heart.", "color": "green" },
+      { "title": "Confidence", "text": "Every child on stage, every child speaks.", "color": "yellow" }
+    ]
+  },
+  "why": {
+    "eyebrow": "Why choose Smart Start?",
+    "title": "Because your child deserves the best start",
+    "items": [
+      "Safe, loving, hygienic campus with CCTV and trained female staff",
+      "AC classrooms and a premium activity-based experience",
+      "Multiple Intelligence approach with no rote learning",
+      "Stage and speaking opportunities that build confidence",
+      "Value-based education alongside smart learning",
+      "A principal whose door is always open to parents"
+    ]
+  },
+  "principal": {
+    "name": "Dr. Parvinder Kaur",
+    "designation": "Principal, Smart Start – The Premium School",
+    "photo": "assets/images/principal-dr-parvinder-kaur.webp",
+    "photoAlt": "Portrait of Dr. Parvinder Kaur, Principal of Smart Start",
+    "bio": "Dr. Parvinder Kaur leads Smart Start with the heart of a mother and the vision of an educator. Her mission is to give every child a beautiful childhood and every parent a partner they can trust.",
+    "intro": "Today, I am not speaking to you as a Principal, I am speaking to you as a mother.",
+    "message": [
+      "Dear Parents,",
+      "I am Dr. Parvinder, Principal - Smart Start The Premium School.",
+      "Today, I am not speaking to you as a Principal, I am speaking to you as a mother.",
+      "When you leave your little one at our door, with that small bag and teary eyes - I understand that feeling. Because for you, your child is your whole world. And from that moment, your world becomes our responsibility.",
+      "At Smart Start, our vision was never just to be a school that teaches A-B-C. My vision has always been to create a second home. A home where your child is not just taught, but nourished. Where we nurture not only their mind, but their heart. Where we teach them not only how to hold a pencil, but how to hold confidence. Not only how to speak English, but how to speak with respect.",
+      "My two promises to you: 1. We will nourish your child. Every child will get personal love, personal attention, and personal care. We will work on their confidence, their communication, their values, and their happiness. Because marks can be improved later, but childhood confidence, once lost, never comes back. 2. We will build a bond with you. I don't want you to be just a parent who drops and picks up the child. I want you to be my partner. My door is always open for you. Your worries will be my worries.",
+      "I am not here to give your child just formal schooling. I am here to give them a beautiful childhood that they will cherish forever.",
+      "Come, let's build their future together, with love.",
+      "Warmly,"
+    ],
+    "signoff": "Dr. Parvinder, Principal"
+  },
+  "staff": []
+}
+

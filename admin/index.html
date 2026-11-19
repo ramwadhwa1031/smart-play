@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Smart Start Admin CMS</title>
+  <link rel="icon" href="../assets/logos/favicon-32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body data-default-view="dashboard">
+  <div class="admin-shell">
+    <aside class="sidebar" aria-label="Admin navigation">
+      <a class="side-brand" href="#/dashboard">
+        <img src="../assets/logos/smart-start-logo-200.webp" alt="Smart Start logo" width="44" height="44">
+        <div><b>Smart Start</b><small>Admin CMS</small></div>
+      </a>
+      <nav class="side-nav">
+        <a href="#/dashboard" data-nav="dashboard">Dashboard</a>
+        <a href="#/content" data-nav="content">Website Content</a>
+        <a href="#/updates" data-nav="updates">Announcements</a>
+        <a href="#/gallery" data-nav="gallery">Gallery Manager</a>
+        <a href="#/programmes" data-nav="programmes">Programmes</a>
+        <a href="#/people" data-nav="people">Principal &amp; Staff</a>
+        <a href="#/testimonials" data-nav="testimonials">Testimonials</a>
+        <a href="#/centres" data-nav="centres">Our Centres</a>
+        <a href="#/seo" data-nav="seo">SEO Manager</a>
+        <a href="#/media" data-nav="media">Media Library</a>
+        <a href="#/settings" data-nav="settings">Website Settings</a>
+        <a href="#/publish" data-nav="publish">Publish &amp; Backup</a>
+      </nav>
+      <div class="side-foot">
+        <a href="../index.html" target="_blank" rel="noopener">View public website ↗</a>
+        <span>Pocket 27, Sector 24, Rohini</span>
+      </div>
+    </aside>
+    <div class="main-col">
+      <header class="topbar">
+        <div class="topbar__l">
+          <button class="side-toggle" id="side-toggle" type="button" aria-label="Toggle menu">☰ Menu</button>
+          <span class="badge badge--ok" id="draft-pill">All changes synced</span>
+        </div>
+        <div class="topbar__r">
+          <button class="btn btn--sm" id="btn-preview" type="button">Preview Draft</button>
+          <a class="btn btn--sm btn--primary" href="#/publish">Publish to GitHub</a>
+        </div>
+      </header>
+      <main class="view" id="view" tabindex="-1">
+        <p class="muted">Loading Smart Start CMS…</p>
+      </main>
+    </div>
+  </div>
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+  <script src="../js/seed-data.js"></script>
+  <script src="../js/admin/store.js"></script>
+  <script src="../js/admin/ui.js"></script>
+  <script src="../js/admin/github.js"></script>
+  <script src="../js/admin/views.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

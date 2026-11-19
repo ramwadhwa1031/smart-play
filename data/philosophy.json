@@ -1,0 +1,66 @@
+{
+  "hero": {
+    "eyebrow": "Multiple Intelligence",
+    "title": "Every child is [[smart]] in their own way",
+    "text": "Dr. Howard Gardner's theory of Multiple Intelligences tells us that children learn and shine in many different ways. At Smart Start we look beyond marks and notice what makes each child unique, then nurture it through play."
+  },
+  "how": {
+    "title": "How it works at Smart Start",
+    "steps": [
+      { "title": "Notice", "text": "We observe how each child plays, talks, moves and creates." },
+      { "title": "Nurture", "text": "We offer activities that grow every strength and gently stretch the rest." },
+      { "title": "Celebrate", "text": "We share progress with parents and celebrate every little win." }
+    ]
+  },
+  "intelligences": [
+    {
+      "id": "linguistic", "name": "Linguistic", "heading": "Word Wizards", "color": "magenta", "icon": "book",
+      "image": { "src": "assets/images/learning-with-sound-book.webp", "alt": "Boy touching an interactive alphabet sound book at his desk" },
+      "text": "The love of words, stories, rhymes and conversation. Linguistic learners talk, listen and imagine in language.",
+      "activities": ["Storytelling and show-and-tell", "Rhymes and phonics games", "Interactive alphabet books", "Speaking on stage"]
+    },
+    {
+      "id": "logical", "name": "Logical-Mathematical", "heading": "Little Problem Solvers", "color": "purple", "icon": "calc",
+      "image": { "src": "assets/images/toddler-ring-stacking.webp", "alt": "Toddler playing with stacking rings and hoops on a soft play mat" },
+      "text": "Curiosity about patterns, numbers and how things work. These children love sorting, counting and asking why.",
+      "activities": ["Stacking, sorting and matching", "Counting with real objects", "Pattern and shape games", "Simple puzzles"]
+    },
+    {
+      "id": "spatial", "name": "Spatial", "heading": "Picture Thinkers", "color": "sky", "icon": "palette",
+      "image": { "src": "assets/images/finger-painting.webp", "alt": "Boy finger-painting grapes on an activity sheet" },
+      "text": "Thinking in pictures, colours and shapes. Spatial learners imagine, draw and build.",
+      "activities": ["Finger painting and drawing", "Building with blocks", "Colour and shape hunts", "Theme-based craft"]
+    },
+    {
+      "id": "bodily", "name": "Bodily-Kinesthetic", "heading": "Moving Mountains", "color": "coral", "icon": "run",
+      "image": { "src": "assets/images/climbing-net-smile.webp", "alt": "Smiling child climbing a net on a mountain-themed climbing wall" },
+      "text": "Learning through movement and touch. These children climb, jump, dance and learn best when their bodies are involved.",
+      "activities": ["Climbing and ball-pit play", "Hoop and obstacle games", "Dance and martial-arts demonstrations", "Role play and costumes"]
+    },
+    {
+      "id": "musical", "name": "Musical", "heading": "Rhythm Makers", "color": "yellow", "icon": "music",
+      "image": { "src": "assets/images/folk-dhol-celebration.webp", "alt": "Children in traditional attire with a dhol at a Smart Start celebration" },
+      "text": "Sensitivity to rhythm, melody and sound. Musical children hum, tap and move to the beat.",
+      "activities": ["Songs and action rhymes", "Dhol, dandiya and folk dance", "Rhythm clapping games", "Stage performances"]
+    },
+    {
+      "id": "interpersonal", "name": "Interpersonal", "heading": "Friendship Builders", "color": "green", "icon": "people",
+      "image": { "src": "assets/images/classroom-group-circle.webp", "alt": "Teacher seated with a group of children in blue uniforms in a themed classroom" },
+      "text": "Understanding and connecting with others. These children make friends easily, share and lead.",
+      "activities": ["Circle time and group play", "Festival celebrations together", "Sharing and turn-taking games", "Team activities"]
+    },
+    {
+      "id": "intrapersonal", "name": "Intrapersonal", "heading": "Inner Stars", "color": "purple", "icon": "heart",
+      "image": { "src": "assets/images/independence-worksheet.webp", "alt": "Girl pointing at an Independence Day activity worksheet at her desk" },
+      "text": "Knowing one's own feelings and strengths. Intrapersonal children are thoughtful, independent and self-aware.",
+      "activities": ["Quiet focus time", "Feelings and mood check-ins", "Independent worksheets", "Goal-setting through stickers"]
+    },
+    {
+      "id": "naturalistic", "name": "Naturalistic", "heading": "Nature Explorers", "color": "green", "icon": "leaf",
+      "image": { "src": "assets/images/jungle-nature-corner.webp", "alt": "Two children exploring a jungle-themed corner with a paper tree and a potted plant" },
+      "text": "A bond with plants, animals and the natural world. These children notice, collect and care for living things.",
+      "activities": ["Planting and watering", "Animal and jungle themes", "Outdoor play on the grass", "Seasons and weather talk"]
+    }
+  ]
+}
+

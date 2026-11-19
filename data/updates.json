@@ -1,0 +1,76 @@
+{
+  "categories": ["Celebrations", "Events", "Activities", "Admissions", "Notices"],
+  "items": [
+    {
+      "id": "janmashtami-2026", "title": "Janmashtami: little Krishnas and Radhas", "category": "Celebrations", "date": "2026-09-04",
+      "description": "Our little ones came dressed as Krishna, Radha and characters from the Janmashtami story. The classroom was transformed into a storytelling set with a flute, dandiya sticks and a lot of smiles.",
+      "cover": "assets/images/krishna-radha-portrait.webp",
+      "images": ["assets/images/krishna-flute.webp", "assets/images/janmashtami-prison-set.webp", "assets/images/krishna-costume-girl.webp", "assets/images/dandiya-pair.webp", "assets/images/janmashtami-tableau.webp"],
+      "published": true, "order": 1
+    },
+    {
+      "id": "raksha-bandhan-2026", "title": "Raksha Bandhan with tiny siblings", "category": "Celebrations", "date": "2026-08-25",
+      "description": "A sweet Raksha Bandhan celebration where our toddlers learned about the bond of love between brothers and sisters.",
+      "cover": "assets/images/rakhi-tying.webp",
+      "images": ["assets/images/raksha-bandhan-pair.webp"],
+      "published": true, "order": 2
+    },
+    {
+      "id": "independence-day-2026", "title": "Independence Day: tricolour all around", "category": "Celebrations", "date": "2026-08-13",
+      "description": "Children dressed as freedom fighters, saluted the flag and took part in Independence Day activities in class.",
+      "cover": "assets/images/independence-day-salute.webp",
+      "images": ["assets/images/independence-day-flag.webp", "assets/images/india-day-group.webp", "assets/images/india-day-costumes.webp", "assets/images/independence-worksheet.webp"],
+      "published": true, "order": 3
+    },
+    {
+      "id": "hariyali-teej-2026", "title": "Hariyali Teej swings and Mehndi corner", "category": "Celebrations", "date": "2026-08-08",
+      "description": "A flower-decorated swing, a Mehndi Corner and a Choodi Corner made Hariyali Teej a festival of colour at school.",
+      "cover": "assets/images/hariyali-teej-swing.webp",
+      "images": ["assets/images/mehndi-corner.webp"],
+      "published": true, "order": 4
+    },
+    {
+      "id": "summer-camp-2026", "title": "Summer Camp at Smart Start", "category": "Activities", "date": "2026-05-27",
+      "description": "Summer Camp brought outdoor play, creativity and fun to the school grounds under our colourful Summer Camp tent.",
+      "cover": "assets/images/summer-camp-welcome.webp",
+      "images": ["assets/images/mango-cart-roleplay.webp", "assets/images/outdoor-hoop-game.webp"],
+      "published": true, "order": 5
+    },
+    {
+      "id": "fashion-show-2026", "title": "Fashion show on the red carpet", "category": "Events", "date": "2026-04-11",
+      "description": "Our activity hall turned into a ramp with blue and gold balloons as children walked with confidence, guided by their teachers.",
+      "cover": "assets/images/fashion-show-ramp.webp",
+      "images": ["assets/images/fashion-show-walk.webp"],
+      "published": true, "order": 6
+    },
+    {
+      "id": "graduation-2026", "title": "Graduation Day", "category": "Events", "date": "2026-03-28",
+      "description": "Our graduates, dressed in blue gowns, received their scrolls and certificates with their families cheering.",
+      "cover": "assets/images/graduation-day.webp",
+      "images": ["assets/images/graduation-with-family.webp"],
+      "published": true, "order": 7
+    },
+    {
+      "id": "annual-day-2026", "title": "Annual day on stage", "category": "Events", "date": "2026-03-15",
+      "description": "Costumes, dances and performances: our children took the stage while parents cheered them on.",
+      "cover": "assets/images/stage-costume-group.webp",
+      "images": ["assets/images/annual-day-play.webp", "assets/images/annual-day-dance.webp", "assets/images/annual-day-felicitation.webp", "assets/images/stage-bunny-ears.webp", "assets/images/stage-costume-trio.webp", "assets/images/stage-teachers-and-kids.webp", "assets/images/annual-day-audience.webp"],
+      "published": true, "order": 8
+    },
+    {
+      "id": "lohri-2026", "title": "Lohri celebration", "category": "Celebrations", "date": "2026-01-12",
+      "description": "A colourful Lohri set with marigold garlands, kites and a bonfire model celebrated the harvest festival with our children.",
+      "cover": "assets/images/lohri-celebration.webp",
+      "images": [],
+      "published": true, "order": 9
+    },
+    {
+      "id": "halloween-2025", "title": "Halloween at the school gate", "category": "Celebrations", "date": "2025-10-31",
+      "description": "Our school entrance turned into a spooky-fun Halloween arch for the children.",
+      "cover": "assets/images/halloween-entrance.webp",
+      "images": [],
+      "published": true, "order": 10
+    }
+  ]
+}
+

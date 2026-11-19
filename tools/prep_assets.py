@@ -1,0 +1,150 @@
+"""Optimise uploaded assets -> smart-start/assets, build media.json + gallery.json + ASSET_INVENTORY.md.
+Run from anywhere:  python tools/prep_assets.py
+"""
+import os, glob, json, hashlib, zipfile, datetime, sys
+from PIL import Image, ImageOps, ImageDraw
+sys.path.insert(0, os.path.dirname(__file__))
+from assets_meta import *
+
+SRC = r"C:\Users\DELL\Downloads\Play School"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+os.makedirs(ROOT + "/assets/images", exist_ok=True)
+os.makedirs(ROOT + "/assets/logos", exist_ok=True)
+os.makedirs(ROOT + "/data", exist_ok=True)
+os.makedirs(ROOT + "/docs", exist_ok=True)
+
+files = sorted(glob.glob(SRC + "/*.jpeg")) + sorted(glob.glob(SRC + "/iLoveZIP_Create (1)/*.jpeg"))
+files += sorted(glob.glob(ROOT + "/_scratch/docx_*"))
+videos = sorted(glob.glob(SRC + "/iLoveZIP_Create (1)/*.mp4"))
+
+def exif_date(path):
+    try:
+        ex = Image.open(path).getexif()
+        sub = ex.get_ifd(0x8769)
+        d = sub.get(36867) or ex.get(306)
+        if d:
+            return d[:10].replace(":", "-")
+    except Exception:
+        pass
+    return None
+
+def save(im, path, long_side, q=80):
+    im = im.copy()
+    im.thumbnail((long_side, long_side), Image.LANCZOS)
+    im.save(path, "WEBP", quality=q, method=6)
+    return im.size
+
+media, gallery, rows, dates = [], [], [], {}
+pil = {}
+for i, f in enumerate(files):
+    pil[i] = ImageOps.exif_transpose(Image.open(f)).convert("RGB")
+
+# ---- logo (circular, transparent) ----
+src = pil[LOGO_IDX]
+cx, cy, r = 377, 372, 318
+mask = Image.new("L", (src.width * 2, src.height * 2), 0)
+ImageDraw.Draw(mask).ellipse([(cx - r) * 2, (cy - r) * 2, (cx + r) * 2, (cy + r) * 2], fill=255)
+mask = mask.resize(src.size, Image.LANCZOS)
+logo = src.copy(); logo.putalpha(mask); logo = logo.crop((cx - r, cy - r, cx + r, cy + r))
+logo.save(ROOT + "/assets/logos/smart-start-logo.png", optimize=True)
+logo.save(ROOT + "/assets/logos/smart-start-logo.webp", quality=90, method=6)
+logo.resize((200, 200), Image.LANCZOS).save(ROOT + "/assets/logos/smart-start-logo-200.webp", quality=90)
+for n in (32, 180, 192):
+    logo.resize((n, n), Image.LANCZOS).save(ROOT + f"/assets/logos/favicon-{n}.png", optimize=True)
+logo.resize((48, 48), Image.LANCZOS).save(ROOT + "/favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
+
+def add_media(slug, im, cat, label, alt, long_side=1600, thumb=640, orig=None):
+    full = f"assets/images/{slug}.webp"; th = f"assets/images/{slug}-sm.webp"
+    w, h = save(im, ROOT + "/" + full, long_side)
+    save(im, ROOT + "/" + th, thumb, 74)
+    media.append(dict(id=slug, path=full, thumb=th, w=w, h=h,
+                      bytes=os.path.getsize(ROOT + "/" + full), category=cat, label=label, alt=alt))
+    return w, h
+
+# ---- principal, banner ----
+add_media("principal-dr-parvinder-kaur", pil[PRINCIPAL_IDX], "people", "Dr. Parvinder Kaur, Principal",
+          "Portrait of Dr. Parvinder Kaur, Principal of Smart Start", 1200)
+add_media("smart-start-signboard", pil[BANNER_IDX], "branding", "Smart Start signboard",
+          "Smart Start The Premium School signboard: Play, Prepare, Pride", 533, 400)
+logo_w = logo.size
+media.append(dict(id="logo", path="assets/logos/smart-start-logo.webp", thumb="assets/logos/smart-start-logo-200.webp",
+                  w=logo_w[0], h=logo_w[1], bytes=os.path.getsize(ROOT + "/assets/logos/smart-start-logo.webp"),
+                  category="branding", label="Smart Start logo", alt="Smart Start logo"))
+
+order = 0
+for idx, slug, cat, cap, alt in SELECTED:
+    w, h = add_media(slug, pil[idx], cat, cap, alt)
+    d = exif_date(files[idx]); dates[slug] = d
+    order += 1
+    gallery.append(dict(id=slug, src=f"assets/images/{slug}.webp", thumb=f"assets/images/{slug}-sm.webp",
+                        w=w, h=h, category=cat, caption=cap, alt=alt, featured=False, visible=True, order=order))
+json.dump(dates, open(ROOT + "/_scratch/exif_dates.json", "w"), indent=1)
+
+# ---- JSON ----
+for g in gallery:
+    if g["id"] in ("janmashtami-tableau", "annual-day-play", "krishna-radha-portrait", "ball-pit-adventure",
+                   "graduation-day", "little-santas", "finger-painting", "classroom-group-circle"):
+        g["featured"] = True
+json.dump({"categories": CATEGORIES, "images": gallery}, open(ROOT + "/data/gallery.json", "w", encoding="utf8"), indent=2, ensure_ascii=False)
+json.dump({"categories": ["branding", "people"] + [c["id"] for c in CATEGORIES], "items": media},
+          open(ROOT + "/data/media.json", "w", encoding="utf8"), indent=2, ensure_ascii=False)
+
+# ---- ASSET_INVENTORY.md ----
+secmap = {"celebrations": "Gallery / Latest Updates", "events": "Gallery / Latest Updates",
+          "classroom": "Programmes / Gallery", "creative": "Programmes / Philosophy / Gallery",
+          "outdoor": "Gallery / Philosophy", "infra": "Learning Environment / Gallery"}
+sel = {s[0]: s for s in SELECTED}
+md5 = {}
+lines = ["# ASSET INVENTORY", "",
+         "Generated by `tools/prep_assets.py` after visually inspecting every uploaded file.",
+         f"Source folder: `{SRC}` (the ZIP `iLoveZIP_Create (1).zip` had already been extracted to a sibling folder with identical content).", "",
+         "## Summary", "",
+         f"- {len(files)} images inspected (2 root JPEGs, {len(files)-3} from the ZIP folder, 1 image embedded in the *Dear Parents* DOCX)",
+         f"- {len(videos)} MP4 videos (not published: 2.9-17 MB each, ~85 MB total, too heavy for GitHub Pages; recommend YouTube embeds)",
+         "- 3 DOCX documents (content used for About / Vision / Principal's message / social links)",
+         "- 0 SVG files, 0 transparent PNG files in the upload. A transparent circular logo was produced from the uploaded logo JPEG.",
+         f"- {len(SELECTED)} gallery photographs optimised to WebP (max 1600 px + 640 px thumbnail); {len(EXCLUDED)} excluded (duplicates / screenshots / out of focus)",
+         "- Several photographs carry a *Vishwa Studio* watermark (annual-day stage shots). Confirm usage rights with the studio.",
+         "- No photograph of a school building exterior, reception, or classroom with posted address exists in the upload. **No centre address was invented**; it is editable in the admin panel.",
+         "", "## Images", "",
+         "| # | File | Type | Dimensions | Aspect | Description | Suggested section | Display format | Desktop | Mobile | Status |",
+         "|---|------|------|-----------|--------|-------------|-------------------|----------------|---------|--------|--------|"]
+for i, f in enumerate(files):
+    im = pil[i]; w, h = im.size
+    ratio = w / h
+    shape = "landscape" if ratio > 1.15 else ("portrait" if ratio < .87 else "square-ish")
+    hs = hashlib.md5(open(f, "rb").read()).hexdigest(); dup = md5.get(hs); md5[hs] = i
+    big = max(w, h)
+    q = "yes" if big >= 1000 else ("small only" if big >= 600 else "thumbnail only")
+    name = os.path.basename(f)
+    if i == LOGO_IDX:
+        d, sec, fmt, st = "Official Smart Start logo on a doodle background (JPEG, not transparent)", "Header, footer, favicon, social image", "Cropped to a circle with alpha -> `assets/logos/smart-start-logo.webp/png`, never stretched", "USED (cropped)"
+    elif i == PATTERN_IDX:
+        d, sec, fmt, st = "Brand doodle pattern with repeated logo stamps (stationery / gift-wrap style)", "Reference for background doodle style", "Not used directly (logo stamps repeat); original SVG doodle patterns drawn instead", "REFERENCE"
+    elif i == BANNER_IDX:
+        d, sec, fmt, st = "Signboard: Smart Start The Premium School; Play, Prepare, Pride; Day Care, Kindergarten, Activity; 85870-06249, 97171-77531", "Contact page, Centres", "Show at natural ratio (2.08:1), no upscaling", "USED (low-res, small display only)"
+    elif i == PRINCIPAL_IDX:
+        d, sec, fmt, st = "Portrait of Principal Dr. Parvinder Kaur (same photo as embedded in the Dear Parents DOCX)", "Home - Principal; About - Principal's message", "Portrait 3:4, rounded blob mask, object-position top", "USED"
+    elif i in sel:
+        s = sel[i]; d = s[4]; sec = secmap[s[2]]; fmt = f"`{s[1]}.webp` ({shape}); use `object-fit:cover` in masks, natural ratio in gallery/lightbox"; st = "USED (gallery: " + dict((c['id'], c['label']) for c in CATEGORIES)[s[2]] + ")"
+    else:
+        d = EXCLUDED.get(i, ""); sec = "-"; fmt = "-"; st = "EXCLUDED"
+    if dup is not None: st += f" (byte-duplicate of #{dup})"
+    lines.append(f"| {i} | {name} | JPEG | {w}x{h} | {shape} | {d} | {sec} | {fmt} | {q} | {q if big < 1000 else 'yes'} | {st} |")
+lines += ["", "## Videos (not published)", "", "| File | Size |", "|------|------|"]
+for v in videos:
+    lines.append(f"| {os.path.basename(v)} | {os.path.getsize(v)/1e6:.1f} MB |")
+lines += ["", "## Documents", "",
+          "| File | Used for |", "|------|----------|",
+          "| Dear Parents by Prinicipal.docx | Principal's message (home + about), principal photo |",
+          "| OUR VISION.docx | Vision statement, short vision, four pillars |",
+          "| Welcome to Smart Start.docx | Welcome copy, Instagram / Facebook / YouTube links |",
+          "", "## Quality notes", "",
+          "- No byte-identical duplicates. Near-duplicates (#7/#8, #15/#16, #28/#29) were reduced to one image each.",
+          "- Photos #50 and #54 are phone screenshots and were excluded.",
+          "- Largest originals (up to 14 MB) were reduced to <= 1600 px WebP, typically 60-250 KB.",
+          "- All photos are JPEG with EXIF rotation applied during conversion.", ""]
+open(ROOT + "/docs/ASSET_INVENTORY.md", "w", encoding="utf8").write("\n".join(lines))
+print("ok", len(media), "media;", sum(m['bytes'] for m in media) // 1024, "KB")
+print(json.dumps(dates))
+

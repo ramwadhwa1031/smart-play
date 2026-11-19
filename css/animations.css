@@ -1,0 +1,48 @@
+/* Animations & motion. Everything is disabled under prefers-reduced-motion. Content is never hidden unless JS adds .js */
+@keyframes marquee{to{transform:translateX(-50%)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pop{from{opacity:0;transform:scale(.94) translateY(10px)}to{opacity:1;transform:none}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-14px) rotate(calc(var(--r,0deg) + 4deg))}}
+@keyframes drift{0%,100%{transform:translateX(0)}50%{transform:translateX(24px)}}
+@keyframes ping{0%{transform:scale(1);opacity:.7}80%,100%{transform:scale(1.35,1.6);opacity:0}}
+@keyframes wordIn{from{transform:translateY(110%) rotate(4deg)}to{transform:none}}
+@keyframes riseIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes wiggle{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(-2deg)}}
+
+.marquee__track{animation:marquee var(--dur,48s) linear infinite;will-change:transform}
+.m-fast .marquee__track{--dur:34s}
+.m-rev .marquee__track{animation-direction:reverse}
+.marquee:hover .marquee__track,.marquee:focus-within .marquee__track{animation-play-state:paused}
+
+.f{animation:floaty 7s ease-in-out infinite}
+.hc1,.hc2{animation:drift 14s ease-in-out infinite}.hc2{animation-duration:18s;animation-direction:reverse}
+.hsun{animation:spin 40s linear infinite}
+.hs1{--r:10deg;animation-duration:5s}.hs2{animation-duration:6s;animation-delay:-2s}.hp{--r:30deg;animation-duration:8s}.hh{animation-duration:4.5s}
+.f1,.f3{animation-duration:6s}.f4{animation-duration:8s;animation-delay:-3s}
+.note{animation:wiggle 3.5s ease-in-out infinite}
+.hf{animation:floaty 9s ease-in-out infinite}.hf2{animation-delay:-3s;animation-duration:7s}.hf3{animation-delay:-5s;animation-duration:8s}
+.hf1{--r:-1.5deg}.hf2{--r:3deg}.hf3{--r:-3deg}
+
+/* hero text reveal (CSS only so the headline never waits for JS) */
+.split .w>span{animation:wordIn .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*90ms + .1s)}
+.rise{animation:riseIn .8s ease both;animation-delay:var(--d,.4s)}
+
+/* scroll reveals (only when JS is available) */
+.js .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0)*90ms)}
+.js .reveal.in{opacity:1;transform:none}
+.js .reveal--img.in{animation:imgWipe .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*90ms)}
+@keyframes imgWipe{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+.act li{animation:none}
+
+.ccard,.pillar,.vcard,.step-card,.upd,.mi-tab,.chip{will-change:transform}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;animation-delay:0s!important;scroll-behavior:auto!important}
+  .marquee__track{animation:none!important;overflow-x:auto}
+  .marquee{overflow-x:auto}
+  .js .reveal{opacity:1;transform:none}
+  .wa-float::before{display:none}
+}
+

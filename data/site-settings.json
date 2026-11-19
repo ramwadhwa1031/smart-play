@@ -1,0 +1,53 @@
+{
+  "name": "Smart Start",
+  "fullName": "Smart Start – The Premium School",
+  "tagline": "Where Childhood Blossoms & Futures Begin",
+  "motto": "Play · Prepare · Pride",
+  "siteUrl": "https://smart-start-school.github.io/smart-start/",
+  "city": "Delhi",
+  "logo": "assets/logos/smart-start-logo.webp",
+  "favicon": "assets/logos/favicon-32.png",
+  "phones": [
+    { "label": "Call / WhatsApp", "number": "9717177531" },
+    { "label": "Call", "number": "8587006249" },
+    { "label": "Call", "number": "9650505210" }
+  ],
+  "email": "smartstart4mykids@gmail.com",
+  "whatsapp": "919717177531",
+  "whatsappMessage": "Hello Smart Start, I would like to enquire about admissions.",
+  "social": {
+    "instagram": "https://www.instagram.com/smart_start_the_premium_school?igsh=dTEwbHJ4YWs4bHl6",
+    "facebook": "https://www.facebook.com/profile.php?id=100085158252445",
+    "youtube": "https://youtube.com/@smartstart-thepremiumschool?si=8dhiZfd_lnk7T7tv",
+    "twitter": ""
+  },
+  "mapsUrl": "https://share.google/OtE4QOz0eiZVvaR9c",
+  "address": "Pocket 27, Sector 24, Rohini, Delhi – 110085",
+  "hours": [],
+  "hoursNote": "Please call or WhatsApp us to confirm visiting hours and book a school visit.",
+  "footer": {
+    "blurb": "A premium pre-school in Delhi where every child gets love, learning and the luxury of care. Because your child deserves the best start.",
+    "copyright": "Smart Start – The Premium School. All rights reserved."
+  },
+  "colors": {
+    "purple": "#6D2FA0",
+    "magenta": "#C2307E",
+    "coral": "#E8483F",
+    "sky": "#54B9F2",
+    "yellow": "#FFC83D",
+    "green": "#2FA66A",
+    "navy": "#1E2250",
+    "cream": "#FFF9EE"
+  },
+  "nav": [
+    { "label": "Home", "href": "index.html" },
+    { "label": "About", "href": "about.html" },
+    { "label": "Multiple Intelligence", "href": "philosophy.html" },
+    { "label": "Programmes", "href": "programmes.html" },
+    { "label": "Gallery", "href": "gallery.html" },
+    { "label": "Announcements", "href": "updates.html" },
+    { "label": "Centres", "href": "centres.html" },
+    { "label": "Contact", "href": "contact.html" }
+  ]
+}
+

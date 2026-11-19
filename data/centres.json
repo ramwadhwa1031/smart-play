@@ -1,0 +1,21 @@
+{
+  "centres": [
+    {
+      "id": "smart-start-main",
+      "name": "Smart Start – The Premium School",
+      "address": "Pocket 27, Sector 24, Rohini, Delhi – 110085",
+      "city": "Delhi",
+      "intro": "Our campus at Pocket 27, Sector 24, Rohini, Delhi. Call or WhatsApp us to book a school visit and campus tour.",
+      "photos": [
+        { "src": "assets/images/halloween-entrance.webp", "alt": "Smart Start school entrance decorated with a Halloween arch" },
+        { "src": "assets/images/ball-pit-adventure.webp", "alt": "Child playing in a ball pit in front of a mountain-themed climbing wall" },
+        { "src": "assets/images/classroom-group-circle.webp", "alt": "Teacher seated with a group of children in blue uniforms in a themed classroom" }
+      ],
+      "phones": ["9717177531", "8587006249", "9650505210"],
+      "email": "smartstart4mykids@gmail.com",
+      "mapsUrl": "https://share.google/OtE4QOz0eiZVvaR9c",
+      "visible": true
+    }
+  ]
+}
+

@@ -1,0 +1,64 @@
+{
+  "hero": {
+    "eyebrow": "Our programmes",
+    "title": "Six steps from first steps to [[school-ready]]",
+    "text": "Each programme is matched to a child's age and developmental stage and nourishes all eight intelligences through play."
+  },
+  "items": [
+    {
+      "id": "toddlers", "name": "Toddlers", "age": "1.5–2 years", "color": "coral", "visible": true, "order": 1,
+      "tagline": "Tiny steps, big discoveries",
+      "description": "A gentle, affectionate start for our youngest learners. Toddlers explore through touch, movement and sound in a safe, cosy space with caring, trained staff.",
+      "objectives": ["Feel safe and settled away from home", "Build early speech through songs and sounds", "Develop hand-eye coordination", "Begin simple social play"],
+      "activities": ["Stacking and ring play", "Sensory and soft-play time", "Action rhymes", "Outdoor grass play"],
+      "development": ["Motor skills", "Language", "Emotional security"],
+      "image": { "src": "assets/images/toddler-ring-stacking.webp", "alt": "Toddler playing with stacking rings and hoops on a soft play mat" }
+    },
+    {
+      "id": "playgroup", "name": "Playgroup", "age": "2–2.5/3 years", "color": "yellow", "visible": true, "order": 2,
+      "tagline": "Play is the work of childhood",
+      "description": "Playgroup introduces routines, friendships and curiosity. Children learn to share, follow simple instructions and express themselves in a joyful, play-led setting.",
+      "objectives": ["Follow simple routines", "Share and take turns", "Grow vocabulary and listening", "Explore colours, shapes and textures"],
+      "activities": ["Stacking cups and sorting", "Story and rhyme circles", "Free play and music", "Festival dress-ups"],
+      "development": ["Social skills", "Language", "Sensory exploration"],
+      "image": { "src": "assets/images/toddler-cups-outdoors.webp", "alt": "Toddler stacking colourful cups on artificial grass outdoors" }
+    },
+    {
+      "id": "pre-nursery", "name": "Pre-Nursery", "age": "2.5–3 years", "color": "green", "visible": true, "order": 3,
+      "tagline": "Hands busy, minds blooming",
+      "description": "Pre-Nursery builds independence and creativity with art, movement and early pre-literacy and pre-number experiences, always through hands-on play.",
+      "objectives": ["Hold crayons and brushes with growing control", "Recognise colours and shapes", "Express feelings in words", "Build independence in small routines"],
+      "activities": ["Finger painting", "Role play corners", "Songs and dance", "Nature corner play"],
+      "development": ["Creativity", "Fine motor skills", "Independence"],
+      "image": { "src": "assets/images/finger-painting.webp", "alt": "Boy finger-painting grapes on an activity sheet" }
+    },
+    {
+      "id": "nursery", "name": "Nursery", "age": "3–4 years", "color": "sky", "visible": true, "order": 4,
+      "tagline": "Curious minds, confident voices",
+      "description": "Nursery brings early literacy, numeracy and speaking confidence together. Children learn through interactive books, stories and stage experiences.",
+      "objectives": ["Recognise letters and sounds", "Count and match objects", "Speak confidently in front of others", "Develop good manners and values"],
+      "activities": ["Interactive alphabet books", "Show-and-tell", "Costume days and stage time", "Group games"],
+      "development": ["Early literacy", "Confidence", "Values"],
+      "image": { "src": "assets/images/learning-with-sound-book.webp", "alt": "Boy touching an interactive alphabet sound book at his desk" }
+    },
+    {
+      "id": "lkg", "name": "LKG", "age": "4–5 years", "color": "purple", "visible": true, "order": 5,
+      "tagline": "Ready, steady, grow",
+      "description": "LKG deepens reading, writing and number readiness with activity-based projects, theme days and celebrations, with no rote learning.",
+      "objectives": ["Read and write simple words", "Understand numbers and patterns", "Work in groups and share ideas", "Build focus and independence"],
+      "activities": ["Theme worksheets and projects", "Festival celebrations", "Group presentations", "Creative craft"],
+      "development": ["Literacy and numeracy", "Teamwork", "Focus"],
+      "image": { "src": "assets/images/independence-worksheet.webp", "alt": "Girl pointing at an Independence Day activity worksheet at her desk" }
+    },
+    {
+      "id": "ukg", "name": "UKG", "age": "5–6 years", "color": "magenta", "visible": true, "order": 6,
+      "tagline": "Graduating with confidence",
+      "description": "UKG prepares children for the next step of school with strong foundations, clear communication and the confidence to stand up and speak.",
+      "objectives": ["Strengthen reading, writing and maths readiness", "Speak clearly and confidently", "Take responsibility and show leadership", "Be happy and ready for primary school"],
+      "activities": ["Stage performances", "Projects and presentations", "Graduation ceremony", "Leadership roles in class"],
+      "development": ["School readiness", "Communication", "Leadership"],
+      "image": { "src": "assets/images/graduation-day.webp", "alt": "Child in a blue graduation gown holding a scroll and a certificate" }
+    }
+  ]
+}
+
