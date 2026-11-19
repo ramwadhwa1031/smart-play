@@ -74,6 +74,11 @@
     { title: "Latest updates & gallery preview headings", f: [
       { t: "text", o: "updates", k: "eyebrow", l: "Updates label" }, { t: "area", o: "updates", k: "title", l: "Updates heading", rows: 2, hint: HL_HINT }, { t: "area", o: "updates", k: "text", l: "Updates text", rows: 2 }, { t: "number", o: "updates", k: "count", l: "Number of updates shown (3-6)" },
       { t: "text", o: "gallery", k: "eyebrow", l: "Gallery label" }, { t: "area", o: "gallery", k: "title", l: "Gallery heading", rows: 2, hint: HL_HINT }, { t: "area", o: "gallery", k: "text", l: "Gallery text", rows: 2 }, { t: "number", o: "gallery", k: "count", l: "Number of photos shown" }] },
+    { title: "Instagram Reels carousel", f: [
+      { t: "text", o: "reels", k: "eyebrow", l: "Badge label" }, { t: "area", o: "reels", k: "title", l: "Heading", rows: 2, hint: HL_HINT }, { t: "area", o: "reels", k: "text", l: "Description", rows: 2 },
+      { t: "text", o: "reels", k: "profileUrl", l: "Instagram Reels profile URL" }, { t: "text", o: "reels", k: "handle", l: "Instagram handle" }, { t: "text", o: "reels", k: "buttonLabel", l: "Bottom button label" },
+      { t: "repeat", o: "reels", k: "items", l: "Reel cards", single: "reel", itemLabel: "title", add: { title: "New Reel", tag: "Classroom Reel", thumb: "", url: "https://www.instagram.com/smart_start_the_premium_school/reels/" },
+        fields: [{ t: "text", k: "title", l: "Title / caption" }, { t: "text", k: "tag", l: "Category tag" }, { t: "image", k: "thumb", l: "Thumbnail image" }, { t: "text", k: "url", l: "Instagram Reel URL" }] }] },
     { title: "Principal teaser (text comes from People)", f: [{ t: "text", o: "principal", k: "eyebrow", l: "Label" }, { t: "text", o: "principal", k: "title", l: "Heading (quote)" }, { t: "text", o: "principal", o2: "button", k: "label", l: "Button label" }] },
     { title: "Testimonials heading", f: [{ t: "text", o: "testimonials", k: "eyebrow", l: "Label" }, { t: "text", o: "testimonials", k: "title", l: "Heading" }] },
     { title: "Enquiry call-to-action band", f: [{ t: "area", o: "cta", k: "title", l: "Heading", rows: 2, hint: HL_HINT }, { t: "area", o: "cta", k: "text", l: "Text", rows: 2 },

@@ -210,7 +210,7 @@
       '<a class="brand" href="' + p(c, "index.html") + '" aria-label="' + esc(s.name) + ' – home">' +
       '<img src="' + esc(src(c, s.logo)) + '" alt="' + esc(s.name) + ' logo" width="56" height="56"><span class="brand__txt"><b>' + esc(s.name) + "</b><small>The Premium School</small></span></a>" +
       '<nav class="nav" id="primary-nav" aria-label="Primary"><ul>' + items + "</ul>" +
-      '<div class="nav__cta"><a class="btn btn--primary btn--sm" href="' + p(c, "contact.html#enquiry") + '"><span>Enquire Now</span>' + icon("arrow") + "</a></div></nav>" +
+      '<div class="nav__cta"><a class="btn btn--primary btn--sm" href="' + p(c, "contact.html#enquiry") + '"><span>Book A Campus Visit</span>' + icon("arrow") + "</a></div></nav>" +
       '<button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button></div>';
   }
   function progIconSvg(id, idx) {
@@ -238,7 +238,7 @@
     var exploreList = [
       { label: "Home", href: "index.html" },
       { label: "About Us", href: "about.html" },
-      { label: "Multiple Intelligence", href: "philosophy.html" },
+      { label: "Philosophy", href: "philosophy.html" },
       { label: "Programmes", href: "programmes.html" },
       { label: "Gallery", href: "gallery.html" },
       { label: "Announcements", href: "updates.html" },
@@ -289,7 +289,7 @@
       '<path class="fw-back" d="M0 32C180 82 380 86 620 42S1080 -6 1440 46V90H0Z"/>' +
       '<path class="fw-front" d="M0 46C220 92 440 84 720 44S1160 8 1440 54V90H0Z"/></svg></div>' +
       '<div class="footer-body">' +
-      leftBushSvg + starTrailSvg + schoolSvg +
+      starTrailSvg +
       '<div class="container footer-grid">' +
       '<div class="f-col f-brand"><a class="brand brand--light" href="' + p(c, "index.html") + '"><img src="' + esc(src(c, s.logo)) + '" alt="' + esc(s.name) + ' logo" width="66" height="66" loading="lazy"><span class="brand__txt"><b>' + esc(s.name) + "</b><small>THE PREMIUM SCHOOL</small></span></a>" +
       "<p>" + esc((s.footer || {}).blurb) + '</p><div class="f-motto"><span>' + esc(s.motto) + '</span><svg viewBox="0 0 130 14" aria-hidden="true"><path d="M2 11c24-8 62-9 96-3" fill="none" stroke="#FFC83D" stroke-width="3.2" stroke-linecap="round"/></svg></div><div class="socials">' + so + "</div></div>" +
@@ -300,7 +300,8 @@
       (s.address ? '<li>' + pinIc + "<span>" + esc(fmtAddr(s.address, s.city)) + "</span></li>" : "") +
       (s.mapsUrl ? '<li>' + pinIc + '<a href="' + esc(s.mapsUrl) + '" target="_blank" rel="noopener">Find us on Google Maps</a></li>' : "") +
       "</ul></div></div>" +
-      '<div class="f-gold-wave" aria-hidden="true"><svg viewBox="0 0 1440 36" preserveAspectRatio="none"><path d="M0 24C260 6 540 2 820 18S1220 34 1440 16" fill="none" stroke="#FFC83D" stroke-width="4.5" stroke-linecap="round"/></svg></div>' +
+      '<div class="footer-scene" aria-hidden="true">' + leftBushSvg + schoolSvg +
+      '<div class="f-gold-wave"><svg viewBox="0 0 1440 36" preserveAspectRatio="none"><path d="M0 24C260 6 540 2 820 18S1220 34 1440 16" fill="none" stroke="#FFC83D" stroke-width="4.5" stroke-linecap="round"/></svg></div></div>' +
       '<div class="container footer-bottom">' +
       '<p class="f-copy">© <span data-year>' + new Date().getFullYear() + "</span> " + esc((s.footer || {}).copyright) + "</p>" +
       '<span class="f-div" aria-hidden="true"></span>' +
@@ -322,7 +323,7 @@
       deco("star", "f f1") + deco("cloud", "f f2") + deco("pencil", "f f3") + deco("plus", "f f4") + "</section>";
   }
   function wave(color, flip, on) {
-    return '<div class="wave ' + (flip ? "wave--flip " : "") + color + (on ? " on-" + on : "") + '" aria-hidden="true"><svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0 35c120 35 240 35 360 8S600 0 720 18s240 45 360 27 240-38 360-8v33H0z"/></svg></div>';
+    return '<div class="wave ' + (flip ? "wave--flip " : "") + color + (on ? " on-" + on : "") + '" aria-hidden="true"><svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0 35c120 35 240 35 360 8S600 0 720 18s240 45 360 27 240-38 360-8V70H0Z"/></svg></div>';
   }
   function marqueeGroup(items, sep, hidden) {
     var rep = items.slice(); while (rep.length && rep.length < 12) rep = rep.concat(items);
@@ -339,8 +340,8 @@
   /* ---------- reusable blocks ---------- */
   function programmeCardMini(c, x, i) {
     return '<a class="step-card reveal c-' + esc(x.color) + '" style="--i:' + i + '" href="' + p(c, "programmes.html#" + esc(x.id)) + '">' +
-      '<span class="age-pill">' + esc(x.age) + '</span><span class="step-img">' + img(c, x.image, { thumb: 1, sizes: "220px" }) + "</span>" +
-      '<h3>' + esc(x.name) + '</h3><p>' + esc(x.tagline) + '</p><span class="more">Explore ' + icon("arrow") + "</span></a>";
+      '<span class="step-img">' + img(c, x.image, { thumb: 1, sizes: "(max-width:700px) 88vw, 380px" }) + '<span class="age-pill">' + esc(x.age) + '</span></span>' +
+      '<span class="step-body"><h3>' + esc(x.name) + '</h3><p>' + esc(x.tagline) + '</p><span class="more">Explore ' + icon("arrow") + "</span></span></a>";
   }
   function updateCard(c, u, i, big) {
     var count = (u.images || []).length;
@@ -384,7 +385,7 @@
         '<figure class="hf hf3 blob-b" data-depth="0.06">' + (im[2] ? img(c, im[2], { thumb: 1, eager: 1, sizes: "240px" }) : "") + "</figure>" +
         '<div class="hero__badge" data-depth="0.1"><img src="' + esc(src(c, c.s.logo)) + '" alt="" width="84" height="84"><svg viewBox="0 0 120 120" aria-hidden="true"><defs><path id="ring" d="M60 60m-48 0a48 48 0 1 1 96 0a48 48 0 1 1-96 0"/></defs><text><textPath href="#ring">' + esc(h.badge || c.s.motto) + " • " + esc(h.badge || c.s.motto) + " •</textPath></text></svg></div>" +
         '<span class="note note1" aria-hidden="true">learning is fun!</span></div></div>' +
-        '<div class="wave white" aria-hidden="true"><svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0 35c120 35 240 35 360 8S600 0 720 18s240 45 360 27 240-38 360-8v33H0z"/></svg></div></section>';
+        '<div class="wave white" aria-hidden="true"><svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0 35c120 35 240 35 360 8S600 0 720 18s240 45 360 27 240-38 360-8V70H0Z"/></svg></div></section>';
     },
     marquee: function (c) {
       var m = c.d.homepage.marquee || {}, phil = (c.d.philosophy.intelligences || []).map(function (x) { return x.heading; });
@@ -420,8 +421,8 @@
     philosophy: function (c) {
       var f = c.d.homepage.philosophy;
       return '<section class="sec sec--quote" id="learning-philosophy"><div class="stars" aria-hidden="true"></div><div class="container reveal"><p class="eyebrow eyebrow--light">' + esc(f.eyebrow) + "</p>" +
-        '<blockquote><p>' + esc(f.title) + "</p></blockquote><p class=\"lead\">" + esc(f.text) + '</p><p class="attrib">— ' + esc(f.attribution) + "</p></div></section>" +
-        wave("cream", false, "navy");
+        '<blockquote><p>' + esc(f.title) + "</p></blockquote><p class=\"lead\">" + esc(f.text) + '</p><p class="attrib">— ' + esc(f.attribution) + "</p></div>" +
+        '<div class="wave cream quote-wave" aria-hidden="true"><svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0 35c120 35 240 35 360 8S600 0 720 18s240 45 360 27 240-38 360-8V70H0Z"/></svg></div></section>';
     },
     programmes: function (c) {
       var h = c.d.homepage.programmes, list = visibleProgrammes(c);
@@ -443,6 +444,38 @@
         '<div class="upd-grid">' + list.map(function (x, i) { return updateCard(c, x, i, i === 0); }).join("") + "</div>" +
         '<p class="center reveal"><a class="btn btn--primary" href="' + p(c, "updates.html") + '"><span>All announcements</span>' + icon("arrow") + "</a></p></div></section>" + wave("yellow", true);
     },
+    reels: function (c) {
+      var r = (c.d.homepage && c.d.homepage.reels) || {};
+      var items = r.items || [];
+      if (!items.length) return "";
+      var username = r.username || "smart_start_the_premium_school";
+      var profileUrl = r.profileUrl || ("https://www.instagram.com/" + username + "/reels/");
+      var handle = r.handle || ("@" + username);
+      return '<section class="sec sec--reels" id="instagram-reels"><div class="container">' +
+        '<div class="reels-top reveal">' +
+        '<div class="reels-head">' +
+        '<a class="reels-badge" href="' + esc(profileUrl) + '" target="_blank" rel="noopener">' + icon("instagram") + '<span>' + esc(r.eyebrow || ("Instagram Reels · " + handle)) + '</span><span class="reels-live-dot" aria-hidden="true"></span><b>LIVE</b></a>' +
+        '<h2 class="h2">' + hl(r.title || "Watch the Magic Unfold [[Daily on Reels]]") + "</h2>" +
+        (r.text ? '<p class="lead">' + esc(r.text) + "</p>" : "") +
+        "</div>" +
+        '<div class="reels-nav" aria-label="Carousel navigation">' +
+        '<button class="reel-nav-btn" type="button" data-reel-dir="-1" aria-label="Previous reels">' + icon("prev") + "</button>" +
+        '<button class="reel-nav-btn" type="button" data-reel-dir="1" aria-label="Next reels">' + icon("next") + "</button>" +
+        "</div></div>" +
+        '<div class="reels-track" data-reels-track data-reels-count="' + items.length + '" tabindex="0" role="region" aria-label="Instagram Reels carousel">' +
+        items.concat(items).map(function (it, i) {
+          var code = it.shortcode || ((String(it.url || "").match(/\/(?:reel|p)\/([A-Za-z0-9_-]+)/) || [])[1]) || "";
+          var emb = it.embedUrl || (code ? ("https://www.instagram.com/reel/" + code + "/embed/") : "");
+          if (!emb) return "";
+          return '<div class="reel-card reel-card--embed reveal" style="--i:' + (i % 5) + '"' + (i >= items.length ? ' aria-hidden="true"' : "") + '>' +
+            '<div class="reel-card__frame">' +
+            '<iframe class="reel-iframe" src="' + esc(emb) + '" title="Instagram Reel ' + ((i % items.length) + 1) + ' (' + esc(handle) + ')" loading="lazy" allowtransparency="true" allow="autoplay; encrypted-media" allowfullscreen="true" frameborder="0" scrolling="no"></iframe>' +
+            "</div></div>";
+        }).join("") +
+        "</div>" +
+        '<p class="center reveal"><a class="btn btn--ig" href="' + esc(profileUrl) + '" target="_blank" rel="noopener">' + icon("instagram") + "<span>" + esc(r.buttonLabel || "Watch All Reels on Instagram") + "</span>" + icon("arrow") + "</a></p>" +
+        "</div></section>";
+    },
     gallery: function (c) {
       var g = c.d.homepage.gallery, all = visibleGallery(c);
       var list = all.filter(function (x) { return x.featured; }); if (list.length < (g.count || 8)) list = list.concat(all.filter(function (x) { return !x.featured; }));
@@ -455,10 +488,10 @@
     },
     principal: function (c) {
       var pr = c.d.about.principal, h = c.d.homepage.principal;
-      return '<section class="sec sec--princ" id="principal-intro"><div class="container split-2 split-2--rev">' +
+      return '<section class="sec sec--princ" id="principal-intro"><div class="container princ-grid">' +
+        '<div class="reveal princ-head"><p class="eyebrow">' + esc(h.eyebrow) + '</p><h2 class="h2">' + esc(h.title) + "</h2></div>" +
         '<div class="reveal princ-photo"><div class="blob-c">' + img(c, { src: pr.photo, alt: pr.photoAlt }, { thumb: 1, sizes: "(max-width:900px) 70vw, 420px" }) + "</div>" + deco("heart", "f ph1") + deco("star", "f ph2") + "</div>" +
-        '<div class="reveal"><p class="eyebrow">' + esc(h.eyebrow) + '</p><h2 class="h2">' + esc(h.title) + "</h2>" +
-        '<p class="lead">' + esc(pr.message[3] || pr.intro) + '</p><p class="who"><b>' + esc(pr.name) + "</b><span>" + esc(pr.designation) + "</span></p>" +
+        '<div class="reveal princ-body"><p class="lead">' + esc(pr.message[3] || pr.intro) + '</p><p class="who"><b>' + esc(pr.name) + "</b><span>" + esc(pr.designation) + "</span></p>" +
         btnl(c, h.button.label, h.button.link, "primary") + "</div></div></section>";
     },
     testimonials: function (c) {
@@ -478,7 +511,7 @@
       if (rawTitle.indexOf("{{") < 0 && rawTitle.indexOf("[[") >= 0) {
         hTitle = esc(rawTitle).replace(/\[\[(.+?)\]\]/g, '<span class="pf-mag">$1</span>');
       }
-      var c1 = t.cta1 || { label: "Enquire Now", link: "contact.html#enquiry" };
+      var c1 = t.cta1 || { label: "Book A Campus Visit", link: "contact.html#enquiry" };
       var c2 = t.cta2 || { label: "Explore Programmes", link: "programmes.html" };
       var h1 = link(c, c1.link), h2 = link(c, c2.link);
       var capIc = '<svg class="pf-cap" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,4 22,9 12,14 2,9" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M6 11.5v4.5c0 2 2.7 3.5 6 3.5s6-1.5 6-3.5v-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M20 10v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
@@ -642,8 +675,10 @@
       '<section class="sec" id="approach"><div class="container">' + head(c, a.approach.eyebrow, a.approach.title, "") + '<div class="approach">' +
       a.approach.items.map(function (t, i) { return '<article class="ap reveal" style="--i:' + i + '"><span class="ico">' + icon(t.icon) + "</span><h3>" + esc(t.title) + "</h3><p>" + esc(t.text) + "</p></article>"; }).join("") + "</div></div></section>" +
       '<section class="sec sec--values" id="values"><div class="container">' + head(c, a.values.eyebrow, a.values.title, "") + '<div class="values">' + a.values.items.map(card).join("") + "</div></div></section>" +
-      '<section class="sec sec--princ" id="principal"><div class="container split-2 split-2--rev"><div class="reveal princ-photo"><div class="blob-c">' + img(c, { src: pr.photo, alt: pr.photoAlt }, { thumb: 1, sizes: "(max-width:900px) 70vw, 420px" }) + "</div>" + deco("heart", "f ph1") + deco("star", "f ph2") + "</div>" +
-      '<div class="reveal"><p class="eyebrow">Principal\'s message</p><h2 class="h2">' + esc(pr.name) + '</h2><p class="role">' + esc(pr.designation) + "</p><p>" + esc(pr.bio) + '</p></div></div>' +
+      '<section class="sec sec--princ" id="principal"><div class="container princ-grid">' +
+      '<div class="reveal princ-head"><p class="eyebrow">Principal\'s message</p><h2 class="h2">' + esc(pr.name) + '</h2><p class="role">' + esc(pr.designation) + "</p></div>" +
+      '<div class="reveal princ-photo"><div class="blob-c">' + img(c, { src: pr.photo, alt: pr.photoAlt }, { thumb: 1, sizes: "(max-width:900px) 70vw, 420px" }) + "</div>" + deco("heart", "f ph1") + deco("star", "f ph2") + "</div>" +
+      '<div class="reveal princ-body"><p>' + esc(pr.bio) + '</p></div></div>' +
       '<div class="container letter reveal"><div class="letter__paper">' + pr.message.map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("") + '<p class="sign">' + esc(pr.signoff) + "</p></div></div></section>" +
       '<section class="sec" id="why-choose-us"><div class="container"><div class="whylist reveal"><div>' + head(c, a.why.eyebrow, a.why.title, "") + '</div><ul class="ticks ticks--lg">' + a.why.items.map(function (t) { return "<li>" + icon("check") + "<span>" + esc(t) + "</span></li>"; }).join("") + "</ul></div></div></section>" +
       ((a.staff || []).length ? staffSection(c) : "") + HOME.cta(c);
@@ -720,7 +755,7 @@
           "<dt>" + icon("phone") + " Phone</dt><dd>" + (x.phones || []).map(function (n) { return '<a href="' + telHref(n) + '">' + esc(n) + "</a>"; }).join(" · ") + "</dd>" +
           "<dt>" + icon("mail") + ' Email</dt><dd><a href="mailto:' + esc(x.email) + '">' + esc(x.email) + "</a></dd></dl>" +
           '<div class="btn-row">' + (x.mapsUrl ? '<a class="btn btn--primary" href="' + esc(x.mapsUrl) + '" target="_blank" rel="noopener"><span>Get directions</span>' + icon("pin") + "</a>" : "") +
-          '<a class="btn btn--yellow" href="' + p(c, "contact.html#enquiry") + '"><span>Enquire now</span>' + icon("arrow") + "</a></div></div></div></section>";
+          '<a class="btn btn--yellow" href="' + p(c, "contact.html#enquiry") + '"><span>Book A Campus Visit</span>' + icon("arrow") + "</a></div></div></div></section>";
       }).join("") + HOME.cta(c);
   };
 

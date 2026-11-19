@@ -7,7 +7,8 @@
     "celebrations",
     "creative",
     "outdoor",
-    "infra"
+    "infra",
+    "reels"
   ],
   "items": [
     {
@@ -669,6 +670,17 @@
       "category": "events",
       "label": "Waiting for the turn",
       "alt": "Two children in yellow tracksuits sitting on stage chairs with a teacher"
+    },
+    {
+      "id": "reel-parents-together",
+      "path": "assets/images/reel-parents-together.webp",
+      "thumb": "assets/images/reel-parents-together-sm.webp",
+      "w": 467,
+      "h": 813,
+      "bytes": 44364,
+      "category": "reels",
+      "label": "Parents sharing their journey with Smart Start",
+      "alt": "Parents sharing their journey with Smart Start"
     }
   ]
 }

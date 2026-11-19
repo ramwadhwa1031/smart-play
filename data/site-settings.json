@@ -42,7 +42,7 @@
   "nav": [
     { "label": "Home", "href": "index.html" },
     { "label": "About", "href": "about.html" },
-    { "label": "Multiple Intelligence", "href": "philosophy.html" },
+    { "label": "Philosophy", "href": "philosophy.html" },
     { "label": "Programmes", "href": "programmes.html" },
     { "label": "Gallery", "href": "gallery.html" },
     { "label": "Announcements", "href": "updates.html" },

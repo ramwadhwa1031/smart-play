@@ -1,46 +1,148 @@
 {
   "sections": [
-    { "id": "hero", "label": "Hero", "visible": true },
-    { "id": "marquee", "label": "Highlights marquee", "visible": true },
-    { "id": "intro", "label": "School introduction", "visible": true },
-    { "id": "programmes", "label": "Our programmes", "visible": true },
-    { "id": "mi", "label": "Multiple Intelligence", "visible": true },
-    { "id": "why", "label": "Why Smart Start?", "visible": true },
-    { "id": "philosophy", "label": "Learning philosophy", "visible": true },
-    { "id": "environment", "label": "Learning environment", "visible": true },
-    { "id": "updates", "label": "Announcements", "visible": true },
-    { "id": "gallery", "label": "Gallery preview", "visible": true },
-    { "id": "principal", "label": "Principal's introduction", "visible": true },
-    { "id": "testimonials", "label": "Parent testimonials", "visible": true },
-    { "id": "contact", "label": "Contact information", "visible": true },
-    { "id": "cta", "label": "Enquiry call-to-action", "visible": true }
+    {
+      "id": "hero",
+      "label": "Hero",
+      "visible": true
+    },
+    {
+      "id": "marquee",
+      "label": "Highlights marquee",
+      "visible": true
+    },
+    {
+      "id": "intro",
+      "label": "School introduction",
+      "visible": true
+    },
+    {
+      "id": "programmes",
+      "label": "Our programmes",
+      "visible": true
+    },
+    {
+      "id": "mi",
+      "label": "Multiple Intelligence",
+      "visible": true
+    },
+    {
+      "id": "why",
+      "label": "Why Smart Start?",
+      "visible": true
+    },
+    {
+      "id": "philosophy",
+      "label": "Learning philosophy",
+      "visible": true
+    },
+    {
+      "id": "environment",
+      "label": "Learning environment",
+      "visible": true
+    },
+    {
+      "id": "updates",
+      "label": "Announcements",
+      "visible": true
+    },
+    {
+      "id": "reels",
+      "label": "Instagram Reels carousel",
+      "visible": true
+    },
+    {
+      "id": "gallery",
+      "label": "Gallery preview",
+      "visible": true
+    },
+    {
+      "id": "principal",
+      "label": "Principal's introduction",
+      "visible": true
+    },
+    {
+      "id": "testimonials",
+      "label": "Parent testimonials",
+      "visible": true
+    },
+    {
+      "id": "contact",
+      "label": "Contact information",
+      "visible": true
+    },
+    {
+      "id": "cta",
+      "label": "Enquiry call-to-action",
+      "visible": true
+    }
   ],
   "hero": {
     "eyebrow": "Smart Start · The Premium School · Rohini, Delhi",
     "title": "Where little dreams take their first [[big flight]]",
     "subtitle": "A premium, multiple-intelligence preschool where every child is loved, nourished and celebrated, and learning feels like play.",
-    "cta1": { "label": "Explore Our Programmes", "link": "programmes.html" },
-    "cta2": { "label": "Enquire Now", "link": "contact.html#enquiry" },
+    "cta1": {
+      "label": "Explore Our Programmes",
+      "link": "programmes.html"
+    },
+    "cta2": {
+      "label": "Book A Campus Visit",
+      "link": "contact.html#enquiry"
+    },
     "images": [
-      { "src": "assets/images/krishna-radha-portrait.webp", "alt": "Two children dressed as Krishna and Radha" },
-      { "src": "assets/images/ball-pit-adventure.webp", "alt": "Child playing in the Smart Start ball pit" },
-      { "src": "assets/images/finger-painting.webp", "alt": "Boy finger-painting grapes on an activity sheet" }
+      {
+        "src": "assets/images/krishna-radha-portrait.webp",
+        "alt": "Two children dressed as Krishna and Radha"
+      },
+      {
+        "src": "assets/images/ball-pit-adventure.webp",
+        "alt": "Child playing in the Smart Start ball pit"
+      },
+      {
+        "src": "assets/images/finger-painting.webp",
+        "alt": "Boy finger-painting grapes on an activity sheet"
+      }
     ],
     "badge": "Play · Prepare · Pride"
   },
   "marquee": {
-    "highlights": ["Multiple Intelligence Learning", "Activity-Based Learning", "No Rote Learning", "CCTV Secured Campus", "Trained Female Staff", "AC Classrooms", "Value-Based Education", "Confidence First"],
-    "programmes": ["Toddlers", "Playgroup", "Pre-Nursery", "Nursery", "LKG", "UKG"],
+    "highlights": [
+      "Multiple Intelligence Learning",
+      "Activity-Based Learning",
+      "No Rote Learning",
+      "CCTV Secured Campus",
+      "Trained Female Staff",
+      "AC Classrooms",
+      "Value-Based Education",
+      "Confidence First"
+    ],
+    "programmes": [
+      "Toddlers",
+      "Playgroup",
+      "Pre-Nursery",
+      "Nursery",
+      "LKG",
+      "UKG"
+    ],
     "announcements": []
   },
   "intro": {
     "eyebrow": "Welcome to Smart Start",
     "title": "Not just a school. A [[second home]] for your child.",
     "text": "At Smart Start, every child's journey begins with love, laughter and limitless learning. We believe the first five years are not just about learning A-B-C, but about building a beautiful human being: confident, curious and compassionate.",
-    "points": ["Personal love, attention and care for every child", "Learning through play, art, music and movement", "A genuine partnership with every parent"],
+    "points": [
+      "Personal love, attention and care for every child",
+      "Learning through play, art, music and movement",
+      "A genuine partnership with every parent"
+    ],
     "images": [
-      { "src": "assets/images/classroom-group-circle.webp", "alt": "Teacher seated with a group of children in blue uniforms in a themed classroom" },
-      { "src": "assets/images/toddler-ring-stacking.webp", "alt": "Toddler playing with stacking rings on a soft play mat" }
+      {
+        "src": "assets/images/classroom-group-circle.webp",
+        "alt": "Teacher seated with a group of children in blue uniforms in a themed classroom"
+      },
+      {
+        "src": "assets/images/toddler-ring-stacking.webp",
+        "alt": "Toddler playing with stacking rings on a soft play mat"
+      }
     ]
   },
   "mi": {
@@ -52,10 +154,26 @@
     "eyebrow": "Why Smart Start?",
     "title": "Four pillars that shape every day",
     "items": [
-      { "icon": "heart", "title": "Value-Based Learning", "text": "Sanskars along with smartness. We teach respect, sharing and gratitude." },
-      { "icon": "mic", "title": "Confidence First", "text": "Every child on stage, every child speaks. We remove fear and build leaders." },
-      { "icon": "shield", "title": "Safety & Love", "text": "CCTV, trained female staff and a hygienic campus. Your child is safe with us like at home." },
-      { "icon": "star", "title": "Premium Experience", "text": "AC classrooms, international curriculum, activity-based learning and no rote learning." }
+      {
+        "icon": "heart",
+        "title": "Value-Based Learning",
+        "text": "Sanskars along with smartness. We teach respect, sharing and gratitude."
+      },
+      {
+        "icon": "mic",
+        "title": "Confidence First",
+        "text": "Every child on stage, every child speaks. We remove fear and build leaders."
+      },
+      {
+        "icon": "shield",
+        "title": "Safety & Love",
+        "text": "CCTV, trained female staff and a hygienic campus. Your child is safe with us like at home."
+      },
+      {
+        "icon": "star",
+        "title": "Premium Experience",
+        "text": "AC classrooms, international curriculum, activity-based learning and no rote learning."
+      }
     ]
   },
   "philosophy": {
@@ -74,10 +192,26 @@
     "title": "Spaces that invite children to [[climb, create & explore]]",
     "text": "From the colourful play hall and ball pit to themed classrooms and creative corners, every space at Smart Start is designed for curious little minds.",
     "images": [
-      { "src": "assets/images/ball-pit-slide.webp", "alt": "Child sliding into the ball pit in the play area", "caption": "Ball pit & slide" },
-      { "src": "assets/images/climbing-net-smile.webp", "alt": "Smiling child climbing a net on a mountain-themed climbing wall", "caption": "Climbing wall" },
-      { "src": "assets/images/jungle-nature-corner.webp", "alt": "Children exploring a jungle-themed corner with a paper tree and a potted plant", "caption": "Nature corner" },
-      { "src": "assets/images/fashion-show-ramp.webp", "alt": "Decorated red-carpet ramp with blue and gold balloons", "caption": "Activity hall" }
+      {
+        "src": "assets/images/ball-pit-slide.webp",
+        "alt": "Child sliding into the ball pit in the play area",
+        "caption": "Ball pit & slide"
+      },
+      {
+        "src": "assets/images/climbing-net-smile.webp",
+        "alt": "Smiling child climbing a net on a mountain-themed climbing wall",
+        "caption": "Climbing wall"
+      },
+      {
+        "src": "assets/images/jungle-nature-corner.webp",
+        "alt": "Children exploring a jungle-themed corner with a paper tree and a potted plant",
+        "caption": "Nature corner"
+      },
+      {
+        "src": "assets/images/fashion-show-ramp.webp",
+        "alt": "Decorated red-carpet ramp with blue and gold balloons",
+        "caption": "Activity hall"
+      }
     ]
   },
   "updates": {
@@ -92,10 +226,63 @@
     "text": "A peek into festivals, stage shows, classrooms and play.",
     "count": 8
   },
+  "reels": {
+    "eyebrow": "Instagram Reels · @smart_start_the_premium_school",
+    "title": "Watch the Magic Unfold [[Daily on Reels]]",
+    "text": "Our latest Reels streamed directly from our official Instagram page.",
+    "profileUrl": "https://www.instagram.com/smart_start_the_premium_school/reels/",
+    "handle": "@smart_start_the_premium_school",
+    "buttonLabel": "Watch All Reels on Instagram",
+    "username": "smart_start_the_premium_school",
+    "fullName": "The Smart Pre-School you've been looking for!",
+    "followersCount": 396,
+    "postsCount": 728,
+    "lastSyncedAt": "2026-11-19T06:59:20.267Z",
+    "items": [
+      {
+        "shortcode": "Df6UNGvTVlI",
+        "isVideo": true,
+        "takenAt": "2026-11-19T05:20:36.000Z",
+        "url": "https://www.instagram.com/reel/Df6UNGvTVlI/",
+        "embedUrl": "https://www.instagram.com/reel/Df6UNGvTVlI/embed/"
+      },
+      {
+        "shortcode": "Df1X3w8TJPB",
+        "isVideo": true,
+        "takenAt": "2026-11-17T07:24:19.000Z",
+        "url": "https://www.instagram.com/reel/Df1X3w8TJPB/",
+        "embedUrl": "https://www.instagram.com/reel/Df1X3w8TJPB/embed/"
+      },
+      {
+        "shortcode": "Dfyt-liz61b",
+        "isVideo": true,
+        "takenAt": "2026-11-16T06:33:35.000Z",
+        "url": "https://www.instagram.com/reel/Dfyt-liz61b/",
+        "embedUrl": "https://www.instagram.com/reel/Dfyt-liz61b/embed/"
+      },
+      {
+        "shortcode": "DfwOYWgT3F0",
+        "isVideo": true,
+        "takenAt": "2026-11-15T07:17:18.000Z",
+        "url": "https://www.instagram.com/reel/DfwOYWgT3F0/",
+        "embedUrl": "https://www.instagram.com/reel/DfwOYWgT3F0/embed/"
+      },
+      {
+        "shortcode": "DfwDIa2zmwj",
+        "isVideo": true,
+        "takenAt": "2026-11-15T05:39:35.000Z",
+        "url": "https://www.instagram.com/reel/DfwDIa2zmwj/",
+        "embedUrl": "https://www.instagram.com/reel/DfwDIa2zmwj/embed/"
+      }
+    ]
+  },
   "principal": {
     "eyebrow": "From the Principal's desk",
     "title": "\"Today, I am speaking to you as a mother.\"",
-    "button": { "label": "Read the full message", "link": "about.html#principal" }
+    "button": {
+      "label": "Read the full message",
+      "link": "about.html#principal"
+    }
   },
   "testimonials": {
     "eyebrow": "Parent voices",
@@ -104,8 +291,14 @@
   "cta": {
     "title": "Every [[Little Dream]] Deserves a {{Big Beginning!}}",
     "text": "Give your child the confidence, creativity and care to explore a world of possibilities.",
-    "cta1": { "label": "Enquire Now", "link": "contact.html#enquiry" },
-    "cta2": { "label": "Explore Programmes", "link": "programmes.html" }
+    "cta1": {
+      "label": "Book A Campus Visit",
+      "link": "contact.html#enquiry"
+    },
+    "cta2": {
+      "label": "Explore Programmes",
+      "link": "programmes.html"
+    }
   },
   "contact": {
     "eyebrow": "Get in Touch",
@@ -113,4 +306,3 @@
     "text": "Have a question about admissions, programmes or our school? Reach out to us anytime!"
   }
 }
-

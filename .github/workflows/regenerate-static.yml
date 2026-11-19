@@ -1,4 +1,4 @@
-name: Regenerate Static HTML from JSON
+name: Sync Live Instagram Reels & Regenerate Static HTML
 
 on:
   push:
@@ -6,6 +6,9 @@ on:
       - 'data/**'
       - 'js/render.js'
       - 'tools/build.js'
+      - 'tools/sync-instagram.js'
+  schedule:
+    - cron: '0 */4 * * *'
   workflow_dispatch:
 
 permissions:
@@ -23,12 +26,15 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Regenerate static HTML, sitemap.xml and robots.txt
+      - name: Sync latest Instagram Reels & regenerate static HTML
         run: |
           if [ -f "tools/build.js" ]; then
+            node tools/sync-instagram.js || true
             node tools/build.js
           elif [ -f "smart-start/tools/build.js" ]; then
-            cd smart-start && node tools/build.js
+            cd smart-start
+            node tools/sync-instagram.js || true
+            node tools/build.js
           fi
 
       - name: Commit regenerated static files
@@ -36,6 +42,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git diff --cached --quiet || git commit -m "chore: regenerate static HTML and sitemap from JSON"
+          git diff --cached --quiet || git commit -m "chore: sync Instagram Reels and regenerate static HTML"
           git push
-
