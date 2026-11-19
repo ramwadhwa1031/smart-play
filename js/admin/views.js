@@ -338,7 +338,7 @@
     root.appendChild(AS.card("Footer", fieldsNode([{ t: "area", o: "footer", k: "blurb", l: "Footer description", rows: 3 }, { t: "text", o: "footer", k: "copyright", l: "Copyright line" }], S)));
     root.appendChild(AS.card("Menu", fieldsNode([{ t: "repeat", k: "nav", l: "Navigation links", single: "link", itemLabel: "label", add: { label: "", href: "" }, fields: [{ t: "text", k: "label", l: "Label" }, { t: "text", k: "href", l: "Page or link", hint: "e.g. gallery.html" }] }], S)));
     var cols = [["purple", "Primary: purple (creativity)"], ["magenta", "Primary: magenta (highlights, buttons)"], ["coral", "Secondary: coral"], ["sky", "Secondary: sky blue"], ["yellow", "Secondary: yellow"], ["green", "Secondary: green"], ["navy", "Text: dark navy"], ["cream", "Page background: cream"]];
-    root.appendChild(AS.card("Colours", [el("div", { class: "grid-4" }, cols.map(function (c) { return F.color(c[1], S.colors, c[0]); })), AS.btn("Reset to brand colours", "btn--sm btn--ghost", function () { S.colors = { purple: "#6D2FA0", magenta: "#C2307E", coral: "#E8483F", sky: "#54B9F2", yellow: "#FFC83D", green: "#2FA66A", navy: "#1E2250", cream: "#FFF9EE" }; AS.touch(); AS.router(); })]));
+    root.appendChild(AS.card("Colours", [el("div", { class: "grid-4" }, cols.map(function (c) { return F.color(c[1], S.colors, c[0]); })), AS.btn("Reset to brand colours", "btn--sm btn--ghost", function () { S.colors = { purple: "#5B2C98", magenta: "#E91E63", coral: "#F05338", sky: "#0288D1", yellow: "#FFD600", green: "#2FA66A", navy: "#0D3B66", cream: "#FFFFFF" }; AS.touch(); AS.router(); })]));
   };
 
   /* =============== PUBLISH =============== */

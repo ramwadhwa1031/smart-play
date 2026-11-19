@@ -2,11 +2,15 @@
 (function () {
   "use strict";
   var AS = window.AS = window.AS || {};
-  var FILES = { settings: "site-settings", homepage: "homepage", about: "about", philosophy: "philosophy", programmes: "programmes",
-    gallery: "gallery", updates: "updates", centres: "centres", testimonials: "testimonials", seo: "seo", media: "media" };
-  var LABELS = { settings: "Website settings", homepage: "Homepage", about: "About & principal", philosophy: "Multiple Intelligence", programmes: "Programmes",
-    gallery: "Gallery", updates: "Announcements", centres: "Centres", testimonials: "Testimonials", seo: "SEO", media: "Media library" };
-  var DRAFT_KEY = "ss_draft_v14", PUB_KEY = "ss_last_publish", CFG_KEY = "ss_gh_config";
+  var FILES = {
+    settings: "site-settings", homepage: "homepage", about: "about", philosophy: "philosophy", programmes: "programmes",
+    gallery: "gallery", updates: "updates", centres: "centres", testimonials: "testimonials", seo: "seo", media: "media"
+  };
+  var LABELS = {
+    settings: "Website settings", homepage: "Homepage", about: "About & principal", philosophy: "Multiple Intelligence", programmes: "Programmes",
+    gallery: "Gallery", updates: "Announcements", centres: "Centres", testimonials: "Testimonials", seo: "SEO", media: "Media library"
+  };
+  var DRAFT_KEY = "ss_draft_v15", PUB_KEY = "ss_last_publish", CFG_KEY = "ss_gh_config";
   AS.FILES = FILES; AS.LABELS = LABELS; AS.DRAFT_KEY = DRAFT_KEY;
   AS.data = {}; AS.original = {}; AS.deleted = []; AS.urls = {}; AS.listeners = [];
 
@@ -128,8 +132,10 @@
         return Promise.all([idbPut(id, { blob: r[0].blob }), idbPut(id + "-sm", { blob: r[1].blob })]).then(function () {
           AS.urls["idb:" + id] = URL.createObjectURL(r[0].blob); AS.urls["idb:" + id + "-sm"] = URL.createObjectURL(r[1].blob);
           var label = (file.name || "image").replace(/\.[^.]+$/, "").replace(/[-_]+/g, " ");
-          var item = { id: id, path: "idb:" + id, thumb: "idb:" + id + "-sm", w: r[0].w, h: r[0].h, bytes: r[0].blob.size,
-            category: meta.category || "uploads", label: label, alt: meta.alt || label };
+          var item = {
+            id: id, path: "idb:" + id, thumb: "idb:" + id + "-sm", w: r[0].w, h: r[0].h, bytes: r[0].blob.size,
+            category: meta.category || "uploads", label: label, alt: meta.alt || label
+          };
           AS.data.media.items.push(item);
           if (AS.data.media.categories.indexOf(item.category) < 0) AS.data.media.categories.push(item.category);
           AS.touch();

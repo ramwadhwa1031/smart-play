@@ -1,7 +1,7 @@
 {
   "name": "Smart Start The Premium School",
   "fullName": "Smart Start The Premium School",
-  "tagline": "Where Childhood Blossoms & Futures Begin",
+  "tagline": "Play · Prepare · Pride",
   "motto": "Play · Prepare · Pride",
   "siteUrl": "https://sstps.in/",
   "city": "Delhi",
@@ -30,14 +30,14 @@
     "copyright": "Smart Start The Premium School. All rights reserved."
   },
   "colors": {
-    "purple": "#6D2FA0",
-    "magenta": "#C2307E",
-    "coral": "#E8483F",
-    "sky": "#54B9F2",
-    "yellow": "#FFC83D",
+    "purple": "#5B2C98",
+    "magenta": "#E91E63",
+    "coral": "#F05338",
+    "sky": "#0288D1",
+    "yellow": "#FFD600",
     "green": "#2FA66A",
-    "navy": "#1E2250",
-    "cream": "#FFF9EE"
+    "navy": "#0D3B66",
+    "cream": "#FFFFFF"
   },
   "nav": [
     { "label": "Home", "href": "index.html" },

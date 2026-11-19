@@ -4,9 +4,11 @@
 (function () {
   "use strict";
   window.SS = window.SS || {};
-  var FILES = { settings: "site-settings", homepage: "homepage", about: "about", philosophy: "philosophy", programmes: "programmes",
-    gallery: "gallery", updates: "updates", centres: "centres", testimonials: "testimonials", seo: "seo", media: "media" };
-  var DRAFT_KEY = "ss_draft_v14", PREVIEW_KEY = "ss_preview";
+  var FILES = {
+    settings: "site-settings", homepage: "homepage", about: "about", philosophy: "philosophy", programmes: "programmes",
+    gallery: "gallery", updates: "updates", centres: "centres", testimonials: "testimonials", seo: "seo", media: "media"
+  };
+  var DRAFT_KEY = "ss_draft_v15", PREVIEW_KEY = "ss_preview";
 
   function isPreview() {
     try {

@@ -8,7 +8,7 @@
     {
       "id": "marquee",
       "label": "Highlights marquee",
-      "visible": true
+      "visible": false
     },
     {
       "id": "intro",
@@ -77,8 +77,8 @@
     }
   ],
   "hero": {
-    "eyebrow": "",
-    "title": "Where little dreams take their first [[big flight]]",
+    "eyebrow": "Play · Prepare · Pride",
+    "title": "Where little dreams take their first [[Smart Start]]",
     "subtitle": "A premium, multiple-intelligence preschool where every child is loved, nourished and celebrated, and learning feels like play.",
     "cta1": {
       "label": "Explore Our Programmes",
@@ -90,19 +90,29 @@
     },
     "images": [
       {
-        "src": "assets/images/krishna-radha-portrait.webp",
-        "alt": "Two children dressed as Krishna and Radha"
+        "src": "assets/images/slider/slider-1-playground.jpg",
+        "alt": "Happy children playing at Smart Start The Premium School"
       },
       {
-        "src": "assets/images/ball-pit-adventure.webp",
-        "alt": "Child playing in the Smart Start The Premium School ball pit"
+        "src": "assets/images/slider/slider-2-learning.jpg",
+        "alt": "Activity-based multiple intelligence learning"
       },
       {
-        "src": "assets/images/finger-painting.webp",
-        "alt": "Boy finger-painting grapes on an activity sheet"
+        "src": "assets/images/slider/slider-3-celebration.jpg",
+        "alt": "Festivals and cultural celebrations at school"
+      },
+      {
+        "src": "assets/images/slider/slider-4-stage.jpg",
+        "alt": "Stage confidence, martial arts and performances"
       }
     ],
-    "badge": "Play · Prepare · Pride"
+    "badge": "Play · Prepare · Pride",
+    "quote": "I love you Mom, but I don't miss you at Smart Start!",
+    "bubbles": [
+      "1st Multiple Intelligence School",
+      "Ages 1.5 – 6 Years",
+      "Play · Prepare · Pride"
+    ]
   },
   "marquee": {
     "highlights": [
@@ -183,9 +193,9 @@
     "attribution": "Dr. Parvinder Kaur, Principal"
   },
   "programmes": {
-    "eyebrow": "Our programmes",
-    "title": "A joyful path from [[1.5 to 6 years]]",
-    "text": "Six age-matched programmes that grow with your child, from first steps to school readiness."
+    "eyebrow": "Play · Prepare · Pride",
+    "title": "Our Preschool [[Programmes]]",
+    "text": "Six age-matched programmes from 1.5 to 6 years that grow with your child, from first steps to school readiness."
   },
   "environment": {
     "eyebrow": "Learning environment",
@@ -278,7 +288,7 @@
   },
   "principal": {
     "eyebrow": "From the Principal's desk",
-    "title": "\"Today, I am speaking to you as a mother.\"",
+    "title": "\"Today, I am reaching out to you as a mother.\"",
     "button": {
       "label": "Read the full message",
       "link": "about.html#principal"

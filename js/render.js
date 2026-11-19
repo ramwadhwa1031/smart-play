@@ -7,10 +7,14 @@
 })(typeof self !== "undefined" ? self : this, function () {
   "use strict";
 
-  var FILES = { index: "index.html", about: "about.html", philosophy: "philosophy.html", programmes: "programmes.html",
-    gallery: "gallery.html", updates: "updates.html", centres: "centres.html", contact: "contact.html" };
-  var PAGE_NAMES = { index: "Home", about: "About Us", philosophy: "Multiple Intelligence", programmes: "Programmes",
-    gallery: "Gallery", updates: "Announcements", centres: "Our Centres", contact: "Contact Us" };
+  var FILES = {
+    index: "index.html", about: "about.html", philosophy: "philosophy.html", programmes: "programmes.html",
+    gallery: "gallery.html", updates: "updates.html", centres: "centres.html", contact: "contact.html"
+  };
+  var PAGE_NAMES = {
+    index: "Home", about: "About Us", philosophy: "Multiple Intelligence", programmes: "Programmes",
+    gallery: "Gallery", updates: "Announcements", centres: "Our Centres", contact: "Contact Us"
+  };
   var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var LONG_MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -39,8 +43,12 @@
     var i = 0;
     return String(s || "").split(/(\[\[.+?\]\])/).filter(Boolean).map(function (seg) {
       var h = /^\[\[(.+)\]\]$/.test(seg), t = h ? seg.slice(2, -2) : seg;
+      if (h && /^smart\s+start$/i.test(t)) return '<span class="w brandline" style="--i:' + (i++) + '"><span><span class="ss-s">S</span>MART <span class="ss-s">S</span>TART</span></span>';
       return t.split(/\s+/).filter(Boolean).map(function (w) {
-        return '<span class="w' + (h ? " hl" : "") + '" style="--i:' + (i++) + '"><span>' + esc(w) + "</span></span>";
+        var inner = esc(w);
+        if (h && /^smart$/i.test(w)) inner = '<span class="ss-s">S</span>MART';
+        else if (h && /^start$/i.test(w)) inner = '<span class="ss-s">S</span>TART';
+        return '<span class="w' + (h ? " hl" : "") + (h && /^(smart|start)$/i.test(w) ? " hl--brand" : "") + '" style="--i:' + (i++) + '"><span>' + inner + "</span></span>";
       }).join(" ");
     }).join(" ");
   }
@@ -70,7 +78,10 @@
   }
   function brandTxt(s) {
     var base = String((s && s.name) || "Smart Start").replace(/\s*[–—-]?\s*the premium school$/i, "").trim() || "Smart Start";
-    return '<span class="brand__txt"><b>' + esc(base) + '</b> <small>The Premium School</small></span>';
+    var styledBase = /^smart\s+start$/i.test(base)
+      ? '<span class="ss-s">S</span>MART <span class="ss-s">S</span>TART'
+      : esc(base);
+    return '<span class="brand__txt"><b class="brand__name">' + styledBase + '</b> <small class="brand__sub">THE PREMIUM SCHOOL</small></span>';
   }
   function link(c, l) {
     if (l === "whatsapp") return waUrl(c);
@@ -223,9 +234,16 @@
       }
       return '<li><a href="' + esc(fixHref(c, f)) + '"' + cur + '>' + esc(n.label) + "</a></li>";
     }).join("");
-    return '<div class="header-inner container">' +
+    var p1 = ((s.phones || [])[1] || (s.phones || [])[0] || {}).number || "8587006249";
+    var p2 = ((s.phones || [])[0] || {}).number || "9717177531";
+    var topbar = '<div class="topbar-strip"><div class="container topbar-strip__in">' +
+      '<div class="tb-left"><span class="tb-tag">★ ' + esc(s.motto || "Play · Prepare · Pride") + '</span><span class="tb-mi">1st Multiple Intelligence Concept Based Preschool</span></div>' +
+      '<div class="tb-right"><a class="tb-call" href="' + telHref(p1) + '">' + icon("phone") + '<b>' + esc(p1) + '</b></a>' +
+      (p2 && p2 !== p1 ? '<a class="tb-call tb-call--alt" href="' + telHref(p2) + '"><b>' + esc(p2) + '</b></a>' : '') +
+      '<span class="tb-loc">SECTOR 24, ROHINI</span></div></div></div>';
+    return topbar + '<div class="header-inner container">' +
       '<a class="brand" href="' + p(c, "index.html") + '" aria-label="' + esc(s.name) + ' – home">' +
-      '<img src="' + esc(src(c, s.logo)) + '" alt="' + esc(s.name) + ' logo" width="56" height="56">' + brandTxt(s) + '</a>' +
+      '<img src="' + esc(src(c, s.logo)) + '" alt="' + esc(s.name) + ' logo" width="60" height="60">' + brandTxt(s) + '</a>' +
       '<nav class="nav" id="primary-nav" aria-label="Primary"><ul>' + items + "</ul>" +
       '<div class="nav__cta"><a class="btn btn--primary btn--sm" href="' + p(c, "contact.html#enquiry") + '"><span>Book A Campus Visit</span>' + icon("arrow") + "</a></div></nav>" +
       '<button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button></div>';
@@ -322,9 +340,9 @@
       '<div class="container footer-bottom">' +
       '<p class="f-copy">© <span data-year>' + new Date().getFullYear() + "</span> " + esc((s.footer || {}).copyright) + "</p>" +
       '<span class="f-div" aria-hidden="true"></span>' +
-      '<p class="f-tag"><svg class="f-ray" viewBox="0 0 28 28" aria-hidden="true"><path d="M22 6L12 10M20 14L8 14M22 22L12 18" stroke="#FFC83D" stroke-width="2.8" stroke-linecap="round"/></svg>' +
-      '<span>Little Steps. Big Dreams. Bright Futures.</span>' +
-      '<svg class="f-ray" viewBox="0 0 28 28" aria-hidden="true"><path d="M6 6l10 4M8 14l12 0M6 22l10-4" stroke="#FFC83D" stroke-width="2.8" stroke-linecap="round"/></svg></p>' +
+      '<p class="f-tag"><svg class="f-ray" viewBox="0 0 28 28" aria-hidden="true"><path d="M22 6L12 10M20 14L8 14M22 22L12 18" stroke="#FFD600" stroke-width="2.8" stroke-linecap="round"/></svg>' +
+      '<span>' + esc(s.motto || "Play · Prepare · Pride") + '</span>' +
+      '<svg class="f-ray" viewBox="0 0 28 28" aria-hidden="true"><path d="M6 6l10 4M8 14l12 0M6 22l10-4" stroke="#FFD600" stroke-width="2.8" stroke-linecap="round"/></svg></p>' +
       "</div></div>";
   }
   function floating(c) {
@@ -356,9 +374,17 @@
 
   /* ---------- reusable blocks ---------- */
   function programmeCardMini(c, x, i) {
-    return '<a class="step-card reveal c-' + esc(x.color) + '" style="--i:' + i + '" href="' + p(c, "programmes.html#" + esc(x.id)) + '">' +
-      '<span class="step-img">' + img(c, x.image, { thumb: 1, sizes: "(max-width:700px) 88vw, 380px" }) + '<span class="age-pill">' + esc(x.age) + '</span></span>' +
-      '<span class="step-body"><h3>' + esc(x.name) + '</h3><p>' + esc(x.tagline) + '</p><span class="more">Explore ' + icon("arrow") + "</span></span></a>";
+    var ageText = String(x.age || "").replace(/–/g, " – ");
+    if (ageText && ageText.charAt(0) !== "(") ageText = "(" + ageText + ")";
+    return '<a class="prog-card c-' + esc(x.color) + '" style="--i:' + i + '" href="' + p(c, "programmes.html#" + esc(x.id)) + '">' +
+      '<span class="prog-card__media">' +
+      img(c, x.image, { thumb: 1, sizes: "(max-width:700px) 88vw, 360px" }) +
+      '<svg class="prog-card__wave" viewBox="0 0 400 52" preserveAspectRatio="none" aria-hidden="true"><path d="M0,22 C115,-18 255,60 400,14 L400,52 L0,52 Z" fill="#FFFFFF"/></svg>' +
+      '</span>' +
+      '<span class="prog-card__body"><h3>' + esc(x.name) + '</h3>' +
+      '<span class="prog-card__age">' + esc(ageText) + '</span>' +
+      '<p class="prog-card__tag">' + esc(x.tagline) + '</p>' +
+      '<span class="prog-card__more">View More</span></span></a>';
   }
   function updateCard(c, u, i, big) {
     var count = (u.images || []).length;
@@ -371,38 +397,53 @@
   }
   function miTabs(c, panel) {
     var list = c.d.philosophy.intelligences || [];
+    var raysL = '<svg class="mi-rays mi-rays--l" viewBox="0 0 36 42" aria-hidden="true"><path d="M28 8L10 4M24 20L6 20M28 32L10 36" stroke="#FFD600" stroke-width="4" stroke-linecap="round"/></svg>';
+    var raysR = '<svg class="mi-rays mi-rays--r" viewBox="0 0 36 42" aria-hidden="true"><path d="M8 8L26 4M12 20L30 20M8 32L26 36" stroke="#E91E63" stroke-width="4" stroke-linecap="round"/></svg>';
     return '<div class="mi-explorer" data-mi><div class="mi-tabs" role="tablist" aria-label="Eight intelligences">' +
       list.map(function (x, i) {
-        return '<button type="button" role="tab" class="mi-tab c-' + esc(x.color) + (i === 0 ? " is-active" : "") + '" id="mi-t-' + x.id + '" aria-selected="' + (i === 0) + '" aria-controls="mi-p-' + x.id + '">' +
-          '<span class="ico">' + icon(x.icon) + "</span><span class=\"nm\">" + esc(x.name) + "</span></button>";
+        return '<button type="button" role="tab" class="mi-tab mi-c-' + (i % 8) + ' c-' + esc(x.color) + (i === 0 ? " is-active" : "") + '" id="mi-t-' + x.id + '" data-mi-idx="' + i + '" aria-selected="' + (i === 0) + '" aria-controls="mi-p-' + x.id + '">' +
+          '<span class="ico">' + icon(x.icon) + '</span><span class="nm">' + esc(x.name) + "</span></button>";
       }).join("") + '</div><div class="mi-panels">' +
       list.map(function (x, i) {
-        return '<article class="mi-panel c-' + esc(x.color) + (i === 0 ? " is-active" : "") + '" role="tabpanel" id="mi-p-' + x.id + '" aria-labelledby="mi-t-' + x.id + '">' +
-          '<div class="mi-panel__img blob-a">' + img(c, x.image, { thumb: 1, sizes: "(max-width:900px) 80vw, 420px" }) + "</div>" +
-          '<div class="mi-panel__txt"><p class="eyebrow">' + esc(x.name) + ' Intelligence</p><h3 class="h3">' + esc(x.heading) + "</h3><p>" + esc(x.text) + "</p>" +
+        return '<article class="mi-panel mi-c-' + (i % 8) + ' c-' + esc(x.color) + (i === 0 ? " is-active" : "") + '" role="tabpanel" id="mi-p-' + x.id + '" aria-labelledby="mi-t-' + x.id + '">' +
+          '<div class="mi-panel__media">' + raysL + '<div class="mi-panel__frame"><div class="mi-panel__img">' + img(c, x.image, { thumb: 1, sizes: "(max-width:900px) 86vw, 440px" }) + '</div></div>' + raysR +
+          '<span class="mi-panel__badge">' + esc(x.name) + ' Intelligence</span></div>' +
+          '<div class="mi-panel__txt"><h3 class="mi-panel__title"><span>' + esc(x.heading) + '</span></h3><p class="mi-panel__desc">' + esc(x.text) + "</p>" +
           '<ul class="chips">' + (x.activities || []).map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("") + "</ul></div></article>";
+      }).join("") + '</div><div class="mi-dots" aria-label="Select an intelligence">' +
+      list.map(function (x, i) {
+        return '<button type="button" class="mi-dot' + (i === 0 ? " is-active" : "") + '" data-mi-dot="' + i + '" aria-label="' + esc(x.name) + '"></button>';
       }).join("") + "</div></div>";
   }
 
   /* ---------- HOME sections ---------- */
   var HOME = {
     hero: function (c) {
-      var h = c.d.homepage.hero, im = h.images || [];
-      return '<section class="hero" id="top" aria-labelledby="hero-title">' +
-        '<div class="hero__bg" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>' +
-        deco("cloud", "f hc1", "--s:1") + deco("cloud", "f hc2") + deco("sun", "f hsun") + deco("star", "f hs1") + deco("star", "f hs2") + deco("pencil", "f hp") + deco("plus", "f hplus") + deco("heart", "f hh") +
-        '<div class="container hero__grid"><div class="hero__copy">' +
-        '<h1 class="h1 split" id="hero-title">' + words(h.title) + "</h1>" +
-        '<p class="lead rise" style="--d:.5s">' + esc(h.subtitle) + '</p><div class="btn-row rise" style="--d:.65s">' +
-        btnl(c, h.cta1.label, h.cta1.link, "primary") + btnl(c, h.cta2.label, h.cta2.link, "yellow") + "</div>" +
-        '<ul class="hero__chips rise" style="--d:.8s"><li>Ages 1.5 – 6 years</li><li>Multiple Intelligence</li><li>' + esc(c.s.motto) + "</li></ul></div>" +
-        '<div class="hero__art" data-parallax>' +
-        '<figure class="hf hf1 blob-a" data-depth="0.04">' + (im[0] ? img(c, im[0], { eager: 1, sizes: "(max-width:900px) 70vw, 460px", nosrcset: 0 }) : "") + "</figure>" +
-        '<figure class="hf hf2 blob-circle" data-depth="0.08">' + (im[1] ? img(c, im[1], { thumb: 1, eager: 1, sizes: "220px" }) : "") + "</figure>" +
-        '<figure class="hf hf3 blob-b" data-depth="0.06">' + (im[2] ? img(c, im[2], { thumb: 1, eager: 1, sizes: "240px" }) : "") + "</figure>" +
-        '<div class="hero__badge" data-depth="0.1"><img src="' + esc(src(c, c.s.logo)) + '" alt="" width="84" height="84"><svg viewBox="0 0 120 120" aria-hidden="true"><defs><path id="ring" d="M60 60m-48 0a48 48 0 1 1 96 0a48 48 0 1 1-96 0"/></defs><text><textPath href="#ring">' + esc(h.badge || c.s.motto) + " • " + esc(h.badge || c.s.motto) + " •</textPath></text></svg></div>" +
-        '<span class="note note1" aria-hidden="true">learning is fun!</span></div></div>' +
-        '<div class="wave white" aria-hidden="true"><svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0 35c120 35 240 35 360 8S600 0 720 18s240 45 360 27 240-38 360-8V70H0Z"/></svg></div></section>';
+      var h = c.d.homepage.hero, im = (h.images && h.images.length) ? h.images : [{ src: "assets/images/classroom-group-circle.webp", alt: "Smart Start The Premium School" }];
+      var motto = h.badge || c.s.motto || "Play · Prepare · Pride";
+      var slides = im.map(function (it, idx) {
+        return '<figure class="hero-slide' + (idx === 0 ? " is-active" : "") + '" data-hero-slide="' + idx + '" aria-hidden="' + (idx !== 0) + '">' +
+          img(c, it, { eager: idx === 0 ? 1 : 0, sizes: "100vw", nosrcset: 0 }) + '</figure>';
+      }).join("");
+      var dots = im.length > 1 ? '<div class="hero-slider__dots" role="tablist" aria-label="Hero slides">' + im.map(function (_, idx) {
+        return '<button type="button" class="hero-slider__dot' + (idx === 0 ? " is-active" : "") + '" data-hero-dot="' + idx + '" aria-label="Slide ' + (idx + 1) + '" aria-selected="' + (idx === 0) + '"></button>';
+      }).join("") + "</div>" : "";
+      var arrows = im.length > 1 ? '<button class="hero-slider__nav hero-slider__nav--prev" type="button" data-hero-dir="-1" aria-label="Previous slide">' + icon("prev") + '</button>' +
+        '<button class="hero-slider__nav hero-slider__nav--next" type="button" data-hero-dir="1" aria-label="Next slide">' + icon("next") + '</button>' : "";
+      var bubbles = (h.bubbles || []).map(function (t, i) { return '<span class="hero-bubble hero-bubble--' + (i + 1) + '">' + esc(t) + '</span>'; }).join("");
+      return '<section class="hero hero--full hero--art" id="top" aria-labelledby="hero-title">' +
+        '<div class="hero-slider" data-hero-slider data-active-slide="0" data-hero-count="' + im.length + '" tabindex="0" role="region" aria-label="Smart Start highlights slider">' +
+        '<div class="container hero-slider__content">' +
+        '<div class="hero__eyebrows rise" style="--d:.1s"><span class="hero-badge-pill hero-badge-pill--yellow">1st Multiple Intelligence School</span>' +
+        '<span class="hero-badge-pill hero-badge-pill--white">\u2605 ' + esc(motto) + '</span></div>' +
+        '<h1 class="h1 hero-title split" id="hero-title">' + words(h.title) + '</h1>' +
+        '<p class="hero-sub rise" style="--d:.45s">' + esc(h.subtitle) + '</p>' +
+        '<div class="btn-row rise" style="--d:.6s">' + btnl(c, h.cta1.label, h.cta1.link, "primary") + btnl(c, h.cta2.label, h.cta2.link, "yellow") + '</div>' +
+        '<ul class="hero__chips rise" style="--d:.75s"><li>Ages 1.5 \u2013 6 Years</li><li>Activity-Based Learning</li><li>Multiple Intelligence</li></ul></div>' +
+        '<div class="hero-slider__stage">' + slides + '</div><div class="hero-slider__shade" aria-hidden="true"></div>' +
+        bubbles + arrows + dots + '</div>' +
+        (h.quote ? '<div class="hero-quote"><div class="container"><span class="hero-quote__heart" aria-hidden="true">\u2665</span><p>' + esc(h.quote) + '</p></div></div>' : '') +
+        '</section>';
     },
     marquee: function (c) {
       var m = c.d.homepage.marquee || {}, phil = (c.d.philosophy.intelligences || []).map(function (x) { return x.heading; });
@@ -424,9 +465,12 @@
     },
     mi: function (c) {
       var m = c.d.homepage.mi;
-      return wave("sky", false) + '<section class="sec sec--mi" id="multiple-intelligence"><div class="container">' + deco("star", "f ms1") + deco("star", "f ms2") + deco("book", "f mb") +
-        head(c, m.eyebrow, m.title, m.text) + miTabs(c) +
-        '<p class="center reveal"><a class="btn btn--primary" href="' + p(c, "philosophy.html") + '"><span>Dive into Multiple Intelligence</span>' + icon("arrow") + "</a></p></div></section>" + wave("sky", true);
+      return '<section class="sec sec--mi" id="multiple-intelligence"><div class="container">' +
+        '<header class="sec-head sec-head--mi reveal">' +
+        (m.eyebrow ? '<p class="eyebrow eyebrow--mi">' + esc(m.eyebrow) + "</p>" : "") +
+        '<h2 class="h2">' + hl(m.title) + "</h2>" +
+        (m.text ? '<p class="lead">' + esc(m.text) + "</p>" : "") + "</header>" + miTabs(c) +
+        '<p class="center reveal"><a class="btn btn--primary" href="' + p(c, "philosophy.html") + '"><span>Dive into Multiple Intelligence</span>' + icon("arrow") + "</a></p></div></section>";
     },
     why: function (c) {
       var w = c.d.homepage.why, cols = ["purple", "magenta", "green", "yellow"];
@@ -443,9 +487,29 @@
     },
     programmes: function (c) {
       var h = c.d.homepage.programmes, list = visibleProgrammes(c);
-      return '<section class="sec sec--prog" id="programmes"><div class="container">' + head(c, h.eyebrow, h.title, h.text) +
-        '<div class="ladder">' + list.map(function (x, i) { return programmeCardMini(c, x, i); }).join("") + "</div>" +
-        '<p class="center reveal"><a class="btn btn--yellow" href="' + p(c, "programmes.html") + '"><span>See all programme details</span>' + icon("arrow") + "</a></p></div></section>";
+      var rawTitle = plain(h.title || "Our Preschool Programmes");
+      return '<section class="sec sec--prog" id="programmes">' +
+        '<div class="prog-backdrop" aria-hidden="true"></div>' +
+        '<div class="container">' +
+        '<header class="sec-head sec-head--prog reveal">' +
+        (h.eyebrow ? '<p class="eyebrow eyebrow--prog">' + esc(h.eyebrow) + "</p>" : "") +
+        '<h2 class="h2">' + esc(rawTitle) + "</h2>" +
+        '<div class="prog-ornament" aria-hidden="true"><span></span><svg viewBox="0 0 32 24"><path d="M16 14c-4-7-12-9-14-4-2 4 3 10 12 8-5 2-7 5-4 6 3 1 6-3 6-6zm0 0c4-7 12-9 14-4 2 4-3 10-12 8 5 2 7 5 4 6-3 1-6-3-6-6z" fill="currentColor"/></svg><span></span></div>' +
+        (h.text ? '<p class="lead">' + esc(h.text) + "</p>" : "") +
+        "</header>" +
+        '<div class="prog-carousel" data-prog-carousel>' +
+        '<button class="prog-nav prog-nav--prev" type="button" data-prog-dir="-1" aria-label="Previous programme">' + icon("prev") + "</button>" +
+        '<div class="prog-track" data-prog-track data-prog-count="' + list.length + '" tabindex="0" role="region" aria-label="Our Preschool Programmes Carousel">' +
+        list.map(function (x, i) { return programmeCardMini(c, x, i); }).join("") +
+        "</div>" +
+        '<button class="prog-nav prog-nav--next" type="button" data-prog-dir="1" aria-label="Next programme">' + icon("next") + "</button>" +
+        "</div>" +
+        '<div class="prog-dots" data-prog-dots aria-label="Programme slides">' +
+        list.map(function (x, i) {
+          return '<button type="button" class="prog-dot' + (i === 0 ? " is-active" : "") + '" data-prog-dot="' + i + '" aria-label="View ' + esc(x.name) + '"></button>';
+        }).join("") +
+        "</div>" +
+        '<p class="center reveal"><a class="btn btn--yellow" href="' + p(c, "programmes.html") + '"><span>See All Programme Details</span>' + icon("arrow") + "</a></p></div></section>";
     },
     environment: function (c) {
       var e = c.d.homepage.environment, im = e.images || [];
@@ -508,7 +572,8 @@
       return '<section class="sec sec--princ" id="principal-intro"><div class="container princ-grid">' +
         '<div class="reveal princ-head"><p class="eyebrow">' + esc(h.eyebrow) + '</p><h2 class="h2">' + esc(h.title) + "</h2></div>" +
         '<div class="reveal princ-photo"><div class="blob-c">' + img(c, { src: pr.photo, alt: pr.photoAlt }, { thumb: 1, sizes: "(max-width:900px) 70vw, 420px" }) + "</div>" + deco("heart", "f ph1") + deco("star", "f ph2") + "</div>" +
-        '<div class="reveal princ-body"><p class="lead">' + esc(pr.message[3] || pr.intro) + '</p><p class="who"><b>' + esc(pr.name) + "</b><span>" + esc(pr.designation) + "</span></p>" +
+        '<div class="reveal princ-body">' +
+        '<p class="lead">' + esc(pr.message[3] || pr.bio) + '</p><p class="who"><b>' + esc(pr.name) + "</b><span>" + esc(pr.designation) + "</span></p>" +
         btnl(c, h.button.label, h.button.link, "primary") + "</div></div></section>";
     },
     testimonials: function (c) {
@@ -812,13 +877,17 @@
       { "@type": "WebSite", "@id": (c.base || "") + "#website", name: s.name, url: c.base || undefined, publisher: { "@id": (c.base || "") + "#organization" }, inLanguage: "en-IN" },
       { "@type": "WebPage", "@id": url || undefined, url: url || undefined, name: ((c.d.seo.pages[pid] || {}).title || ""), isPartOf: { "@id": (c.base || "") + "#website" }, about: { "@id": (c.base || "") + "#organization" } }
     ];
-    if (pid !== "index") g.push({ "@type": "BreadcrumbList", itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: pageUrl(c, "index") || undefined },
-      { "@type": "ListItem", position: 2, name: PAGE_NAMES[pid], item: url || undefined }] });
+    if (pid !== "index") g.push({
+      "@type": "BreadcrumbList", itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: pageUrl(c, "index") || undefined },
+        { "@type": "ListItem", position: 2, name: PAGE_NAMES[pid], item: url || undefined }]
+    });
     if (pid === "updates" || pid === "index") {
       sortedUpdates(c).filter(function (u) { return u.eventDate; }).forEach(function (u) {
-        g.push({ "@type": "Event", name: u.title, description: u.description, startDate: u.eventDate, image: abs(c, u.cover), eventStatus: "https://schema.org/EventScheduled",
-          location: { "@type": "Place", name: s.fullName || s.name, address: { "@type": "PostalAddress", addressLocality: s.city, addressCountry: "IN" } }, organizer: { "@id": (c.base || "") + "#organization" } });
+        g.push({
+          "@type": "Event", name: u.title, description: u.description, startDate: u.eventDate, image: abs(c, u.cover), eventStatus: "https://schema.org/EventScheduled",
+          location: { "@type": "Place", name: s.fullName || s.name, address: { "@type": "PostalAddress", addressLocality: s.city, addressCountry: "IN" } }, organizer: { "@id": (c.base || "") + "#organization" }
+        });
       });
     }
     var extra = (c.d.seo.structured || {}).extraJsonLd;
@@ -888,7 +957,10 @@
       }).join("\n") + "\n</urlset>\n";
   }
 
-  return { FILES: FILES, PAGE_NAMES: PAGE_NAMES, makeCtx: makeCtx, renderPage: renderPage, renderParts: renderParts, headTags: headTags,
+  return {
+    FILES: FILES, PAGE_NAMES: PAGE_NAMES, makeCtx: makeCtx, renderPage: renderPage, renderParts: renderParts, headTags: headTags,
     contentHash: contentHash, sitemap: sitemap, esc: esc, fmtDate: fmtDate, longDate: longDate, slug: slug, digits: digits,
-    sortedUpdates: sortedUpdates, visibleProgrammes: visibleProgrammes, visibleGallery: visibleGallery, publishedTestimonials: publishedTestimonials };
+    sortedUpdates: sortedUpdates, visibleProgrammes: visibleProgrammes, visibleGallery: visibleGallery, publishedTestimonials: publishedTestimonials
+  };
 });
+
