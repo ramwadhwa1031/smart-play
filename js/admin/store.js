@@ -6,7 +6,7 @@
     gallery: "gallery", updates: "updates", centres: "centres", testimonials: "testimonials", seo: "seo", media: "media" };
   var LABELS = { settings: "Website settings", homepage: "Homepage", about: "About & principal", philosophy: "Multiple Intelligence", programmes: "Programmes",
     gallery: "Gallery", updates: "Announcements", centres: "Centres", testimonials: "Testimonials", seo: "SEO", media: "Media library" };
-  var DRAFT_KEY = "ss_draft_v13", PUB_KEY = "ss_last_publish", CFG_KEY = "ss_gh_config";
+  var DRAFT_KEY = "ss_draft_v14", PUB_KEY = "ss_last_publish", CFG_KEY = "ss_gh_config";
   AS.FILES = FILES; AS.LABELS = LABELS; AS.DRAFT_KEY = DRAFT_KEY;
   AS.data = {}; AS.original = {}; AS.deleted = []; AS.urls = {}; AS.listeners = [];
 

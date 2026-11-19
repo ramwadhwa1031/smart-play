@@ -392,7 +392,7 @@
         '<div class="hero__bg" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>' +
         deco("cloud", "f hc1", "--s:1") + deco("cloud", "f hc2") + deco("sun", "f hsun") + deco("star", "f hs1") + deco("star", "f hs2") + deco("pencil", "f hp") + deco("plus", "f hplus") + deco("heart", "f hh") +
         '<div class="container hero__grid"><div class="hero__copy">' +
-        '<p class="eyebrow eyebrow--pill">' + esc(h.eyebrow) + '</p><h1 class="h1 split" id="hero-title">' + words(h.title) + "</h1>" +
+        '<h1 class="h1 split" id="hero-title">' + words(h.title) + "</h1>" +
         '<p class="lead rise" style="--d:.5s">' + esc(h.subtitle) + '</p><div class="btn-row rise" style="--d:.65s">' +
         btnl(c, h.cta1.label, h.cta1.link, "primary") + btnl(c, h.cta2.label, h.cta2.link, "yellow") + "</div>" +
         '<ul class="hero__chips rise" style="--d:.8s"><li>Ages 1.5 – 6 years</li><li>Multiple Intelligence</li><li>' + esc(c.s.motto) + "</li></ul></div>" +
