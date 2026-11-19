@@ -21,13 +21,23 @@
       "visible": true
     },
     {
+      "id": "principal",
+      "label": "Principal's introduction",
+      "visible": true
+    },
+    {
       "id": "mi",
       "label": "Multiple Intelligence",
       "visible": true
     },
     {
+      "id": "reels",
+      "label": "Instagram Reels carousel",
+      "visible": true
+    },
+    {
       "id": "why",
-      "label": "Why Smart Start?",
+      "label": "Why Smart Start The Premium School?",
       "visible": true
     },
     {
@@ -46,18 +56,8 @@
       "visible": true
     },
     {
-      "id": "reels",
-      "label": "Instagram Reels carousel",
-      "visible": true
-    },
-    {
       "id": "gallery",
       "label": "Gallery preview",
-      "visible": true
-    },
-    {
-      "id": "principal",
-      "label": "Principal's introduction",
       "visible": true
     },
     {
@@ -77,7 +77,7 @@
     }
   ],
   "hero": {
-    "eyebrow": "Smart Start · The Premium School · Rohini, Delhi",
+    "eyebrow": "Smart Start The Premium School · Rohini, Delhi",
     "title": "Where little dreams take their first [[big flight]]",
     "subtitle": "A premium, multiple-intelligence preschool where every child is loved, nourished and celebrated, and learning feels like play.",
     "cta1": {
@@ -95,7 +95,7 @@
       },
       {
         "src": "assets/images/ball-pit-adventure.webp",
-        "alt": "Child playing in the Smart Start ball pit"
+        "alt": "Child playing in the Smart Start The Premium School ball pit"
       },
       {
         "src": "assets/images/finger-painting.webp",
@@ -126,9 +126,9 @@
     "announcements": []
   },
   "intro": {
-    "eyebrow": "Welcome to Smart Start",
+    "eyebrow": "Welcome to Smart Start The Premium School",
     "title": "Not just a school. A [[second home]] for your child.",
-    "text": "At Smart Start, every child's journey begins with love, laughter and limitless learning. We believe the first five years are not just about learning A-B-C, but about building a beautiful human being: confident, curious and compassionate.",
+    "text": "At Smart Start The Premium School, every child's journey begins with love, laughter and limitless learning. We believe the first five years are not just about learning A-B-C, but about building a beautiful human being: confident, curious and compassionate.",
     "points": [
       "Personal love, attention and care for every child",
       "Learning through play, art, music and movement",
@@ -151,7 +151,7 @@
     "text": "Every child is smart in a different way. Our Multiple Intelligence approach discovers each child's strengths and builds on them through play. Tap an intelligence to explore."
   },
   "why": {
-    "eyebrow": "Why Smart Start?",
+    "eyebrow": "Why Smart Start The Premium School?",
     "title": "Four pillars that shape every day",
     "items": [
       {
@@ -190,7 +190,7 @@
   "environment": {
     "eyebrow": "Learning environment",
     "title": "Spaces that invite children to [[climb, create & explore]]",
-    "text": "From the colourful play hall and ball pit to themed classrooms and creative corners, every space at Smart Start is designed for curious little minds.",
+    "text": "From the colourful play hall and ball pit to themed classrooms and creative corners, every space at Smart Start The Premium School is designed for curious little minds.",
     "images": [
       {
         "src": "assets/images/ball-pit-slide.webp",
@@ -216,7 +216,7 @@
   },
   "updates": {
     "eyebrow": "Announcements",
-    "title": "What's happening at [[Smart Start]]",
+    "title": "What's happening at [[Smart Start The Premium School]]",
     "text": "Celebrations, events, notices and everyday moments from our school.",
     "count": 6
   },

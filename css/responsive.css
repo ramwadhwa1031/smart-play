@@ -62,7 +62,8 @@
 @media (max-width:700px){
   :root{--header-h:68px}
   .container{width:min(100% - 2rem,var(--maxw))}
-  .brand img{width:46px;height:46px}.brand__txt b{font-size:1.25rem}.brand__txt small{font-size:.62rem}
+  .brand{gap:.42rem}
+  .brand img{width:42px;height:42px}.brand__txt{gap:.28rem}.brand__txt b{font-size:1.08rem}.brand__txt small{font-size:.84rem}
   .sec{padding:2.8rem 0}
   .hero__chips li{font-size:.8rem}
   .btn{width:100%;justify-content:center}
@@ -124,7 +125,9 @@
 }
 @media (max-width:380px){
   .h1{font-size:2.15rem}
-  .brand__txt small{display:none}
+  .brand img{width:38px;height:38px}
+  .brand__txt b{font-size:.96rem}
+  .brand__txt small{font-size:.75rem;display:inline}
   .dl{grid-template-columns:1fr}
   .reels-track{grid-auto-columns:82%}
 }

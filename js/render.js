@@ -21,6 +21,19 @@
     });
   }
   function hl(s) { return esc(s).replace(/\[\[(.+?)\]\]/g, '<span class="hl">$1</span>'); }
+  function fmtLetterPara(t, i) {
+    var raw = String(t == null ? "" : t).trim();
+    var html = esc(raw).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    if (i === 0 && /^dear\b/i.test(raw)) return '<p class="letter__salute">' + html + "</p>";
+    if (/^my two promises/i.test(raw) || /:\s*$/.test(raw)) return '<h3 class="letter__sub">' + html + "</h3>";
+    var m = /^(\d+)\.\s*(.+)$/.exec(raw);
+    if (m) {
+      var bodyHtml = esc(m[2]).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+      return '<div class="letter__promise"><span class="letter__pnum">' + esc(m[1]) + '</span><p>' + bodyHtml + "</p></div>";
+    }
+    if (/^warmly/i.test(raw)) return '<p class="letter__warm">' + html + "</p>";
+    return "<p>" + html + "</p>";
+  }
   function plain(s) { return String(s == null ? "" : s).replace(/\[\[|\]\]/g, ""); }
   function words(s) {
     var i = 0;
@@ -53,7 +66,11 @@
   function telHref(n) { var d = digits(n); return "tel:+" + (d.length === 10 ? "91" + d : d); }
   function waUrl(c, msg) {
     var s = c.s;
-    return "https://wa.me/" + digits(s.whatsapp) + "?text=" + encodeURIComponent(msg || s.whatsappMessage || "Hello Smart Start");
+    return "https://wa.me/" + digits(s.whatsapp) + "?text=" + encodeURIComponent(msg || s.whatsappMessage || "Hello Smart Start The Premium School");
+  }
+  function brandTxt(s) {
+    var base = String((s && s.name) || "Smart Start").replace(/\s*[–—-]?\s*the premium school$/i, "").trim() || "Smart Start";
+    return '<span class="brand__txt"><b>' + esc(base) + '</b> <small>The Premium School</small></span>';
   }
   function link(c, l) {
     if (l === "whatsapp") return waUrl(c);
@@ -208,7 +225,7 @@
     }).join("");
     return '<div class="header-inner container">' +
       '<a class="brand" href="' + p(c, "index.html") + '" aria-label="' + esc(s.name) + ' – home">' +
-      '<img src="' + esc(src(c, s.logo)) + '" alt="' + esc(s.name) + ' logo" width="56" height="56"><span class="brand__txt"><b>' + esc(s.name) + "</b><small>The Premium School</small></span></a>" +
+      '<img src="' + esc(src(c, s.logo)) + '" alt="' + esc(s.name) + ' logo" width="56" height="56">' + brandTxt(s) + '</a>' +
       '<nav class="nav" id="primary-nav" aria-label="Primary"><ul>' + items + "</ul>" +
       '<div class="nav__cta"><a class="btn btn--primary btn--sm" href="' + p(c, "contact.html#enquiry") + '"><span>Book A Campus Visit</span>' + icon("arrow") + "</a></div></nav>" +
       '<button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button></div>';
@@ -291,7 +308,7 @@
       '<div class="footer-body">' +
       starTrailSvg +
       '<div class="container footer-grid">' +
-      '<div class="f-col f-brand"><a class="brand brand--light" href="' + p(c, "index.html") + '"><img src="' + esc(src(c, s.logo)) + '" alt="' + esc(s.name) + ' logo" width="66" height="66" loading="lazy"><span class="brand__txt"><b>' + esc(s.name) + "</b><small>THE PREMIUM SCHOOL</small></span></a>" +
+      '<div class="f-col f-brand"><a class="brand brand--light" href="' + p(c, "index.html") + '"><img src="' + esc(src(c, s.logo)) + '" alt="' + esc(s.name) + ' logo" width="66" height="66" loading="lazy">' + brandTxt(s) + '</a>' +
       "<p>" + esc((s.footer || {}).blurb) + '</p><div class="f-motto"><span>' + esc(s.motto) + '</span><svg viewBox="0 0 130 14" aria-hidden="true"><path d="M2 11c24-8 62-9 96-3" fill="none" stroke="#FFC83D" stroke-width="3.2" stroke-linecap="round"/></svg></div><div class="socials">' + so + "</div></div>" +
       '<nav class="f-col f-explore" aria-label="Explore"><h2 class="f-h">' + sparkleH + '<span>Explore</span></h2><ul class="f-links">' + links + "</ul></nav>" +
       '<nav class="f-col f-progs" aria-label="Our Programmes"><h2 class="f-h">' + booksH + '<span>Our Programmes</span></h2><ul class="f-proglist">' + progs + "</ul></nav>" +
@@ -311,7 +328,7 @@
       "</div></div>";
   }
   function floating(c) {
-    return '<a class="wa-float" href="' + esc(waUrl(c)) + '" target="_blank" rel="noopener" aria-label="Chat with Smart Start on WhatsApp">' +
+    return '<a class="wa-float" href="' + esc(waUrl(c)) + '" target="_blank" rel="noopener" aria-label="Chat with Smart Start The Premium School on WhatsApp">' +
       '<svg class="wa-float__ic" viewBox="0 0 32 32" aria-hidden="true"><path fill="#FFFFFF" d="M16 3C9.1 3 3.5 8.5 3.5 15.3c0 2.3.6 4.5 1.8 6.4L3.4 28.6l7.1-1.8a12.7 12.7 0 0 0 5.5 1.3c6.9 0 12.5-5.5 12.5-12.4S22.9 3 16 3zm0 22.7c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.2 1.1 1.1-4.1-.3-.4a10.2 10.2 0 0 1-1.6-5.4C5.2 9.5 10 4.8 16 4.8s10.8 4.7 10.8 10.5S22 25.7 16 25.7zm5.9-7.8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.8 8.8 0 0 1-4.3-3.7c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.6s-.7-1.7-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.7 5.9 5.1 2.2.9 3.1 1 4.2.8.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>' +
       '<span>WhatsApp</span></a>' +
       '<div class="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden><button class="lb-close" type="button" aria-label="Close">' + icon("close") + '</button><button class="lb-prev" type="button" aria-label="Previous photo">' + icon("prev") + '</button><figure class="lb-fig"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" width="1" height="1"><figcaption></figcaption></figure><button class="lb-next" type="button" aria-label="Next photo">' + icon("next") + "</button></div>";
@@ -389,7 +406,7 @@
     },
     marquee: function (c) {
       var m = c.d.homepage.marquee || {}, phil = (c.d.philosophy.intelligences || []).map(function (x) { return x.heading; });
-      return '<section class="marquees" aria-label="Smart Start highlights">' +
+      return '<section class="marquees" aria-label="Smart Start The Premium School highlights">' +
         marquee(c, m.highlights || [], "m-purple", "School highlights", "star") +
         marquee(c, (m.programmes || visibleProgrammes(c).map(function (x) { return x.name; })), "m-yellow m-rev", "Programmes", "heart") +
         marquee(c, phil, "m-sky", "Learning philosophy", "plus") +
@@ -545,7 +562,7 @@
         '<div class="container prefoot__grid">' +
         '<div class="prefoot__side prefoot__side--l reveal">' +
         booksSvg +
-        '<div class="pf-kid pf-kid--l">' + img(c, { src: "assets/images/independence-worksheet.webp", alt: "Happy Smart Start child learning" }, { thumb: 1, sizes: "240px" }) + raysSvg + "</div>" +
+        '<div class="pf-kid pf-kid--l">' + img(c, { src: "assets/images/independence-worksheet.webp", alt: "Happy Smart Start The Premium School child learning" }, { thumb: 1, sizes: "240px" }) + raysSvg + "</div>" +
         rainbowSvg + "</div>" +
         '<div class="prefoot__center reveal">' +
         '<h2 class="prefoot__h">' + hTitle + raysSvg + "</h2>" +
@@ -555,7 +572,7 @@
         '<a class="pf-btn pf-btn--out" href="' + esc(fixHref(c, h2)) + '"' + ext(h2) + ">" + capIc + "<span>" + esc(c2.label) + "</span></a>" +
         "</div>" + planeSvg + "</div>" +
         '<div class="prefoot__side prefoot__side--r reveal">' +
-        '<div class="pf-kid pf-kid--r">' + img(c, { src: "assets/images/climbing-net-smile.webp", alt: "Smiling Smart Start student" }, { thumb: 1, sizes: "240px" }) + raysSvg + "</div>" +
+        '<div class="pf-kid pf-kid--r">' + img(c, { src: "assets/images/climbing-net-smile.webp", alt: "Smiling Smart Start The Premium School student" }, { thumb: 1, sizes: "240px" }) + raysSvg + "</div>" +
         blocksSvg + "</div>" +
         "</div></section>";
     },
@@ -666,7 +683,7 @@
   PAGES.about = function (c) {
     var a = c.d.about, pr = a.principal;
     var card = function (t, i) { return '<article class="vcard c-' + esc(t.color) + ' reveal" style="--i:' + i + '"><h3>' + esc(t.title) + "</h3><p>" + esc(t.text) + "</p></article>"; };
-    return pageHero(c, "about", "About Smart Start", "A second home where [[childhood blossoms]]", "Meet the school, the vision and the people behind Smart Start – The Premium School.") +
+    return pageHero(c, "about", "About Smart Start The Premium School", "A second home where [[childhood blossoms]]", "Meet the school, the vision and the people behind Smart Start The Premium School.") +
       '<section class="sec" id="story"><div class="container split-2"><div class="reveal reveal--img blob-wrap">' + deco("star", "f as1") + '<div class="blob-a">' + img(c, a.story.image, { thumb: 1, sizes: "(max-width:900px) 90vw, 520px" }) + '</div></div><div class="reveal"><p class="eyebrow">' + esc(a.story.eyebrow) + '</p><h2 class="h2">' + hl(a.story.title) + "</h2>" +
       a.story.paragraphs.map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("") + "</div></div></section>" +
       wave("sky", false) + '<section class="sec sec--sky" id="vision"><div class="container"><div class="vision-card reveal"><p class="eyebrow">' + esc(a.vision.eyebrow) + '</p><h2 class="h2">' + hl(a.vision.title) + "</h2><p>" + esc(a.vision.official) + '</p><p class="vision-short">' + esc(a.vision.short) + '</p><p class="motto-line">' + esc(a.vision.motto) + "</p></div>" +
@@ -679,7 +696,7 @@
       '<div class="reveal princ-head"><p class="eyebrow">Principal\'s message</p><h2 class="h2">' + esc(pr.name) + '</h2><p class="role">' + esc(pr.designation) + "</p></div>" +
       '<div class="reveal princ-photo"><div class="blob-c">' + img(c, { src: pr.photo, alt: pr.photoAlt }, { thumb: 1, sizes: "(max-width:900px) 70vw, 420px" }) + "</div>" + deco("heart", "f ph1") + deco("star", "f ph2") + "</div>" +
       '<div class="reveal princ-body"><p>' + esc(pr.bio) + '</p></div></div>' +
-      '<div class="container letter reveal"><div class="letter__paper">' + pr.message.map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("") + '<p class="sign">' + esc(pr.signoff) + "</p></div></div></section>" +
+      '<div class="container letter reveal"><div class="letter__paper">' + pr.message.map(fmtLetterPara).join("") + '<p class="sign">' + esc(pr.signoff) + "</p></div></div></section>" +
       '<section class="sec" id="why-choose-us"><div class="container"><div class="whylist reveal"><div>' + head(c, a.why.eyebrow, a.why.title, "") + '</div><ul class="ticks ticks--lg">' + a.why.items.map(function (t) { return "<li>" + icon("check") + "<span>" + esc(t) + "</span></li>"; }).join("") + "</ul></div></div></section>" +
       ((a.staff || []).length ? staffSection(c) : "") + HOME.cta(c);
   };
@@ -745,7 +762,7 @@
 
   PAGES.centres = function (c) {
     var list = ((c.d.centres && c.d.centres.centres) || []).filter(function (x) { return x.visible !== false; });
-    return pageHero(c, "centres", "Visit us", "Our [[centre]]", "Come and see Smart Start for yourself. We would love to show you around.") +
+    return pageHero(c, "centres", "Visit us", "Our [[centre]]", "Come and see Smart Start The Premium School for yourself. We would love to show you around.") +
       list.map(function (x, i) {
         var ph = x.photos || [];
         return '<section class="sec centre" id="' + esc(x.id) + '"><div class="container centre__grid"><div class="centre__photos reveal reveal--img">' +
@@ -776,7 +793,7 @@
       '<p class="form-err" role="alert" hidden>Please add your name and phone number.</p>' +
       '<div class="btn-row"><button class="btn btn--green" type="button" data-send="wa"><span>Send on WhatsApp</span>' + icon("whatsapp") + '</button><button class="btn btn--purple" type="button" data-send="mail"><span>Send by email</span>' + icon("mail") + "</button></div>" +
       '<p class="fine">We do not store form data on this website.</p></form></div></section>' +
-      '<section class="sec sec--tight"><div class="container"><div class="map-card reveal"><div class="map-art" aria-hidden="true">' + deco("pin", "") + '</div><div><h2 class="h3">Find Smart Start on the map</h2><p>' + esc(fmtAddr(s.address, s.city)) + "</p>" +
+      '<section class="sec sec--tight"><div class="container"><div class="map-card reveal"><div class="map-art" aria-hidden="true">' + deco("pin", "") + '</div><div><h2 class="h3">Find Smart Start The Premium School on the map</h2><p>' + esc(fmtAddr(s.address, s.city)) + "</p>" +
       (s.mapsUrl ? '<a class="btn btn--primary" href="' + esc(s.mapsUrl) + '" target="_blank" rel="noopener"><span>Get directions on Google Maps</span>' + icon("arrow") + "</a>" : "") + '</div></div></div></section>' +
       HOME.cta(c);
   };
