@@ -1,6 +1,46 @@
 {
-  "eyebrow": "Parent voices",
-  "title": "Words from our Smart family",
+  "eyebrow": "Google Reviews · Parent Voices",
+  "title": "What Parents Say on [[Google Reviews]]",
+  "subtitle": "Rated 4.7 ★ on Google Maps by parents of Smart Start The Premium School, Sector 24, Rohini. Swipe through highlights or read all live reviews on Google.",
+  "googlePlaceName": "Smart Start The Premium School",
+  "googleCid": "8573399546212313604",
+  "googleReviewsUrl": "https://maps.google.com/?cid=8573399546212313604",
+  "elfsightAppId": "11c1f0ee-4527-409e-a1a2-de842d8b1642",
+  "featurableWidgetId": "",
+  "liveFeedUrl": "",
+  "rating": 4.7,
+  "reviewCount": 0,
+  "highlights": [
+    {
+      "icon": "heart",
+      "tag": "Warm & Loving Care",
+      "title": "Loving & Supportive Faculty",
+      "text": "Parents consistently appreciate our warm, patient teachers and Principal Dr. Parvinder Kaur's personal care for every little learner."
+    },
+    {
+      "icon": "shield",
+      "tag": "Safety First",
+      "title": "Safe, Clean & Hygienic Campus",
+      "text": "CCTV-secured premises, AC classrooms, indoor ball-pit play zone and trained female staff create a welcoming second-home atmosphere."
+    },
+    {
+      "icon": "star",
+      "tag": "Confidence & Growth",
+      "title": "Visible Growth & Stage Confidence",
+      "text": "Activity-based Multiple Intelligence learning, regular stage opportunities and joyful celebrations help shy toddlers blossom into confident speakers."
+    },
+    {
+      "icon": "palette",
+      "tag": "Joyful Learning",
+      "title": "Creative Activities & Celebrations",
+      "text": "Art, craft, music, yoga, outdoor turf play and cultural festivals make children genuinely excited to come to school every morning."
+    },
+    {
+      "icon": "people",
+      "tag": "Parent Trust",
+      "title": "Strong Parent–School Partnership",
+      "text": "Transparent communication, personal attention to daily milestones and value-based sanskars appreciated by families across Rohini Sector 24."
+    }
+  ],
   "items": []
 }
-

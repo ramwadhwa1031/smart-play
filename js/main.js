@@ -4,6 +4,7 @@
   window.SS = window.SS || {};
   var formBound = false, reelTimer = null, reelPausedUntil = 0;
   var heroTimer = null, heroPausedUntil = 0, heroIdx = 0;
+  var grevTimer = null, grevPausedUntil = 0;
 
   function digits(s) { return String(s || "").replace(/\D/g, ""); }
 
@@ -186,6 +187,30 @@
         scrollToProgDot(pIdx);
         return;
       }
+      var gb = e.target.closest("[data-grev-dir]");
+      if (gb) {
+        var gdir = parseInt(gb.getAttribute("data-grev-dir"), 10) || 1;
+        grevPausedUntil = Date.now() + 6500;
+        stepGrev(gdir);
+        return;
+      }
+      var gd = e.target.closest("[data-grev-dot]");
+      if (gd) {
+        var gIdx = parseInt(gd.getAttribute("data-grev-dot"), 10) || 0;
+        grevPausedUntil = Date.now() + 6500;
+        scrollToGrevDot(gIdx);
+        return;
+      }
+      var pick = e.target.closest("[data-pick-prog]");
+      if (pick) {
+        var fPick = document.getElementById("enq-form");
+        var progVal = pick.getAttribute("data-pick-prog");
+        if (fPick && fPick.elements.programme && progVal) {
+          [].forEach.call(fPick.elements.programme.options, function (o) {
+            if (o.value === progVal) fPick.elements.programme.value = progVal;
+          });
+        }
+      }
       var b = e.target.closest("[data-send]"); if (!b) return;
       var f = b.closest("form"), v = function (n) { return (f.elements[n].value || "").trim(); };
       var err = f.querySelector(".form-err");
@@ -234,9 +259,127 @@
     }
   }
 
+  function escHtml(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function stepGrev(dir) {
+    var track = document.querySelector("[data-google-reviews]");
+    if (!track) return;
+    var cards = track.querySelectorAll(".grev-card, .grev-hl-card");
+    if (cards.length < 2) return;
+    var step = cards[1].offsetLeft - cards[0].offsetLeft;
+    if (step <= 0) step = cards[0].getBoundingClientRect().width + 20;
+    var maxScroll = track.scrollWidth - track.clientWidth;
+    if (maxScroll <= 8) return;
+    if (dir > 0 && track.scrollLeft >= maxScroll - 14) {
+      track.scrollTo({ left: 0, behavior: "smooth" });
+    } else if (dir < 0 && track.scrollLeft <= 14) {
+      track.scrollTo({ left: maxScroll, behavior: "smooth" });
+    } else {
+      track.scrollBy({ left: step * dir, behavior: "smooth" });
+    }
+  }
+
+  function scrollToGrevDot(idx) {
+    var track = document.querySelector("[data-google-reviews]");
+    if (!track) return;
+    var cards = track.querySelectorAll(".grev-card, .grev-hl-card");
+    if (!cards[idx]) return;
+    var left = cards[idx].offsetLeft - cards[0].offsetLeft;
+    track.scrollTo({ left: left, behavior: "smooth" });
+  }
+
+  function bindGrevCarousel() {
+    if (grevTimer) clearInterval(grevTimer);
+    var track = document.querySelector("[data-google-reviews]");
+    if (!track) return;
+    track.addEventListener("scroll", function () {
+      var cards = track.querySelectorAll(".grev-card, .grev-hl-card");
+      var dots = document.querySelectorAll("[data-grev-dot]");
+      if (!cards.length || !dots.length) return;
+      var step = cards.length > 1 ? (cards[1].offsetLeft - cards[0].offsetLeft) : cards[0].offsetWidth;
+      if (step <= 0) step = cards[0].offsetWidth || 1;
+      var activeIdx = Math.min(cards.length - 1, Math.max(0, Math.round(track.scrollLeft / step)));
+      dots.forEach(function (d, i) { d.classList.toggle("is-active", i === activeIdx); });
+    }, { passive: true });
+    track.addEventListener("mouseenter", function () { grevPausedUntil = Date.now() + 7000; });
+    track.addEventListener("touchstart", function () { grevPausedUntil = Date.now() + 7000; }, { passive: true });
+    grevTimer = setInterval(function () {
+      if (Date.now() < grevPausedUntil || document.hidden) return;
+      stepGrev(1);
+    }, 4400);
+  }
+
+  function loadLiveGoogleReviews() {
+    var box = document.querySelector("[data-google-reviews]");
+    if (!box) return;
+    var featId = (box.getAttribute("data-featurable-id") || "").trim();
+    var feedUrl = (box.getAttribute("data-google-feed") || "").trim();
+    if (!feedUrl && featId) feedUrl = "https://featurable.com/api/v1/widgets/" + encodeURIComponent(featId);
+    if (!feedUrl) return;
+    fetch(feedUrl, { cache: "no-cache" }).then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    }).then(function (data) {
+      var list = Array.isArray(data) ? data : (data.reviews || data.items || (data.result && data.result.reviews) || []);
+      var cleaned = list.map(function (r) {
+        var name = (r.reviewer && r.reviewer.displayName) || r.author_name || r.authorName || r.name || "";
+        var text = r.comment || r.text || (r.text && r.text.text) || r.review || "";
+        if (typeof text === "object" && text && text.text) text = text.text;
+        var rating = Number(r.starRating || r.rating || 5) || 5;
+        if (typeof r.starRating === "string") {
+          var map = { FIVE: 5, FOUR: 4, THREE: 3, TWO: 2, ONE: 1 };
+          rating = map[r.starRating.toUpperCase()] || 5;
+        }
+        var rel = r.relative_time_description || r.relativePublishTimeDescription || r.relation || "Google Review";
+        var avatar = (r.reviewer && r.reviewer.profilePhotoUrl) || r.profile_photo_url || r.avatar || "";
+        return { name: String(name).trim(), text: String(text).trim(), rating: rating, relation: String(rel).trim(), avatar: String(avatar).trim() };
+      }).filter(function (x) { return x.name && x.text; }).slice(0, 12);
+      if (!cleaned.length) return;
+      var ratingEl = document.querySelector("[data-google-rating]");
+      var countEl = document.querySelector("[data-google-count]");
+      var avg = Number(data.averageRating || data.rating || (data.result && data.result.rating));
+      var total = Number(data.totalReviewCount || data.user_ratings_total || data.reviewCount || (data.result && data.result.user_ratings_total));
+      if (ratingEl && avg) ratingEl.textContent = avg.toFixed(1);
+      if (countEl && total) countEl.textContent = total + " Google Reviews";
+      var gSvg = '<svg class="grev-g" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09c.95-2.85 3.6-4.96 6.73-4.96z"/></svg>';
+      var starSvg = '<svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.8 4.8 17.5l1-5.8-4.2-4.1 5.8-.8z"/></svg>';
+      box.innerHTML = cleaned.map(function (x, i) {
+        var init = x.name.split(/\s+/).map(function (w) { return w[0]; }).slice(0, 2).join("").toUpperCase();
+        var st = "";
+        for (var k = 0; k < 5; k++) st += '<span class="grev-star' + (k < Math.round(x.rating) ? " is-on" : "") + '">' + starSvg + "</span>";
+        return '<article class="grev-card" style="--i:' + (i % 4) + '"><div class="grev-card__top">' +
+          (x.avatar ? '<img class="grev-avatar" src="' + escHtml(x.avatar) + '" alt="" loading="lazy" width="44" height="44">' : '<span class="grev-avatar grev-avatar--init" aria-hidden="true">' + escHtml(init) + "</span>") +
+          '<div class="grev-meta"><b>' + escHtml(x.name) + "</b><span>" + escHtml(x.relation) + "</span></div>" + gSvg +
+          '</div><span class="grev-stars" aria-label="' + Math.round(x.rating) + ' out of 5 stars">' + st + '</span><p class="grev-text">"' + escHtml(x.text) + '"</p></article>';
+      }).join("");
+      var dotsWrap = document.querySelector("[data-grev-dots]");
+      if (dotsWrap) {
+        dotsWrap.innerHTML = cleaned.map(function (_, i) {
+          return '<button type="button" class="grev-dot' + (i === 0 ? " is-active" : "") + '" data-grev-dot="' + i + '" aria-label="View review ' + (i + 1) + '"></button>';
+        }).join("");
+      }
+      box.scrollTo({ left: 0, behavior: "auto" });
+    }).catch(function () {});
+  }
+
+  function ensureElfsight() {
+    var el = document.querySelector('[class*="elfsight-app-"]');
+    if (!el) return;
+    if (!document.querySelector('script[src*="elfsightcdn.com/platform.js"]')) {
+      var s = document.createElement("script");
+      s.src = "https://elfsightcdn.com/platform.js";
+      s.async = true;
+      document.body.appendChild(s);
+    }
+  }
+
   function init() {
     cleanUrlBar();
-    SS.nav.init(); SS.gallery.init(); SS.anim.init(); bindForm(); prefill(); startReelsAuto(); startHeroAuto(); bindProgCarousel();
+    SS.nav.init(); SS.gallery.init(); SS.anim.init(); bindForm(); prefill(); startReelsAuto(); startHeroAuto(); bindProgCarousel(); bindGrevCarousel(); loadLiveGoogleReviews(); ensureElfsight();
     var y = document.querySelector("[data-year]"); if (y) y.textContent = new Date().getFullYear();
   }
   SS.init = init;

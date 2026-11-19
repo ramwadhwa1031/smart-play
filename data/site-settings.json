@@ -21,7 +21,8 @@
     "youtube": "https://youtube.com/@smartstart-thepremiumschool?si=8dhiZfd_lnk7T7tv",
     "twitter": ""
   },
-  "mapsUrl": "https://share.google/OtE4QOz0eiZVvaR9c",
+  "mapsUrl": "https://maps.google.com/?cid=8573399546212313604",
+  "mapsEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d890379.1595105623!2d76.3529780656659!3d29.339718208885536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d07443c12c001%3A0x76fad5190ae56a04!2sSmart%20Start%20The%20Premium%20School!5e0!3m2!1sen!2sin!4v1795100837756!5m2!1sen!2sin",
   "address": "Pocket 27, Sector 24, Rohini, Delhi – 110085",
   "hours": [],
   "hoursNote": "Please call or WhatsApp us to confirm visiting hours and book a school visit.",
@@ -46,7 +47,6 @@
     { "label": "Programmes", "href": "programmes.html" },
     { "label": "Gallery", "href": "gallery.html" },
     { "label": "Announcements", "href": "updates.html" },
-    { "label": "Centres", "href": "centres.html" },
     { "label": "Contact", "href": "contact.html" }
   ]
 }

@@ -7,12 +7,17 @@
 })(typeof self !== "undefined" ? self : this, function () {
   "use strict";
 
+  var PROG_PIDS = ["toddlers", "playgroup", "pre-nursery", "nursery", "lkg", "ukg"];
   var FILES = {
     index: "index.html", about: "about.html", philosophy: "philosophy.html", programmes: "programmes.html",
+    toddlers: "toddlers.html", playgroup: "playgroup.html", "pre-nursery": "pre-nursery.html",
+    nursery: "nursery.html", lkg: "lkg.html", ukg: "ukg.html",
     gallery: "gallery.html", updates: "updates.html", centres: "centres.html", contact: "contact.html"
   };
   var PAGE_NAMES = {
     index: "Home", about: "About Us", philosophy: "Multiple Intelligence", programmes: "Programmes",
+    toddlers: "Toddlers Wing", playgroup: "Play Group Wing", "pre-nursery": "Pre-Nursery Wing",
+    nursery: "Nursery Wing", lkg: "LKG Wing", ukg: "UKG Wing",
     gallery: "Gallery", updates: "Announcements", centres: "Our Centres", contact: "Contact Us"
   };
   var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -216,16 +221,17 @@
   }
 
   /* ---------- layout pieces ---------- */
+  function progHref(c, id) { return p(c, FILES[id] ? FILES[id] : ("programmes.html#" + esc(id))); }
   function dropdownProgrammes(c) {
     return visibleProgrammes(c).map(function (x) {
-      return '<li><a href="' + p(c, "programmes.html#" + esc(x.id)) + '">' + esc(x.name) + ' <small>' + esc(x.age) + "</small></a></li>";
+      return '<li><a href="' + progHref(c, x.id) + '">' + esc(x.name) + ' <small>' + esc(x.age) + "</small></a></li>";
     }).join("");
   }
   function header(c, pid) {
-    var s = c.s;
+    var s = c.s, isProgChild = PROG_PIDS.indexOf(pid) >= 0;
     var items = (s.nav || []).map(function (n) {
       var f = n.href, key = Object.keys(FILES).filter(function (k) { return FILES[k] === f; })[0];
-      var cur = key === pid ? ' aria-current="page"' : "";
+      var cur = (key === pid || (key === "programmes" && isProgChild)) ? ' aria-current="page"' : "";
       var sub = "";
       if (key === "about") sub = '<li><a href="' + p(c, "about.html#story") + '">Our Story</a></li><li><a href="' + p(c, "about.html#vision") + '">Vision &amp; Promises</a></li><li><a href="' + p(c, "about.html#values") + '">Values</a></li><li><a href="' + p(c, "about.html#principal") + '">Principal\'s Message</a></li>';
       if (key === "programmes") sub = dropdownProgrammes(c);
@@ -277,7 +283,6 @@
       { label: "Programmes", href: "programmes.html" },
       { label: "Gallery", href: "gallery.html" },
       { label: "Announcements", href: "updates.html" },
-      { label: "Our Centres", href: "centres.html" },
       { label: "Contact Us", href: "contact.html" }
     ];
     var links = exploreList.map(function (n) {
@@ -285,7 +290,7 @@
     }).join("");
     var progs = visibleProgrammes(c).map(function (x, i) {
       var shortAge = String(x.age || "").replace(/years/i, "yrs").replace(/–/g, " – ");
-      return '<li><a href="' + p(c, "programmes.html#" + esc(x.id)) + '">' + progIconSvg(x.id, i) + '<span class="f-prog-txt"><b>' + esc(x.name) + '</b> <span class="f-age">(' + esc(shortAge) + ")</span></span></a></li>";
+      return '<li><a href="' + progHref(c, x.id) + '">' + progIconSvg(x.id, i) + '<span class="f-prog-txt"><b>' + esc(x.name) + '</b> <span class="f-age">(' + esc(shortAge) + ")</span></span></a></li>";
     }).join("");
     var phoneIc = '<svg class="f-ic f-ic--phone" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FF6F7D" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.36 2.3.56 3.6.56a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.56 3.6a1 1 0 0 1-.25 1L6.6 10.8z"/></svg>';
     var mailIc = '<svg class="f-ic f-ic--mail" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="3" fill="none" stroke="#FFC83D" stroke-width="2"/><path d="M3 6.5l9 6.5 9-6.5" fill="none" stroke="#FFC83D" stroke-width="2" stroke-linecap="round"/></svg>';
@@ -376,7 +381,7 @@
   function programmeCardMini(c, x, i) {
     var ageText = String(x.age || "").replace(/–/g, " – ");
     if (ageText && ageText.charAt(0) !== "(") ageText = "(" + ageText + ")";
-    return '<a class="prog-card c-' + esc(x.color) + '" style="--i:' + i + '" href="' + p(c, "programmes.html#" + esc(x.id)) + '">' +
+    return '<a class="prog-card c-' + esc(x.color) + '" style="--i:' + i + '" href="' + progHref(c, x.id) + '">' +
       '<span class="prog-card__media">' +
       img(c, x.image, { thumb: 1, sizes: "(max-width:700px) 88vw, 360px" }) +
       '<svg class="prog-card__wave" viewBox="0 0 400 52" preserveAspectRatio="none" aria-hidden="true"><path d="M0,22 C115,-18 255,60 400,14 L400,52 L0,52 Z" fill="#FFFFFF"/></svg>' +
@@ -577,12 +582,87 @@
         btnl(c, h.button.label, h.button.link, "primary") + "</div></div></section>";
     },
     testimonials: function (c) {
-      var t = publishedTestimonials(c); if (!t.length) return "";
-      var h = c.d.homepage.testimonials;
-      return '<section class="sec sec--test" id="testimonials"><div class="container">' + head(c, h.eyebrow, h.title, "") +
-        '<div class="bubbles">' + t.map(function (x, i) {
-          return '<figure class="bubble reveal" style="--i:' + i + '"><blockquote><p>' + esc(x.text) + "</p></blockquote><figcaption><b>" + esc(x.name) + "</b>" + (x.relation ? "<span>" + esc(x.relation) + "</span>" : "") + "</figcaption></figure>";
-        }).join("") + "</div></div></section>";
+      var td = c.d.testimonials || {};
+      var h = (c.d.homepage && c.d.homepage.testimonials) || {};
+      if (td.elfsightAppId) {
+        return '<section class="sec sec--test" id="testimonials"><div class="container">' +
+          head(c, td.eyebrow || h.eyebrow || "Google Reviews", td.title || h.title || "What Parents Say on [[Google Reviews]]", "Live verified parent reviews fetched directly from Google for Smart Start The Premium School, Sector 24, Rohini.") +
+          '<div class="grev-widget-box">' +
+          '<!-- Elfsight Google Reviews | Smart Start The Premium School -->' +
+          '<div class="elfsight-app-' + esc(td.elfsightAppId) + '" data-elfsight-app-lazy></div>' +
+          '</div></div></section>';
+      }
+      var t = publishedTestimonials(c);
+      var reviewsUrl = td.googleReviewsUrl || c.s.mapsUrl || "https://maps.google.com/?cid=8573399546212313604";
+      var ratingNum = Number(td.rating) || 4.7;
+      var reviewCount = Number(td.reviewCount) || 0;
+      var googleLogo = '<svg class="grev-g" viewBox="0 0 24 24" aria-hidden="true">' +
+        '<path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/>' +
+        '<path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z"/>' +
+        '<path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z"/>' +
+        '<path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09c.95-2.85 3.6-4.96 6.73-4.96z"/>' +
+        '</svg>';
+      var starSvg = '<svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.8 4.8 17.5l1-5.8-4.2-4.1 5.8-.8z"/></svg>';
+      var starsHtml = function (n) {
+        var cnt = Math.max(1, Math.min(5, Math.round(n || 5)));
+        var out = "";
+        for (var k = 0; k < 5; k++) out += '<span class="grev-star' + (k < cnt ? " is-on" : "") + '">' + starSvg + "</span>";
+        return '<span class="grev-stars" aria-label="' + cnt + ' out of 5 stars">' + out + "</span>";
+      };
+      var cardsHtml = "";
+      var slideCount = 0;
+      if (t.length) {
+        slideCount = t.length;
+        cardsHtml = t.map(function (x, i) {
+          var initials = String(x.name || "P").trim().split(/\s+/).map(function (w) { return w[0]; }).slice(0, 2).join("").toUpperCase();
+          return '<article class="grev-card" style="--i:' + (i % 4) + '">' +
+            '<div class="grev-card__top">' +
+            (x.avatar ? '<img class="grev-avatar" src="' + esc(x.avatar) + '" alt="" loading="lazy" width="44" height="44">' : '<span class="grev-avatar grev-avatar--init" aria-hidden="true">' + esc(initials) + '</span>') +
+            '<div class="grev-meta"><b>' + esc(x.name) + '</b><span>' + esc(x.relation || "Google Review") + '</span></div>' +
+            googleLogo + '</div>' +
+            starsHtml(x.rating || 5) +
+            '<p class="grev-text">"' + esc(x.text) + '"</p>' +
+            '</article>';
+        }).join("");
+      } else {
+        var highlights = td.highlights || [];
+        slideCount = highlights.length;
+        cardsHtml = highlights.map(function (hlItem, i) {
+          return '<article class="grev-hl-card" style="--i:' + i + '">' +
+            '<div class="grev-hl-head"><span class="grev-hl-ic" aria-hidden="true">' + icon(hlItem.icon || "star") + '</span>' +
+            (hlItem.tag ? '<span class="grev-hl-tag">' + esc(hlItem.tag) + '</span>' : '') +
+            googleLogo + '</div>' +
+            starsHtml(5) +
+            '<h3>' + esc(hlItem.title) + '</h3>' +
+            '<p>' + esc(hlItem.text) + '</p>' +
+            '</article>';
+        }).join("");
+      }
+      var dotsHtml = "";
+      for (var di = 0; di < slideCount; di++) {
+        dotsHtml += '<button type="button" class="grev-dot' + (di === 0 ? " is-active" : "") + '" data-grev-dot="' + di + '" aria-label="View review ' + (di + 1) + '"></button>';
+      }
+
+      return '<section class="sec sec--test" id="testimonials"><div class="container">' +
+        head(c, td.eyebrow || h.eyebrow || "Google Reviews", td.title || h.title || "What Parents Say on [[Google Reviews]]", td.subtitle || "") +
+        '<div class="grev-bar">' +
+        '<div class="grev-bar__left">' +
+        '<div class="grev-brand">' + googleLogo + '<div><span class="grev-brand__title">' + esc(td.googlePlaceName || c.s.name) + '</span><span class="grev-live"><span class="reels-live-dot" aria-hidden="true"></span>Verified on Google Maps</span></div></div>' +
+        '<div class="grev-score"><b data-google-rating>' + esc(ratingNum.toFixed(1)) + '</b><div>' + starsHtml(Math.round(ratingNum)) + '<small data-google-count>' + (reviewCount ? (esc(reviewCount) + " Google Reviews") : "Parent Rated on Google") + '</small></div></div>' +
+        '</div>' +
+        '<div class="grev-bar__actions">' +
+        '<a class="btn btn--primary" href="' + esc(reviewsUrl) + '" target="_blank" rel="noopener"><span>Read All Google Reviews</span>' + icon("arrow") + '</a>' +
+        '<a class="btn btn--yellow" href="' + esc(reviewsUrl) + '" target="_blank" rel="noopener"><span>Write a Review</span>' + icon("star") + '</a>' +
+        '</div></div>' +
+        '<div class="grev-carousel" data-grev-carousel>' +
+        '<button class="grev-nav grev-nav--prev" type="button" data-grev-dir="-1" aria-label="Previous review">' + icon("prev") + '</button>' +
+        '<div class="grev-track" data-google-reviews data-google-feed="' + esc(td.liveFeedUrl || "") + '" data-featurable-id="' + esc(td.featurableWidgetId || "") + '" data-google-url="' + esc(reviewsUrl) + '" tabindex="0" role="region" aria-label="Google Reviews Carousel">' +
+        cardsHtml +
+        '</div>' +
+        '<button class="grev-nav grev-nav--next" type="button" data-grev-dir="1" aria-label="Next review">' + icon("next") + '</button>' +
+        '</div>' +
+        '<div class="grev-dots" data-grev-dots aria-label="Review slides">' + dotsHtml + '</div>' +
+        '</div></section>';
     },
     cta: function (c) {
       var t = c.d.homepage.cta || {};
@@ -642,9 +722,51 @@
         "</div></section>";
     },
     contact: function (c) {
-      return gitSection(c);
+      return gitSection(c) +
+        '<section class="sec sec--map-home" id="location-map"><div class="container">' + mapEmbedBlock(c) + '</div></section>';
     }
   };
+
+  function mapEmbedBlock(c) {
+    var s = c.s;
+    var embedUrl = s.mapsEmbed || "";
+    var mapsLink = s.mapsUrl || "https://maps.google.com/?cid=8573399546212313604";
+    return '<div class="map-embed">' +
+      '<div class="map-embed__bar">' +
+      '<div class="map-embed__meta">' +
+      '<span class="map-embed__pin" aria-hidden="true">' + icon("pin") + '</span>' +
+      '<div><h2 class="h3">Find ' + esc(s.name) + ' on Google Maps</h2><p>' + esc(fmtAddr(s.address, s.city)) + '</p></div>' +
+      '</div>' +
+      '<a class="btn btn--primary" href="' + esc(mapsLink) + '" target="_blank" rel="noopener"><span>Get Directions</span>' + icon("arrow") + '</a>' +
+      '</div>' +
+      (embedUrl
+        ? '<div class="map-embed__frame"><iframe src="' + esc(embedUrl) + '" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="' + esc(s.name) + ' Location Map"></iframe></div>'
+        : '') +
+      '</div>';
+  }
+
+  function enquirySection(c, selectedProg, headingText, subtitleText) {
+    var s = c.s, progs = visibleProgrammes(c);
+    var hours = (s.hours || []).length ? '<ul class="hours">' + s.hours.map(function (h) { return "<li><span>" + esc(h.day) + "</span><b>" + esc(h.time) + "</b></li>"; }).join("") + "</ul>" : "";
+    var titleHtml = hl(headingText || "Book A [[Campus Visit]]");
+    var desc = subtitleText || "Fill in the form and choose how to send it. Your message will open in WhatsApp or your email app, and nothing is sent until you press send there.";
+    return '<section class="sec sec--enq" id="enquiry"><div class="container enq">' +
+      '<div class="enq__info"><p class="eyebrow">Book A Visit · Admissions Enquiry</p><h2 class="h2">' + titleHtml + '</h2>' +
+      '<p class="lead">' + esc(desc) + '</p>' +
+      '<div class="hours-box"><h3>' + icon("clock") + ' Visiting hours</h3>' + hours + '<p>' + esc(s.hoursNote) + '</p></div>' +
+      (s.mapsUrl ? '<a class="btn btn--sky" href="' + esc(s.mapsUrl) + '" target="_blank" rel="noopener"><span>Open Google Maps</span>' + icon("pin") + '</a>' : '') + '</div>' +
+      '<form class="enq-form" id="enq-form" novalidate data-wa="' + esc(digits(s.whatsapp)) + '" data-email="' + esc(s.email) + '" data-school="' + esc(s.name) + '">' +
+      '<label>Parent name<input name="name" type="text" autocomplete="name" placeholder="Enter your full name" required></label>' +
+      '<label>Phone number<input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="10-digit mobile number" required></label>' +
+      '<label>Child\'s age or programme<select name="programme"><option value="">Not sure yet</option>' + progs.map(function (x) {
+        var sel = selectedProg && x.name === selectedProg ? ' selected' : '';
+        return '<option value="' + esc(x.name) + '"' + sel + '>' + esc(x.name) + ' (' + esc(x.age) + ')</option>';
+      }).join("") + '</select></label>' +
+      '<label>Your message<textarea name="message" rows="4" placeholder="Preferred date/time for campus visit or any question..."></textarea></label>' +
+      '<p class="form-err" role="alert" hidden>Please add your name and phone number.</p>' +
+      '<div class="btn-row"><button class="btn btn--green" type="button" data-send="wa"><span>Book on WhatsApp</span>' + icon("whatsapp") + '</button><button class="btn btn--purple" type="button" data-send="mail"><span>Send by email</span>' + icon("mail") + '</button></div>' +
+      '<p class="fine">We do not store form data on this website.</p></form></div></section>';
+  }
 
   function stats(c) {
     var n = [[visibleProgrammes(c).length, "Programmes"], [(c.d.philosophy.intelligences || []).length, "Intelligences nurtured"], [((c.d.homepage.why || {}).items || []).length, "Pillars of care"]];
@@ -787,20 +909,89 @@
       }).join("") + HOME.cta(c);
   };
 
+  function wingSwitcher(c, currentId) {
+    var list = visibleProgrammes(c);
+    return '<section class="sec sec--tight"><div class="container"><nav class="age-nav" aria-label="Switch programme wing">' + list.map(function (x) {
+      var active = x.id === currentId ? " is-active" : "";
+      var href = currentId ? progHref(c, x.id) : ("#" + esc(x.id));
+      return '<a class="c-' + esc(x.color) + active + '" href="' + href + '"' + (active ? ' aria-current="page"' : "") + '><b>' + esc(x.name) + "</b><small>" + esc(x.age) + "</small></a>";
+    }).join("") + "</nav></div></section>";
+  }
+
+  function renderProgrammeDetail(c, progId) {
+    var list = visibleProgrammes(c);
+    var x = list.filter(function (item) { return item.id === progId; })[0];
+    if (!x) return PAGES.programmes(c);
+    var idx = list.indexOf(x);
+    var prevProg = idx > 0 ? list[idx - 1] : null;
+    var nextProg = idx < list.length - 1 ? list[idx + 1] : null;
+    var wingTitle = x.wingTitle || (x.name + " – " + x.tagline);
+    var introArr = (x.intro && x.intro.length) ? x.intro : [x.description];
+    var focusArr = (x.focus && x.focus.length) ? x.focus : [];
+    var promiseArr = (x.promise && x.promise.length) ? x.promise : [];
+    var heroTitle = (x.wingName || x.name) + " – [[" + (x.tagline || "") + "]]";
+
+    return '<section class="page-hero page-hero--wing c-' + esc(x.color) + '"><div class="container">' +
+      '<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="' + p(c, "index.html") + '">Home</a></li><li><a href="' + p(c, "programmes.html") + '">Programmes</a></li><li aria-current="page">' + esc(x.name) + '</li></ol></nav>' +
+      '<p class="eyebrow">' + esc(x.name) + ' · Ages ' + esc(x.age) + '</p>' +
+      '<h1 class="h1">' + words(heroTitle) + '</h1>' +
+      '<p class="lead">' + esc("Ages " + x.age + " · " + (c.s.motto || "Play · Prepare · Pride") + " at " + (c.s.name || "Smart Start The Premium School")) + '</p></div>' +
+      deco("star", "f f1") + deco("cloud", "f f2") + deco("pencil", "f f3") + deco("plus", "f f4") + '</section>' +
+      wingSwitcher(c, x.id) +
+      '<section class="sec wing-intro c-' + esc(x.color) + '"><div class="container wing-intro__grid">' +
+      '<div class="wing-intro__img"><div class="blob-' + ["a", "b", "c"][idx % 3] + '">' + img(c, x.image, { eager: 1, sizes: "(max-width:900px) 92vw, 480px" }) + '</div><span class="age-sticker">' + esc(x.age) + '</span></div>' +
+      '<div class="wing-intro__txt"><p class="eyebrow">' + esc(c.s.motto || "Play · Prepare · Pride") + '</p><h2 class="h2">About ' + esc(x.wingName || x.name) + '</h2>' +
+      introArr.map(function (para) { return '<p class="lead">' + esc(para) + '</p>'; }).join("") +
+      (x.development && x.development.length ? '<ul class="chips">' + x.development.map(function (d) { return '<li>' + esc(d) + '</li>'; }).join("") + '</ul>' : '') +
+      '<div class="btn-row"><a class="btn btn--primary" href="#enquiry"><span>Book A Visit for ' + esc(x.name) + '</span>' + icon("arrow") + '</a>' +
+      '<a class="btn btn--yellow" href="' + esc(waUrl(c, "Hello Smart Start The Premium School, I would like to enquire about the " + x.name + " Wing (" + x.age + ").")) + '" target="_blank" rel="noopener"><span>WhatsApp Admissions</span>' + icon("whatsapp") + '</a></div></div></div></section>' +
+      (focusArr.length ? '<section class="sec wing-focus c-' + esc(x.color) + '"><div class="container">' +
+        head(c, "Curriculum & Care", x.focusHeading || ("What We Focus On In Our " + x.name), "Thoughtfully crafted learning milestones designed for ages " + x.age + ".") +
+        '<div class="focus-grid">' + focusArr.map(function (f, fi) {
+          return '<article class="focus-card" style="--i:' + (fi % 4) + '"><span class="focus-card__num">' + (fi + 1) + '</span><h3>' + esc(f.title) + '</h3><p>' + esc(f.text) + '</p></article>';
+        }).join("") + '</div></div></section>' : '') +
+      (promiseArr.length ? '<section class="sec wing-promise c-' + esc(x.color) + '"><div class="container"><div class="promise-box">' +
+        '<span class="promise-box__icon" aria-hidden="true">' + icon("heart") + '</span>' +
+        '<p class="eyebrow">Our Promise</p>' +
+        '<h2 class="h2">A Loving Promise to Every ' + esc(x.name) + ' Parent</h2>' +
+        promiseArr.map(function (para, pi) {
+          var isClose = pi === promiseArr.length - 1 && /^because\b/i.test(para);
+          return '<p class="' + (isClose ? "promise-box__close" : "promise-box__text") + '">' + esc(para) + '</p>';
+        }).join("") +
+        '<div class="btn-row promise-box__btns"><a class="btn btn--primary" href="#enquiry"><span>Book A Campus Visit</span>' + icon("arrow") + '</a>' +
+        '<a class="btn btn--yellow" href="' + p(c, "programmes.html") + '"><span>View All 6 Programmes</span>' + icon("arrow") + '</a></div>' +
+        '</div></div></section>' : '') +
+      enquirySection(c, x.name, "Book A Visit for [[" + x.name + " Wing]]", "Fill in the form below to book a campus tour or enquire about admissions for our " + x.name + " Wing (" + x.age + "). Your enquiry opens directly in WhatsApp or email.") +
+      '<section class="sec sec--tight"><div class="container wing-pager">' +
+      (prevProg ? '<a class="wing-pager__link wing-pager__link--prev c-' + esc(prevProg.color) + '" href="' + progHref(c, prevProg.id) + '">' + icon("prev") + '<span><small>Previous Wing</small><b>' + esc(prevProg.name) + ' (' + esc(prevProg.age) + ')</b></span></a>' : '<span></span>') +
+      (nextProg ? '<a class="wing-pager__link wing-pager__link--next c-' + esc(nextProg.color) + '" href="' + progHref(c, nextProg.id) + '"><span><small>Next Wing</small><b>' + esc(nextProg.name) + ' (' + esc(nextProg.age) + ')</b></span>' + icon("next") + '</a>' : '<span></span>') +
+      '</div></section>' +
+      HOME.cta(c);
+  }
+
+  PROG_PIDS.forEach(function (pid) {
+    PAGES[pid] = function (c) { return renderProgrammeDetail(c, pid); };
+  });
+
   PAGES.programmes = function (c) {
     var h = c.d.programmes.hero, list = visibleProgrammes(c);
     return pageHero(c, "programmes", h.eyebrow, h.title, h.text) +
-      '<section class="sec sec--tight"><div class="container"><nav class="age-nav" aria-label="Programme quick links">' + list.map(function (x) {
-        return '<a class="c-' + esc(x.color) + '" href="#' + esc(x.id) + '"><b>' + esc(x.name) + "</b><small>" + esc(x.age) + "</small></a>";
-      }).join("") + "</nav></div></section>" +
+      wingSwitcher(c, "") +
       list.map(function (x, i) {
+        var focusArr = (x.focus && x.focus.length) ? x.focus : [];
+        var promiseArr = (x.promise && x.promise.length) ? x.promise : [];
         return '<section class="prog c-' + esc(x.color) + (i % 2 ? " prog--rev" : "") + '" id="' + esc(x.id) + '"><div class="container prog__grid">' +
           '<div class="prog__img reveal reveal--img"><div class="blob-' + ["a", "b", "c"][i % 3] + '">' + img(c, x.image, { thumb: 1, sizes: "(max-width:900px) 90vw, 480px" }) + '</div><span class="age-sticker">' + esc(x.age) + "</span></div>" +
-          '<div class="prog__txt reveal"><p class="eyebrow">' + esc(x.tagline) + '</p><h2 class="h2">' + esc(x.name) + "</h2><p class=\"lead\">" + esc(x.description) + "</p>" +
-          '<div class="prog__cols"><div><h3>Learning objectives</h3><ul>' + (x.objectives || []).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul></div><div><h3>Activities</h3><ul>" + (x.activities || []).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul></div></div>" +
-          '<h3 class="h4">Development areas</h3><ul class="chips">' + (x.development || []).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>" +
-          '<a class="btn btn--primary" href="' + enquiryHref(c, x.name) + '"><span>Enquire about ' + esc(x.name) + "</span>" + icon("arrow") + "</a></div></div></section>";
-      }).join("") + HOME.cta(c);
+          '<div class="prog__txt reveal"><p class="eyebrow">' + esc(x.tagline) + '</p><h2 class="h2">' + esc(x.wingName || x.name) + "</h2><p class=\"lead\">" + esc(x.description) + "</p>" +
+          (focusArr.length
+            ? '<h3 class="h4">' + esc(x.focusHeading || ("What We Focus On In Our " + x.name)) + '</h3><ol class="prog-focus-list">' + focusArr.map(function (f) { return '<li><b>' + esc(f.title) + '</b></li>'; }).join("") + '</ol>'
+            : '<div class="prog__cols"><div><h3>Learning objectives</h3><ul>' + (x.objectives || []).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul></div><div><h3>Activities</h3><ul>" + (x.activities || []).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul></div></div>") +
+          (promiseArr.length ? '<p class="prog-promise-snippet">' + esc(promiseArr[promiseArr.length - 1]) + '</p>' : '') +
+          '<div class="btn-row"><a class="btn btn--primary" href="' + progHref(c, x.id) + '"><span>Explore ' + esc(x.name) + ' Wing Details</span>' + icon("arrow") + '</a>' +
+          '<a class="btn btn--yellow" href="#enquiry" data-pick-prog="' + esc(x.name) + '"><span>Book A Visit</span>' + icon("arrow") + "</a></div></div></div></section>";
+      }).join("") +
+      enquirySection(c, "", "Book A [[Campus Visit]]", "Not sure which wing fits your child best? Book a campus visit and meet our teachers at Smart Start The Premium School, Sector 24, Rohini.") +
+      HOME.cta(c);
   };
 
   PAGES.gallery = function (c) {
@@ -838,28 +1029,16 @@
           "<dt>" + icon("mail") + ' Email</dt><dd><a href="mailto:' + esc(x.email) + '">' + esc(x.email) + "</a></dd></dl>" +
           '<div class="btn-row">' + (x.mapsUrl ? '<a class="btn btn--primary" href="' + esc(x.mapsUrl) + '" target="_blank" rel="noopener"><span>Get directions</span>' + icon("pin") + "</a>" : "") +
           '<a class="btn btn--yellow" href="' + p(c, "contact.html#enquiry") + '"><span>Book A Campus Visit</span>' + icon("arrow") + "</a></div></div></div></section>";
-      }).join("") + HOME.cta(c);
+      }).join("") +
+      '<section class="sec sec--tight" id="location-map"><div class="container">' + mapEmbedBlock(c) + '</div></section>' +
+      HOME.cta(c);
   };
 
   PAGES.contact = function (c) {
-    var s = c.s, progs = visibleProgrammes(c);
-    var hours = (s.hours || []).length ? '<ul class="hours">' + s.hours.map(function (h) { return "<li><span>" + esc(h.day) + "</span><b>" + esc(h.time) + "</b></li>"; }).join("") + "</ul>" : "";
     return pageHero(c, "contact", "Get in touch", "Let's start your child's [[smart start]]", "Call, WhatsApp, email or send an enquiry. We're happy to answer every question.") +
       gitSection(c) +
-      '<section class="sec" id="enquiry"><div class="container enq"><div class="reveal"><p class="eyebrow">Enquiry</p><h2 class="h2">Send us an <span class="hl">enquiry</span></h2>' +
-      '<p>Fill in the form and choose how to send it. Your message will open in WhatsApp or your email app, and nothing is sent until you press send there.</p>' +
-      '<div class="hours-box"><h3>' + icon("clock") + " Visiting hours</h3>" + hours + "<p>" + esc(s.hoursNote) + "</p></div>" +
-      (s.mapsUrl ? '<a class="btn btn--sky" href="' + esc(s.mapsUrl) + '" target="_blank" rel="noopener"><span>Open Google Maps</span>' + icon("pin") + "</a>" : "") + "</div>" +
-      '<form class="enq-form reveal" id="enq-form" novalidate data-wa="' + esc(digits(s.whatsapp)) + '" data-email="' + esc(s.email) + '" data-school="' + esc(s.name) + '">' +
-      '<label>Parent name<input name="name" type="text" autocomplete="name" required></label>' +
-      '<label>Phone number<input name="phone" type="tel" autocomplete="tel" inputmode="tel" required></label>' +
-      '<label>Child\'s age or programme<select name="programme"><option value="">Not sure yet</option>' + progs.map(function (x) { return '<option value="' + esc(x.name) + '">' + esc(x.name) + " (" + esc(x.age) + ")</option>"; }).join("") + "</select></label>" +
-      '<label>Your message<textarea name="message" rows="4"></textarea></label>' +
-      '<p class="form-err" role="alert" hidden>Please add your name and phone number.</p>' +
-      '<div class="btn-row"><button class="btn btn--green" type="button" data-send="wa"><span>Send on WhatsApp</span>' + icon("whatsapp") + '</button><button class="btn btn--purple" type="button" data-send="mail"><span>Send by email</span>' + icon("mail") + "</button></div>" +
-      '<p class="fine">We do not store form data on this website.</p></form></div></section>' +
-      '<section class="sec sec--tight"><div class="container"><div class="map-card reveal"><div class="map-art" aria-hidden="true">' + deco("pin", "") + '</div><div><h2 class="h3">Find Smart Start The Premium School on the map</h2><p>' + esc(fmtAddr(s.address, s.city)) + "</p>" +
-      (s.mapsUrl ? '<a class="btn btn--primary" href="' + esc(s.mapsUrl) + '" target="_blank" rel="noopener"><span>Get directions on Google Maps</span>' + icon("arrow") + "</a>" : "") + '</div></div></div></section>' +
+      enquirySection(c, "", "Send us an [[enquiry]]") +
+      '<section class="sec sec--tight" id="location-map"><div class="container">' + mapEmbedBlock(c) + '</div></section>' +
       HOME.cta(c);
   };
 
@@ -877,11 +1056,16 @@
       { "@type": "WebSite", "@id": (c.base || "") + "#website", name: s.name, url: c.base || undefined, publisher: { "@id": (c.base || "") + "#organization" }, inLanguage: "en-IN" },
       { "@type": "WebPage", "@id": url || undefined, url: url || undefined, name: ((c.d.seo.pages[pid] || {}).title || ""), isPartOf: { "@id": (c.base || "") + "#website" }, about: { "@id": (c.base || "") + "#organization" } }
     ];
-    if (pid !== "index") g.push({
-      "@type": "BreadcrumbList", itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: pageUrl(c, "index") || undefined },
-        { "@type": "ListItem", position: 2, name: PAGE_NAMES[pid], item: url || undefined }]
-    });
+    if (pid !== "index") {
+      var bc = [{ "@type": "ListItem", position: 1, name: "Home", item: pageUrl(c, "index") || undefined }];
+      if (PROG_PIDS.indexOf(pid) >= 0) {
+        bc.push({ "@type": "ListItem", position: 2, name: "Programmes", item: pageUrl(c, "programmes") || undefined });
+        bc.push({ "@type": "ListItem", position: 3, name: PAGE_NAMES[pid], item: url || undefined });
+      } else {
+        bc.push({ "@type": "ListItem", position: 2, name: PAGE_NAMES[pid], item: url || undefined });
+      }
+      g.push({ "@type": "BreadcrumbList", itemListElement: bc });
+    }
     if (pid === "updates" || pid === "index") {
       sortedUpdates(c).filter(function (u) { return u.eventDate; }).forEach(function (u) {
         g.push({
@@ -938,12 +1122,16 @@
   function renderPage(data, pid, opt) {
     var c = makeCtx(data, opt), parts = renderParts(c, pid);
     var pre = c.prefix || "";
+    var elfScript = (pid === "index" && data.testimonials && data.testimonials.elfsightAppId)
+      ? '<script src="https://elfsightcdn.com/platform.js" async></script>'
+      : "";
     return "<!DOCTYPE html>\n<html lang=\"en\"><head>" + headTags(c, pid) + "</head>\n<body class=\"page-" + pid + '" data-page="' + pid + '" data-hash="' + contentHash(data) + '">\n' +
       '<a class="skip" href="#main">Skip to content</a>\n' + sprite() +
       '\n<header class="site-header" id="site-header">' + parts.header + "</header>\n" +
       '<main id="main" tabindex="-1">' + parts.main + "</main>\n" +
       '<footer class="site-footer" id="site-footer">' + parts.footer + "</footer>\n" +
       '<div id="site-float">' + parts.float + "</div>\n" +
+      elfScript +
       '<script src="' + pre + 'js/seed-data.js"></script><script src="' + pre + 'js/render.js"></script><script src="' + pre + 'js/animations.js"></script><script src="' + pre + 'js/navigation.js"></script><script src="' + pre + 'js/gallery.js"></script><script src="' + pre + 'js/content-loader.js"></script><script src="' + pre + 'js/main.js"></script>\n</body></html>\n';
   }
 

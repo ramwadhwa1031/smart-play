@@ -681,6 +681,215 @@
       "category": "reels",
       "label": "Parents sharing their journey with Smart Start",
       "alt": "Parents sharing their journey with Smart Start"
+    },
+    {
+      "id": "infra-temple-excursion",
+      "path": "assets/images/infra-temple-excursion.webp",
+      "thumb": "assets/images/infra-temple-excursion-sm.webp",
+      "w": 1070,
+      "h": 800,
+      "bytes": 97028,
+      "category": "infra",
+      "label": "Guided school excursion & cultural visit",
+      "alt": "Smart Start children and teachers seated together during a guided educational visit"
+    },
+    {
+      "id": "infra-classroom-display-board",
+      "path": "assets/images/infra-classroom-display-board.webp",
+      "thumb": "assets/images/infra-classroom-display-board-sm.webp",
+      "w": 963,
+      "h": 1280,
+      "bytes": 113018,
+      "category": "infra",
+      "label": "Creative classroom display board",
+      "alt": "Child pointing to a colourful classroom learning and Teachers Day display board"
+    },
+    {
+      "id": "infra-cultural-visit-group",
+      "path": "assets/images/infra-cultural-visit-group.webp",
+      "thumb": "assets/images/infra-cultural-visit-group-sm.webp",
+      "w": 864,
+      "h": 1156,
+      "bytes": 89450,
+      "category": "infra",
+      "label": "Students & teachers on a learning outing",
+      "alt": "Teachers with Smart Start students in blue and yellow uniforms during an outing"
+    },
+    {
+      "id": "infra-stage-activity-hall",
+      "path": "assets/images/infra-stage-activity-hall.webp",
+      "thumb": "assets/images/infra-stage-activity-hall-sm.webp",
+      "w": 899,
+      "h": 1599,
+      "bytes": 244794,
+      "category": "infra",
+      "label": "Indoor activity hall & stage area",
+      "alt": "Girl speaking on a microphone in the colourful indoor activity hall with play structures"
+    },
+    {
+      "id": "infra-ac-classroom-desks",
+      "path": "assets/images/infra-ac-classroom-desks.webp",
+      "thumb": "assets/images/infra-ac-classroom-desks-sm.webp",
+      "w": 1070,
+      "h": 805,
+      "bytes": 93650,
+      "category": "infra",
+      "label": "Colourful AC classroom with kid desks",
+      "alt": "Children seated at colourful desks working on art worksheets inside a themed classroom"
+    },
+    {
+      "id": "infra-principal-office-values",
+      "path": "assets/images/infra-principal-office-values.webp",
+      "thumb": "assets/images/infra-principal-office-values-sm.webp",
+      "w": 963,
+      "h": 1280,
+      "bytes": 140994,
+      "category": "infra",
+      "label": "Principal office & Our School Values wall",
+      "alt": "Teacher and student inside the office in front of the Our School Values display wall"
+    },
+    {
+      "id": "infra-gurudwara-prayer-visit",
+      "path": "assets/images/infra-gurudwara-prayer-visit.webp",
+      "thumb": "assets/images/infra-gurudwara-prayer-visit-sm.webp",
+      "w": 1070,
+      "h": 803,
+      "bytes": 100018,
+      "category": "infra",
+      "label": "Values & sanskar learning session",
+      "alt": "Children and teachers seated together during a values and prayer visit"
+    },
+    {
+      "id": "infra-activity-classroom-session",
+      "path": "assets/images/infra-activity-classroom-session.webp",
+      "thumb": "assets/images/infra-activity-classroom-session-sm.webp",
+      "w": 1070,
+      "h": 803,
+      "bytes": 88834,
+      "category": "infra",
+      "label": "Hands-on classroom learning zone",
+      "alt": "Students doing activity sheets at child-safe desks in a brightly decorated classroom"
+    },
+    {
+      "id": "infra-ball-pit-tunnel-slide",
+      "path": "assets/images/infra-ball-pit-tunnel-slide.webp",
+      "thumb": "assets/images/infra-ball-pit-tunnel-slide-sm.webp",
+      "w": 1070,
+      "h": 713,
+      "bytes": 103078,
+      "category": "infra",
+      "label": "Indoor tunnel slide & ball pit play zone",
+      "alt": "Children enjoying the yellow and blue tunnel slide and colourful ball pit in the indoor play area"
+    },
+    {
+      "id": "infra-stage-mic-speaking",
+      "path": "assets/images/infra-stage-mic-speaking.webp",
+      "thumb": "assets/images/infra-stage-mic-speaking-sm.webp",
+      "w": 899,
+      "h": 1599,
+      "bytes": 129348,
+      "category": "infra",
+      "label": "Confidence stage & microphone corner",
+      "alt": "Child in costume speaking confidently on stage with a microphone in the activity hall"
+    },
+    {
+      "id": "infra-community-care-visit",
+      "path": "assets/images/infra-community-care-visit.webp",
+      "thumb": "assets/images/infra-community-care-visit-sm.webp",
+      "w": 960,
+      "h": 1280,
+      "bytes": 128592,
+      "category": "infra",
+      "label": "Guided values & community visit",
+      "alt": "Student participating in a cultural and values visit with family and teachers"
+    },
+    {
+      "id": "infra-parent-lounge-seating",
+      "path": "assets/images/infra-parent-lounge-seating.webp",
+      "thumb": "assets/images/infra-parent-lounge-seating-sm.webp",
+      "w": 1070,
+      "h": 1422,
+      "bytes": 86820,
+      "category": "infra",
+      "label": "Welcoming parent lounge & seating area",
+      "alt": "Parents and educators seated in the comfortable campus reception and lounge area"
+    },
+    {
+      "id": "infra-christmas-campus-corner",
+      "path": "assets/images/infra-christmas-campus-corner.webp",
+      "thumb": "assets/images/infra-christmas-campus-corner-sm.webp",
+      "w": 1070,
+      "h": 713,
+      "bytes": 106010,
+      "category": "infra",
+      "label": "Decorated campus celebration corner",
+      "alt": "Festively decorated campus corner with Christmas tree, snowman and themed props"
+    },
+    {
+      "id": "infra-play-hall-group-gathering",
+      "path": "assets/images/infra-play-hall-group-gathering.webp",
+      "thumb": "assets/images/infra-play-hall-group-gathering-sm.webp",
+      "w": 1070,
+      "h": 803,
+      "bytes": 129440,
+      "category": "infra",
+      "label": "Spacious indoor play hall & event space",
+      "alt": "Parents, teachers and children gathered inside the spacious decorated indoor play hall"
+    },
+    {
+      "id": "infra-outdoor-turf-courtyard",
+      "path": "assets/images/infra-outdoor-turf-courtyard.webp",
+      "thumb": "assets/images/infra-outdoor-turf-courtyard-sm.webp",
+      "w": 1070,
+      "h": 713,
+      "bytes": 113154,
+      "category": "infra",
+      "label": "Outdoor green turf courtyard & entrance",
+      "alt": "Spacious outdoor green turf play courtyard decorated for a Smart Start carnival"
+    },
+    {
+      "id": "infra-grandparents-activity-hall",
+      "path": "assets/images/infra-grandparents-activity-hall.webp",
+      "thumb": "assets/images/infra-grandparents-activity-hall-sm.webp",
+      "w": 906,
+      "h": 1599,
+      "bytes": 140366,
+      "category": "infra",
+      "label": "Themed activity hall for family events",
+      "alt": "Grandparents participating in a fun school event inside the brightly painted activity hall"
+    },
+    {
+      "id": "infra-outdoor-family-carnival",
+      "path": "assets/images/infra-outdoor-family-carnival.webp",
+      "thumb": "assets/images/infra-outdoor-family-carnival-sm.webp",
+      "w": 1070,
+      "h": 713,
+      "bytes": 102538,
+      "category": "infra",
+      "label": "Outdoor turf games & family zone",
+      "alt": "Families enjoying games together in the outdoor green turf courtyard"
+    },
+    {
+      "id": "infra-activity-room-celebration",
+      "path": "assets/images/infra-activity-room-celebration.webp",
+      "thumb": "assets/images/infra-activity-room-celebration-sm.webp",
+      "w": 906,
+      "h": 1599,
+      "bytes": 152154,
+      "category": "infra",
+      "label": "Interactive activity room celebration",
+      "alt": "Grandparents enjoying an interactive activity in the colourful school hall"
+    },
+    {
+      "id": "infra-themed-wall-activity-room",
+      "path": "assets/images/infra-themed-wall-activity-room.webp",
+      "thumb": "assets/images/infra-themed-wall-activity-room-sm.webp",
+      "w": 906,
+      "h": 1599,
+      "bytes": 160040,
+      "category": "infra",
+      "label": "Brightly painted activity room walls",
+      "alt": "Family celebration inside the colourful mural-painted Smart Start activity room"
     }
   ]
 }

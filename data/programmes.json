@@ -1,64 +1,437 @@
 {
   "hero": {
     "eyebrow": "Our programmes",
-    "title": "Six steps from first steps to [[school-ready]]",
-    "text": "Each programme is matched to a child's age and developmental stage and nourishes all eight intelligences through play."
+    "title": "Six wings from first steps to [[school-ready]]",
+    "text": "From our warm Toddler Wing to our confident UKG Wing, every stage at Smart Start The Premium School is thoughtfully designed for your child's age, curiosity and lifelong growth."
   },
   "items": [
     {
-      "id": "toddlers", "name": "Toddlers", "age": "1.5–2 years", "color": "coral", "visible": true, "order": 1,
-      "tagline": "Tiny steps, big discoveries",
-      "description": "A gentle, affectionate start for our youngest learners. Toddlers explore through touch, movement and sound in a safe, cosy space with caring, trained staff.",
-      "objectives": ["Feel safe and settled away from home", "Build early speech through songs and sounds", "Develop hand-eye coordination", "Begin simple social play"],
-      "activities": ["Stacking and ring play", "Sensory and soft-play time", "Action rhymes", "Outdoor grass play"],
-      "development": ["Motor skills", "Language", "Emotional security"],
-      "image": { "src": "assets/images/toddler-ring-stacking.webp", "alt": "Toddler playing with stacking rings and hoops on a soft play mat" }
+      "id": "toddlers",
+      "name": "Toddlers",
+      "wingName": "Our Toddler Wing",
+      "wingTitle": "Our Toddler Wing – Where Every Little Step Matters",
+      "age": "1.5–2 years",
+      "color": "coral",
+      "visible": true,
+      "order": 1,
+      "tagline": "Where Every Little Step Matters",
+      "description": "At Smart Start – The Premium School, our Toddler Wing is not just a classroom, it is a warm, safe and joyful second home for your little one. We believe the toddler years are the most important foundation years, where a child learns not by books, but by touch, play, love and everyday experiences.",
+      "intro": [
+        "At Smart Start – The Premium School, our Toddler Wing is not just a classroom, it is a warm, safe and joyful second home for your little one.",
+        "We believe the toddler years are the most important foundation years. This is the stage where a child learns not by books, but by touch, play, love and everyday experiences."
+      ],
+      "focusHeading": "What We Focus On In Our Toddler Wing",
+      "focus": [
+        {
+          "title": "Toilet & Self-Care Training",
+          "text": "We gently help children become independent in daily routines like toilet training and hand washing, in a loving and stress-free way."
+        },
+        {
+          "title": "Basic Etiquette & Good Manners",
+          "text": "Children learn to say please, thank you and sorry, to share, and to wait for their turn – through daily practice and gentle guidance."
+        },
+        {
+          "title": "Eye-Hand Coordination",
+          "text": "Through stacking, sorting, colouring and play activities, children learn to coordinate what they see with what their hands do."
+        },
+        {
+          "title": "Body Balancing & Motor Skills",
+          "text": "Activities like walking, jumping, dancing and outdoor play help children build balance, strength and body confidence."
+        },
+        {
+          "title": "Speech & Language Development",
+          "text": "Through rhymes, stories and everyday conversations, children build vocabulary and learn to express themselves clearly."
+        },
+        {
+          "title": "Recognition & Early Learning",
+          "text": "Children learn to recognize colours, shapes, animals, fruits and their own name, through play, songs and real objects."
+        }
+      ],
+      "promise": [
+        "In our Toddler Wing, your child will not be rushed. They will be loved, understood and gently prepared for the next big step – Pre-School.",
+        "Because at Smart Start, we don't just teach toddlers, we nurture little beginnings."
+      ],
+      "objectives": [
+        "Toilet & self-care independence in a stress-free way",
+        "Basic etiquette, sharing and waiting for their turn",
+        "Eye-hand coordination and body balancing",
+        "Early speech, vocabulary and recognition through play"
+      ],
+      "activities": [
+        "Stacking, sorting and colouring play",
+        "Walking, jumping, dancing and outdoor play",
+        "Rhymes, stories and everyday conversations",
+        "Songs and real-object recognition games"
+      ],
+      "development": [
+        "Self-Care & Etiquette",
+        "Motor Skills & Balance",
+        "Speech & Early Recognition"
+      ],
+      "image": {
+        "src": "assets/images/toddler-ring-stacking.webp",
+        "alt": "Toddler playing with stacking rings and hoops on a soft play mat"
+      }
     },
     {
-      "id": "playgroup", "name": "Playgroup", "age": "2–2.5/3 years", "color": "yellow", "visible": true, "order": 2,
-      "tagline": "Play is the work of childhood",
-      "description": "Playgroup introduces routines, friendships and curiosity. Children learn to share, follow simple instructions and express themselves in a joyful, play-led setting.",
-      "objectives": ["Follow simple routines", "Share and take turns", "Grow vocabulary and listening", "Explore colours, shapes and textures"],
-      "activities": ["Stacking cups and sorting", "Story and rhyme circles", "Free play and music", "Festival dress-ups"],
-      "development": ["Social skills", "Language", "Sensory exploration"],
-      "image": { "src": "assets/images/toddler-cups-outdoors.webp", "alt": "Toddler stacking colourful cups on artificial grass outdoors" }
+      "id": "playgroup",
+      "name": "Playgroup",
+      "wingName": "Our Play Group Wing",
+      "wingTitle": "Our Play Group Wing – Learning Through Colours & Play",
+      "age": "2–2.5/3 years",
+      "color": "yellow",
+      "visible": true,
+      "order": 2,
+      "tagline": "Learning Through Colours & Play",
+      "description": "At Smart Start – The Premium School, our Play Group kids do not learn by sitting and studying. They learn by seeing, touching, colouring and playing. That is why our Play Group is totally based on crayons, colours and fun activities.",
+      "intro": [
+        "At Smart Start – The Premium School, our Play Group kids do not learn by sitting and studying. They learn by seeing, touching, colouring and playing.",
+        "That is why our Play Group is totally based on crayons, colours and fun activities."
+      ],
+      "focusHeading": "What We Focus On In Our Play Group",
+      "focus": [
+        {
+          "title": "Alphabets & Numbers",
+          "text": "Children begin to recognize and identify A to Z and 1 to 10, through songs, rhymes, flashcards and playful activities."
+        },
+        {
+          "title": "Shapes & Patterns",
+          "text": "Children learn to identify shapes like circle, square and triangle, and understand simple age-appropriate patterns through play and visuals."
+        },
+        {
+          "title": "Colours & Creativity",
+          "text": "A child's life is full of colours. Through colouring and art activities, children learn to recognize colours and express their imagination freely."
+        },
+        {
+          "title": "Tracing & Colouring Based Learning",
+          "text": "Tracing lines, shapes and letters helps children develop pencil grip and pre-writing skills, all in a fun and stress-free way."
+        },
+        {
+          "title": "Social & General Awareness",
+          "text": "Children learn about themselves, their family, animals, fruits, vehicles and the world around them, building early general awareness."
+        },
+        {
+          "title": "Speech & Communication Skills",
+          "text": "Through stories, rhymes, group talk and daily conversations, children enhance their speech and learn to communicate and converse with confidence."
+        },
+        {
+          "title": "Sports & Field Activities",
+          "text": "We have introduced fun field activities for our Play Group children. Through games, running, jumping and group play, children build strength, balance, teamwork and a love for staying active from an early age."
+        }
+      ],
+      "promise": [
+        "In our Play Group, every day is a colourful adventure. Your child will learn to recognize, speak, share and shine – while playing, laughing and loving to come to school.",
+        "Because at Smart Start, we believe – Play is the best way to Learn."
+      ],
+      "objectives": [
+        "Recognize A to Z, 1 to 10, shapes and patterns",
+        "Build pre-writing skills through tracing and colouring",
+        "Grow early general awareness and speech confidence",
+        "Develop strength, balance and teamwork through sports"
+      ],
+      "activities": [
+        "Crayons, colouring and creative art",
+        "Flashcards, songs, rhymes and group talk",
+        "Line, shape and letter tracing games",
+        "Running, jumping and outdoor field activities"
+      ],
+      "development": [
+        "Colours & Creativity",
+        "Speech & Awareness",
+        "Sports & Pre-Writing"
+      ],
+      "image": {
+        "src": "assets/images/toddler-cups-outdoors.webp",
+        "alt": "Toddler stacking colourful cups on artificial grass outdoors"
+      }
     },
     {
-      "id": "pre-nursery", "name": "Pre-Nursery", "age": "2.5–3 years", "color": "green", "visible": true, "order": 3,
-      "tagline": "Hands busy, minds blooming",
-      "description": "Pre-Nursery builds independence and creativity with art, movement and early pre-literacy and pre-number experiences, always through hands-on play.",
-      "objectives": ["Hold crayons and brushes with growing control", "Recognise colours and shapes", "Express feelings in words", "Build independence in small routines"],
-      "activities": ["Finger painting", "Role play corners", "Songs and dance", "Nature corner play"],
-      "development": ["Creativity", "Fine motor skills", "Independence"],
-      "image": { "src": "assets/images/finger-painting.webp", "alt": "Boy finger-painting grapes on an activity sheet" }
+      "id": "pre-nursery",
+      "name": "Pre-Nursery",
+      "wingName": "Our Pre-Nursery Wing",
+      "wingTitle": "Our Pre-Nursery Wing – First Step Towards Academics",
+      "age": "2.5–3 years",
+      "color": "green",
+      "visible": true,
+      "order": 3,
+      "tagline": "First Step Towards Academics",
+      "description": "At Smart Start – The Premium School, our Pre-Nursery Wing is designed as the first step towards academics. Specially made as a gentle bridge between play-based learning and formal learning, it prepares your child to enter Nursery with confidence, not fear.",
+      "intro": [
+        "At Smart Start – The Premium School, our Pre-Nursery Wing is designed as the first step towards academics.",
+        "This wing is specially made to prepare your child for Nursery. That is why it is called Pre-Nursery – a gentle bridge between play-based learning and formal learning."
+      ],
+      "focusHeading": "What We Focus On In Our Pre-Nursery",
+      "focus": [
+        {
+          "title": "Introduction to Pencil",
+          "text": "In this wing, we introduce the pencil for the first time. As per NEP guidelines and medical advice, a child should hold a pencil only after the age of 2.5 years, when their tiny fingers and muscles are ready. We follow this strictly and teach the correct pencil grip in a fun and pressure-free way."
+        },
+        {
+          "title": "Writing in Four Lines",
+          "text": "Children learn to write in four lines, which helps them understand line discipline, letter formation and neat writing from the very beginning."
+        },
+        {
+          "title": "Preparation for Nursery",
+          "text": "All activities in Pre-Nursery are planned to make children ready for Nursery – so they enter the next class with confidence, not fear."
+        },
+        {
+          "title": "Enhanced Communication Skills",
+          "text": "Through daily conversations, storytelling, rhymes and group activities, children learn to speak clearly and express their thoughts better."
+        },
+        {
+          "title": "Stronger Recognition",
+          "text": "Children strengthen their recognition of alphabets, numbers, colours, shapes and objects, and begin to connect them with the real world."
+        },
+        {
+          "title": "Etiquette & Good Habits",
+          "text": "We continue to nurture etiquette and good habits so children grow into polite, well-mannered learners."
+        }
+      ],
+      "promise": [
+        "In our Pre-Nursery, your child takes their first confident step towards academics – with a pencil in hand, a smile on face, and a heart ready to learn.",
+        "Because at Smart Start, we prepare children not just for the next class, but for a lifetime of learning."
+      ],
+      "objectives": [
+        "Age-appropriate NEP-aligned pencil introduction (2.5+ years)",
+        "Four-line writing discipline and letter formation",
+        "Clear speaking, storytelling and stronger recognition",
+        "Smooth, fear-free readiness for Nursery"
+      ],
+      "activities": [
+        "Guided pencil-grip and four-line writing practice",
+        "Daily conversations, rhymes and storytelling",
+        "Real-world alphabet, number and shape activities",
+        "Good habits and etiquette routines"
+      ],
+      "development": [
+        "NEP Pencil Readiness",
+        "Four-Line Writing",
+        "Communication & Habits"
+      ],
+      "image": {
+        "src": "assets/images/finger-painting.webp",
+        "alt": "Boy finger-painting grapes on an activity sheet"
+      }
     },
     {
-      "id": "nursery", "name": "Nursery", "age": "3–4 years", "color": "sky", "visible": true, "order": 4,
-      "tagline": "Curious minds, confident voices",
-      "description": "Nursery brings early literacy, numeracy and speaking confidence together. Children learn through interactive books, stories and stage experiences.",
-      "objectives": ["Recognise letters and sounds", "Count and match objects", "Speak confidently in front of others", "Develop good manners and values"],
-      "activities": ["Interactive alphabet books", "Show-and-tell", "Costume days and stage time", "Group games"],
-      "development": ["Early literacy", "Confidence", "Values"],
-      "image": { "src": "assets/images/learning-with-sound-book.webp", "alt": "Boy touching an interactive alphabet sound book at his desk" }
+      "id": "nursery",
+      "name": "Nursery",
+      "wingName": "Our Nursery Wing",
+      "wingTitle": "Our Nursery Wing – Where Learning Becomes Joyful",
+      "age": "3–4 years",
+      "color": "sky",
+      "visible": true,
+      "order": 4,
+      "tagline": "Where Learning Becomes Joyful",
+      "description": "At Smart Start – The Premium School, our Nursery Wing is where children move from learning through play to learning with purpose. After Pre-Nursery, your child is now ready to read, write, think and explore – with confidence and curiosity.",
+      "intro": [
+        "At Smart Start – The Premium School, our Nursery Wing is where children move from learning through play to learning with purpose.",
+        "After Pre-Nursery, your child is now ready to read, write, think and explore – with confidence and curiosity."
+      ],
+      "focusHeading": "What We Focus On In Our Nursery",
+      "focus": [
+        {
+          "title": "Phonics & Reading",
+          "text": "Children learn sounds of letters through phonics, which helps them read small words, sentences and stories independently and with confidence."
+        },
+        {
+          "title": "Writing Skills",
+          "text": "Children practice writing capital and small letters, words and simple sentences in four lines, with correct formation and neatness."
+        },
+        {
+          "title": "Numbers & Early Maths",
+          "text": "Children learn counting, number names, after-before-between numbers, and simple concepts like big-small, more-less and shapes, through fun activities."
+        },
+        {
+          "title": "Introduction to Hindi",
+          "text": "We introduce Hindi in Nursery itself, so that children do not feel overloaded in LKG. They learn Hindi swar, vyanjan and simple words in a fun and easy way, at their own pace."
+        },
+        {
+          "title": "English & Hindi Language",
+          "text": "Children build vocabulary, learn rhymes, stories and daily conversation in both English and Hindi, so they can express themselves in both languages."
+        },
+        {
+          "title": "General Awareness & EVS",
+          "text": "Children learn about themselves, family, seasons, animals, plants, transport and good habits – connecting classroom learning with the real world."
+        },
+        {
+          "title": "Communication & Confidence",
+          "text": "Through show-and-tell, rhymes, storytelling and class activities, children overcome hesitation and learn to speak confidently in front of others."
+        },
+        {
+          "title": "Etiquette, Discipline & Sports",
+          "text": "We continue to build good manners, discipline and values, along with sports and field activities, for a healthy body, active mind and teamwork."
+        }
+      ],
+      "promise": [
+        "In our Nursery, your child does not just learn to read and write – they learn to think, ask questions, and express themselves.",
+        "Because at Smart Start, we believe every child who enters Nursery should leave ready, confident and excited for KG and beyond."
+      ],
+      "objectives": [
+        "Phonics reading and neat four-line writing",
+        "Early maths, counting and number concepts",
+        "Gentle early introduction to Hindi swar and vyanjan",
+        "Bilingual expression, EVS and stage confidence"
+      ],
+      "activities": [
+        "Phonics games and interactive sound books",
+        "English and Hindi rhymes, stories and conversation",
+        "Show-and-tell and class speaking activities",
+        "Sports, field games and EVS exploration"
+      ],
+      "development": [
+        "Phonics & Bilingual Skills",
+        "Early Maths & EVS",
+        "Confidence & Sports"
+      ],
+      "image": {
+        "src": "assets/images/learning-with-sound-book.webp",
+        "alt": "Boy touching an interactive alphabet sound book at his desk"
+      }
     },
     {
-      "id": "lkg", "name": "LKG", "age": "4–5 years", "color": "purple", "visible": true, "order": 5,
-      "tagline": "Ready, steady, grow",
-      "description": "LKG deepens reading, writing and number readiness with activity-based projects, theme days and celebrations, with no rote learning.",
-      "objectives": ["Read and write simple words", "Understand numbers and patterns", "Work in groups and share ideas", "Build focus and independence"],
-      "activities": ["Theme worksheets and projects", "Festival celebrations", "Group presentations", "Creative craft"],
-      "development": ["Literacy and numeracy", "Teamwork", "Focus"],
-      "image": { "src": "assets/images/independence-worksheet.webp", "alt": "Girl pointing at an Independence Day activity worksheet at her desk" }
+      "id": "lkg",
+      "name": "LKG",
+      "wingName": "Our LKG Wing",
+      "wingTitle": "Our LKG Wing – Building Strong Foundations",
+      "age": "4–5 years",
+      "color": "purple",
+      "visible": true,
+      "order": 5,
+      "tagline": "Building Strong Foundations",
+      "description": "At Smart Start – The Premium School, our LKG Wing is where learning becomes deeper, clearer and more confident. Since children have already been introduced to Hindi in Nursery, they do not feel any burden in LKG and are ready to read, write and think independently.",
+      "intro": [
+        "At Smart Start – The Premium School, our LKG Wing is where learning becomes deeper, clearer and more confident.",
+        "Since children have already been introduced to Hindi in Nursery, they do not feel any burden in LKG. They are now ready to read, write and think independently."
+      ],
+      "focusHeading": "What We Focus On In Our LKG",
+      "focus": [
+        {
+          "title": "English Reading & Writing",
+          "text": "Children read and write three-letter words, small sentences and short stories with the help of phonics, and develop neat and confident writing."
+        },
+        {
+          "title": "Hindi Reading & Writing",
+          "text": "Children learn to read and write Hindi words, matras and simple sentences with ease, because their base was already built in Nursery."
+        },
+        {
+          "title": "Maths & Logical Thinking",
+          "text": "Children learn counting up to 100, number names, tables, addition, subtraction, and concepts like greater than, less than and place value, through practical activities."
+        },
+        {
+          "title": "EVS & General Awareness",
+          "text": "Children learn about our body, family, community helpers, seasons, animals, plants, transport and festivals, and develop curiosity about the world."
+        },
+        {
+          "title": "Communication & Speaking Skills",
+          "text": "Through storytelling, rhymes, conversations, show-and-tell and class discussions, children learn to speak fluently and express their ideas clearly."
+        },
+        {
+          "title": "Moral Values & Etiquette",
+          "text": "We focus on good manners, respect, honesty, sharing, discipline and helping others – values that make children good human beings along with good learners."
+        },
+        {
+          "title": "Sports, Art & Field Activities",
+          "text": "Through sports, art, craft, dance and field activities, children develop physical fitness, creativity, teamwork and a happy, active lifestyle."
+        }
+      ],
+      "promise": [
+        "In our LKG, your child becomes an independent learner – who can read, write, speak and think with confidence.",
+        "Because at Smart Start, we don't rush children, we build them step by step – strong in studies, rich in values."
+      ],
+      "objectives": [
+        "Fluent English and Hindi word, matra and sentence skills",
+        "Maths up to 100, tables, addition, subtraction and place value",
+        "EVS curiosity, storytelling and clear class discussions",
+        "Strong moral values, art, dance and physical fitness"
+      ],
+      "activities": [
+        "Phonics reading, Hindi matra practice and neat writing",
+        "Practical maths activities and logical thinking games",
+        "Show-and-tell, storytelling and festival projects",
+        "Sports, art, craft, dance and field activities"
+      ],
+      "development": [
+        "English & Hindi Literacy",
+        "Maths & Logical Thinking",
+        "Values, Art & Sports"
+      ],
+      "image": {
+        "src": "assets/images/independence-worksheet.webp",
+        "alt": "Girl pointing at an Independence Day activity worksheet at her desk"
+      }
     },
     {
-      "id": "ukg", "name": "UKG", "age": "5–6 years", "color": "magenta", "visible": true, "order": 6,
-      "tagline": "Graduating with confidence",
-      "description": "UKG prepares children for the next step of school with strong foundations, clear communication and the confidence to stand up and speak.",
-      "objectives": ["Strengthen reading, writing and maths readiness", "Speak clearly and confidently", "Take responsibility and show leadership", "Be happy and ready for primary school"],
-      "activities": ["Stage performances", "Projects and presentations", "Graduation ceremony", "Leadership roles in class"],
-      "development": ["School readiness", "Communication", "Leadership"],
-      "image": { "src": "assets/images/graduation-day.webp", "alt": "Child in a blue graduation gown holding a scroll and a certificate" }
+      "id": "ukg",
+      "name": "UKG",
+      "wingName": "Our UKG Wing",
+      "wingTitle": "Our UKG Wing – Ready For Primary, Ready For Life",
+      "age": "5–6 years",
+      "color": "magenta",
+      "visible": true,
+      "order": 6,
+      "tagline": "Ready For Primary, Ready For Life",
+      "description": "At Smart Start – The Premium School, our UKG Wing is the final and most important step of pre-primary education. Here, your child is not just prepared for Class 1, but prepared to be confident, independent and responsible in every way.",
+      "intro": [
+        "At Smart Start – The Premium School, our UKG Wing is the final and most important step of pre-primary education.",
+        "Here, your child is not just prepared for Class 1, but prepared to be confident, independent and responsible in every way."
+      ],
+      "focusHeading": "What We Focus On In Our UKG",
+      "focus": [
+        {
+          "title": "Advanced English",
+          "text": "Children read and write sentences, paragraphs and small stories, learn opposite words, rhyming words, and one-many, and speak in English with fluency and confidence."
+        },
+        {
+          "title": "Advanced Hindi",
+          "text": "Children read and write Hindi sentences and stories with matras, learn vachan, vilom and simple grammar, and speak in Hindi with clarity."
+        },
+        {
+          "title": "Maths & Mental Ability",
+          "text": "Children learn addition and subtraction with carry and borrow, tables, skip counting, time, money, and simple word problems, building strong mental maths skills."
+        },
+        {
+          "title": "EVS & Life Skills",
+          "text": "Children learn about our environment, traffic rules, safety, good habits, festivals, national symbols and community helpers, and develop practical life understanding."
+        },
+        {
+          "title": "Communication & Public Speaking",
+          "text": "Through speeches, rhymes, storytelling, role play and stage activities, children overcome stage fear and learn to speak confidently in front of everyone."
+        },
+        {
+          "title": "Discipline, Values & Leadership",
+          "text": "We focus on self-discipline, responsibility, kindness, honesty and teamwork. Children learn to take care of their belongings, help others and become little leaders."
+        },
+        {
+          "title": "Sports, Art & Holistic Development",
+          "text": "Through sports, yoga, dance, art and field activities, children develop fitness, creativity, focus and a balanced personality."
+        }
+      ],
+      "promise": [
+        "In our UKG, your child completes their pre-primary journey as a confident reader, writer, speaker and thinker – fully ready for Class 1 and beyond.",
+        "Because at Smart Start, we don't just prepare children for the next class, we prepare them for life."
+      ],
+      "objectives": [
+        "Fluent English and Hindi stories, grammar and writing",
+        "Carry/borrow maths, tables, time, money and word problems",
+        "EVS life skills, public speaking and stage leadership",
+        "Sports, yoga, dance, discipline and Class 1 readiness"
+      ],
+      "activities": [
+        "Paragraph writing, story reading and grammar practice",
+        "Mental maths, time, money and word-problem games",
+        "Speeches, role play, stage shows and graduation",
+        "Sports, yoga, dance, art and leadership roles"
+      ],
+      "development": [
+        "Class 1 Academic Readiness",
+        "Public Speaking & Leadership",
+        "Holistic Life Skills"
+      ],
+      "image": {
+        "src": "assets/images/graduation-day.webp",
+        "alt": "Child in a blue graduation gown holding a scroll and a certificate"
+      }
     }
   ]
 }
-

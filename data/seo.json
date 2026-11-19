@@ -28,11 +28,65 @@
       "robots": "index,follow"
     },
     "programmes": {
-      "title": "Preschool Programmes: Toddlers to UKG | Smart Start The Premium School",
+      "title": "Preschool Programmes: Toddlers to UKG | Smart Start School",
       "description": "Smart Start The Premium School programmes for ages 1.5 to 6: Toddlers, Playgroup, Pre-Nursery, Nursery, LKG and UKG in Sector 24, Rohini, Delhi.",
       "canonical": "",
       "ogTitle": "Smart Start The Premium School Programmes – From Toddlers to UKG",
       "ogDescription": "Age-matched play-based programmes for children aged 1.5 to 6 years.",
+      "ogImage": "assets/images/graduation-day.webp",
+      "robots": "index,follow"
+    },
+    "toddlers": {
+      "title": "Toddler Wing (1.5–2 Years) | Smart Start The Premium School",
+      "description": "Our Toddler Wing is a warm second home focusing on self-care, etiquette, eye-hand coordination, motor skills, speech and early play in Rohini, Delhi.",
+      "canonical": "",
+      "ogTitle": "Our Toddler Wing – Where Every Little Step Matters",
+      "ogDescription": "Safe, loving foundation years for ages 1.5–2 at Smart Start The Premium School.",
+      "ogImage": "assets/images/toddler-ring-stacking.webp",
+      "robots": "index,follow"
+    },
+    "playgroup": {
+      "title": "Play Group Wing (2–3 Years) | Smart Start The Premium School",
+      "description": "Our Play Group Wing builds A–Z & 1–10 recognition, shapes, colours, tracing, communication and field sports through joyful play in Rohini, Delhi.",
+      "canonical": "",
+      "ogTitle": "Our Play Group Wing – Learning Through Colours & Play",
+      "ogDescription": "Crayons, colours, tracing, speech and sports for ages 2–3 at Smart Start.",
+      "ogImage": "assets/images/toddler-cups-outdoors.webp",
+      "robots": "index,follow"
+    },
+    "pre-nursery": {
+      "title": "Pre-Nursery Wing (2.5–3 Years) | Smart Start Premium School",
+      "description": "First step towards academics: NEP-aligned pencil grip (2.5+ yrs), four-line writing, Nursery readiness, speech and good habits in Rohini, Delhi.",
+      "canonical": "",
+      "ogTitle": "Our Pre-Nursery Wing – First Step Towards Academics",
+      "ogDescription": "A gentle bridge between play-based and formal learning at Smart Start.",
+      "ogImage": "assets/images/finger-painting.webp",
+      "robots": "index,follow"
+    },
+    "nursery": {
+      "title": "Nursery Wing (3–4 Years) | Smart Start The Premium School",
+      "description": "Our Nursery Wing covers phonics reading, four-line writing, early maths, gentle Hindi introduction, EVS, communication and sports in Rohini, Delhi.",
+      "canonical": "",
+      "ogTitle": "Our Nursery Wing – Where Learning Becomes Joyful",
+      "ogDescription": "Phonics, early maths, gentle Hindi and confident communication for ages 3–4.",
+      "ogImage": "assets/images/learning-with-sound-book.webp",
+      "robots": "index,follow"
+    },
+    "lkg": {
+      "title": "LKG Wing (4–5 Years) | Smart Start The Premium School",
+      "description": "Our LKG Wing builds strong foundations in English & Hindi reading/writing, maths up to 100, EVS, speaking skills, moral values and sports in Rohini.",
+      "canonical": "",
+      "ogTitle": "Our LKG Wing – Building Strong Foundations",
+      "ogDescription": "Step-by-step independent learning in English, Hindi, maths and values.",
+      "ogImage": "assets/images/independence-worksheet.webp",
+      "robots": "index,follow"
+    },
+    "ukg": {
+      "title": "UKG Wing (5–6 Years) | Smart Start The Premium School",
+      "description": "Our UKG Wing prepares children for Class 1 & life with advanced English & Hindi, mental maths, EVS life skills, public speaking, leadership & sports.",
+      "canonical": "",
+      "ogTitle": "Our UKG Wing – Ready For Primary, Ready For Life",
+      "ogDescription": "Confident readers, writers, speakers and thinkers ready for Class 1 & beyond.",
       "ogImage": "assets/images/graduation-day.webp",
       "robots": "index,follow"
     },

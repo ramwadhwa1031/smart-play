@@ -10,7 +10,7 @@
     settings: "Website settings", homepage: "Homepage", about: "About & principal", philosophy: "Multiple Intelligence", programmes: "Programmes",
     gallery: "Gallery", updates: "Announcements", centres: "Centres", testimonials: "Testimonials", seo: "SEO", media: "Media library"
   };
-  var DRAFT_KEY = "ss_draft_v15", PUB_KEY = "ss_last_publish", CFG_KEY = "ss_gh_config";
+  var DRAFT_KEY = "ss_draft_v19", PUB_KEY = "ss_last_publish", CFG_KEY = "ss_gh_config";
   AS.FILES = FILES; AS.LABELS = LABELS; AS.DRAFT_KEY = DRAFT_KEY;
   AS.data = {}; AS.original = {}; AS.deleted = []; AS.urls = {}; AS.listeners = [];
 
