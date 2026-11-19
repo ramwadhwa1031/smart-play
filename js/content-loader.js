@@ -8,7 +8,7 @@
     settings: "site-settings", homepage: "homepage", about: "about", philosophy: "philosophy", programmes: "programmes",
     gallery: "gallery", updates: "updates", centres: "centres", testimonials: "testimonials", seo: "seo", media: "media"
   };
-  var DRAFT_KEY = "ss_draft_v19", PREVIEW_KEY = "ss_preview";
+  var DRAFT_KEY = "ss_draft_v21", PREVIEW_KEY = "ss_preview";
 
   function isPreview() {
     try {
@@ -99,6 +99,10 @@
     var preview = isPreview();
     var isLocal = location.protocol === "file:" || location.hostname === "localhost" || location.hostname === "127.0.0.1";
     var useDraft = preview || (isLocal && !!getDraft());
+    /* On live hosted pages, static HTML is already freshly built on deploy; skip 11 redundant JSON fetches unless previewing drafts. */
+    if (!useDraft && !preview && location.protocol.indexOf("http") === 0 && !isLocal) {
+      return Promise.resolve(false);
+    }
     return load(useDraft).then(function (data) {
       var R = window.SSRender, hash = R.contentHash(data), baked = document.body.getAttribute("data-hash");
       if (preview) banner();

@@ -320,7 +320,7 @@ button{font:inherit;cursor:pointer}
 .reels-nav{display:flex;gap:.55rem;flex:none}
 .reel-nav-btn{width:46px;height:46px;border-radius:50%;border:2.5px solid var(--navy);background:var(--yellow);color:var(--navy);display:grid;place-items:center;font-size:1.15rem;box-shadow:var(--shadow);transition:transform .2s,background .2s,color .2s}
 .reel-nav-btn:hover{background:var(--navy);color:#fff;transform:translateY(-2px)}
-.reels-track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 3rem) / 3.85);gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:.3rem .2rem 1rem;margin-bottom:.9rem;scrollbar-width:none;-ms-overflow-style:none}
+.reels-track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 3rem) / 4);gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:.3rem .2rem 1rem;margin-bottom:.9rem;scrollbar-width:none;-ms-overflow-style:none}
 .reels-track::-webkit-scrollbar{display:none}
 .reel-card{scroll-snap-align:start;display:block;border-radius:22px;padding:3px;background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF,#515BD4);box-shadow:0 10px 22px rgba(13,59,102,.13);transition:transform .28s ease,box-shadow .28s ease;position:relative}
 .reel-card:hover{transform:translateY(-5px);box-shadow:0 16px 32px rgba(221,42,123,.24)}

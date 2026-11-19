@@ -8,6 +8,23 @@
 
   function digits(s) { return String(s || "").replace(/\D/g, ""); }
 
+  function hydrateSlideImg(imgEl) {
+    if (!imgEl || !imgEl.getAttribute("data-src")) return;
+    var ds = imgEl.getAttribute("data-src");
+    var dss = imgEl.getAttribute("data-srcset");
+    if (dss) { imgEl.setAttribute("srcset", dss); imgEl.removeAttribute("data-srcset"); }
+    imgEl.setAttribute("src", ds);
+    imgEl.removeAttribute("data-src");
+  }
+
+  function hydrateHeroSlides() {
+    var imgs = document.querySelectorAll("[data-hero-slide] img[data-src]");
+    if (!imgs.length) return;
+    var loadAll = function () { imgs.forEach(hydrateSlideImg); };
+    if (document.readyState === "complete") setTimeout(loadAll, 400);
+    else window.addEventListener("load", function () { setTimeout(loadAll, 400); }, { once: true });
+  }
+
   function setHeroSlide(nextIdx) {
     var slider = document.querySelector("[data-hero-slider]");
     if (!slider) return;
@@ -15,6 +32,7 @@
     var dots = slider.querySelectorAll("[data-hero-dot]");
     if (!slides.length) return;
     heroIdx = ((nextIdx % slides.length) + slides.length) % slides.length;
+    hydrateSlideImg(slides[heroIdx].querySelector("img[data-src]"));
     slider.setAttribute("data-active-slide", String(heroIdx));
     slides.forEach(function (s, i) {
       var active = i === heroIdx;
@@ -98,23 +116,17 @@
     if (!track) return;
     var cards = track.querySelectorAll(".reel-card");
     if (cards.length < 2) return;
-    var count = parseInt(track.getAttribute("data-reels-count"), 10) || Math.floor(cards.length / 2);
+    var maxScroll = track.scrollWidth - track.clientWidth;
+    if (maxScroll <= 12) return;
     var step = cards[1].offsetLeft - cards[0].offsetLeft;
-    if (step <= 0) step = cards[0].getBoundingClientRect().width + 20;
-    var halfSpan = cards[count] ? (cards[count].offsetLeft - cards[0].offsetLeft) : (track.scrollWidth / 2);
-
-    if (dir > 0 && halfSpan > 0 && track.scrollLeft >= halfSpan - 10) {
-      track.style.scrollBehavior = "auto";
-      track.scrollLeft -= halfSpan;
-      void track.offsetWidth;
-      track.style.scrollBehavior = "";
-    } else if (dir < 0 && halfSpan > 0 && track.scrollLeft <= 10) {
-      track.style.scrollBehavior = "auto";
-      track.scrollLeft += halfSpan;
-      void track.offsetWidth;
-      track.style.scrollBehavior = "";
+    if (step <= 0) step = cards[0].getBoundingClientRect().width + 16;
+    if (dir > 0 && track.scrollLeft >= maxScroll - 14) {
+      track.scrollTo({ left: 0, behavior: "smooth" });
+    } else if (dir < 0 && track.scrollLeft <= 14) {
+      track.scrollTo({ left: maxScroll, behavior: "smooth" });
+    } else {
+      track.scrollBy({ left: step * dir, behavior: "smooth" });
     }
-    track.scrollBy({ left: step * dir, behavior: "smooth" });
   }
 
   function startReelsAuto() {
@@ -366,6 +378,30 @@
     }).catch(function () {});
   }
 
+  function lazyLoadIframes() {
+    var frames = document.querySelectorAll("iframe[data-src]");
+    if (!frames.length) return;
+    var loadFrame = function (f) {
+      var u = f.getAttribute("data-src");
+      if (!u) return;
+      f.setAttribute("src", u);
+      f.removeAttribute("data-src");
+    };
+    if (!("IntersectionObserver" in window)) {
+      frames.forEach(loadFrame);
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (ent) {
+        if (ent.isIntersecting) {
+          loadFrame(ent.target);
+          io.unobserve(ent.target);
+        }
+      });
+    }, { rootMargin: "420px 0px" });
+    frames.forEach(function (f) { io.observe(f); });
+  }
+
   function ensureElfsight() {
     var el = document.querySelector('[class*="elfsight-app-"]');
     if (!el) return;
@@ -379,7 +415,7 @@
 
   function init() {
     cleanUrlBar();
-    SS.nav.init(); SS.gallery.init(); SS.anim.init(); bindForm(); prefill(); startReelsAuto(); startHeroAuto(); bindProgCarousel(); bindGrevCarousel(); loadLiveGoogleReviews(); ensureElfsight();
+    SS.nav.init(); SS.gallery.init(); SS.anim.init(); bindForm(); prefill(); startReelsAuto(); startHeroAuto(); hydrateHeroSlides(); bindProgCarousel(); bindGrevCarousel(); loadLiveGoogleReviews(); lazyLoadIframes(); ensureElfsight();
     var y = document.querySelector("[data-year]"); if (y) y.textContent = new Date().getFullYear();
   }
   SS.init = init;

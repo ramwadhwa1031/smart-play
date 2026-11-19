@@ -426,9 +426,20 @@
     hero: function (c) {
       var h = c.d.homepage.hero, im = (h.images && h.images.length) ? h.images : [{ src: "assets/images/classroom-group-circle.webp", alt: "Smart Start The Premium School" }];
       var motto = h.badge || c.s.motto || "Play · Prepare · Pride";
+      var blank = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
       var slides = im.map(function (it, idx) {
-        return '<figure class="hero-slide' + (idx === 0 ? " is-active" : "") + '" data-hero-slide="' + idx + '" aria-hidden="' + (idx !== 0) + '">' +
-          img(c, it, { eager: idx === 0 ? 1 : 0, sizes: "100vw", nosrcset: 0 }) + '</figure>';
+        var u = src(c, it.src || "");
+        var sm = /\.webp$/i.test(u) && u.indexOf("-sm.webp") < 0 && u.indexOf("/slider/") >= 0 ? u.replace(/\.webp$/i, "-sm.webp") : "";
+        var ss = sm ? (sm + " 760w, " + u + " 1376w") : "";
+        var imgTag;
+        if (idx === 0) {
+          imgTag = '<img src="' + esc(u) + '"' + (ss ? ' srcset="' + esc(ss) + '" sizes="100vw"' : '') +
+            ' alt="' + esc(it.alt || "") + '" width="1376" height="768" fetchpriority="high" decoding="async">';
+        } else {
+          imgTag = '<img src="' + blank + '" data-src="' + esc(u) + '"' + (ss ? ' data-srcset="' + esc(ss) + '" sizes="100vw"' : '') +
+            ' alt="' + esc(it.alt || "") + '" width="1376" height="768" loading="lazy" decoding="async">';
+        }
+        return '<figure class="hero-slide' + (idx === 0 ? " is-active" : "") + '" data-hero-slide="' + idx + '" aria-hidden="' + (idx !== 0) + '">' + imgTag + '</figure>';
       }).join("");
       var dots = im.length > 1 ? '<div class="hero-slider__dots" role="tablist" aria-label="Hero slides">' + im.map(function (_, idx) {
         return '<button type="button" class="hero-slider__dot' + (idx === 0 ? " is-active" : "") + '" data-hero-dot="' + idx + '" aria-label="Slide ' + (idx + 1) + '" aria-selected="' + (idx === 0) + '"></button>';
@@ -532,7 +543,7 @@
     },
     reels: function (c) {
       var r = (c.d.homepage && c.d.homepage.reels) || {};
-      var items = r.items || [];
+      var items = (r.items || []).slice(0, 4);
       if (!items.length) return "";
       var username = r.username || "smart_start_the_premium_school";
       var profileUrl = r.profileUrl || ("https://www.instagram.com/" + username + "/reels/");
@@ -549,13 +560,13 @@
         '<button class="reel-nav-btn" type="button" data-reel-dir="1" aria-label="Next reels">' + icon("next") + "</button>" +
         "</div></div>" +
         '<div class="reels-track" data-reels-track data-reels-count="' + items.length + '" tabindex="0" role="region" aria-label="Instagram Reels carousel">' +
-        items.concat(items).map(function (it, i) {
+        items.map(function (it, i) {
           var code = it.shortcode || ((String(it.url || "").match(/\/(?:reel|p)\/([A-Za-z0-9_-]+)/) || [])[1]) || "";
           var emb = it.embedUrl || (code ? ("https://www.instagram.com/reel/" + code + "/embed/") : "");
           if (!emb) return "";
-          return '<div class="reel-card reel-card--embed reveal" style="--i:' + (i % 5) + '"' + (i >= items.length ? ' aria-hidden="true"' : "") + '>' +
+          return '<div class="reel-card reel-card--embed reveal" style="--i:' + i + '">' +
             '<div class="reel-card__frame">' +
-            '<iframe class="reel-iframe" src="' + esc(emb) + '" title="Instagram Reel ' + ((i % items.length) + 1) + ' (' + esc(handle) + ')" loading="lazy" allowtransparency="true" allow="autoplay; encrypted-media" allowfullscreen="true" frameborder="0" scrolling="no"></iframe>' +
+            '<iframe class="reel-iframe" data-src="' + esc(emb) + '" title="Instagram Reel ' + (i + 1) + ' (' + esc(handle) + ')" loading="lazy" allowtransparency="true" allow="autoplay; encrypted-media" allowfullscreen="true" frameborder="0" scrolling="no"></iframe>' +
             "</div></div>";
         }).join("") +
         "</div>" +
@@ -722,8 +733,7 @@
         "</div></section>";
     },
     contact: function (c) {
-      return gitSection(c) +
-        '<section class="sec sec--map-home" id="location-map"><div class="container">' + mapEmbedBlock(c) + '</div></section>';
+      return gitSection(c);
     }
   };
 
@@ -740,7 +750,7 @@
       '<a class="btn btn--primary" href="' + esc(mapsLink) + '" target="_blank" rel="noopener"><span>Get Directions</span>' + icon("arrow") + '</a>' +
       '</div>' +
       (embedUrl
-        ? '<div class="map-embed__frame"><iframe src="' + esc(embedUrl) + '" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="' + esc(s.name) + ' Location Map"></iframe></div>'
+        ? '<div class="map-embed__frame"><iframe data-src="' + esc(embedUrl) + '" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="' + esc(s.name) + ' Location Map"></iframe></div>'
         : '') +
       '</div>';
   }
@@ -1102,6 +1112,9 @@
       (ogimg ? '<meta name="twitter:image" content="' + esc(ogimg) + '">' : "") +
       '<meta name="theme-color" content="#6D2FA0"><link rel="icon" href="' + esc(src(c, s.favicon || "assets/logos/favicon-32.png")) + '"><link rel="icon" href="' + pre + 'favicon.ico" sizes="any"><link rel="apple-touch-icon" href="' + pre + 'assets/logos/favicon-180.png">' +
       '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
+      (pid === "index" && c.d.homepage && c.d.homepage.hero && c.d.homepage.hero.images && c.d.homepage.hero.images[0] && /\.webp$/i.test(c.d.homepage.hero.images[0].src || "")
+        ? '<link rel="preload" as="image" href="' + esc(src(c, c.d.homepage.hero.images[0].src)) + '" imagesrcset="' + esc(src(c, c.d.homepage.hero.images[0].src.replace(/\.webp$/i, "-sm.webp"))) + ' 760w, ' + esc(src(c, c.d.homepage.hero.images[0].src)) + ' 1376w" imagesizes="100vw" fetchpriority="high">'
+        : "") +
       '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap">' +
       '<link rel="stylesheet" href="' + pre + 'css/style.css"><link rel="stylesheet" href="' + pre + 'css/animations.css"><link rel="stylesheet" href="' + pre + 'css/responsive.css">' +
       (cssVars(s) ? '<style id="brand-vars">' + cssVars(s) + "</style>" : "") +
@@ -1132,7 +1145,8 @@
       '<footer class="site-footer" id="site-footer">' + parts.footer + "</footer>\n" +
       '<div id="site-float">' + parts.float + "</div>\n" +
       elfScript +
-      '<script src="' + pre + 'js/seed-data.js"></script><script src="' + pre + 'js/render.js"></script><script src="' + pre + 'js/animations.js"></script><script src="' + pre + 'js/navigation.js"></script><script src="' + pre + 'js/gallery.js"></script><script src="' + pre + 'js/content-loader.js"></script><script src="' + pre + 'js/main.js"></script>\n</body></html>\n';
+      '<script>if(location.protocol==="file:")document.write(\'<script src="' + pre + 'js/seed-data.js"><\\/script>\');</script>' +
+      '<script defer src="' + pre + 'js/render.js"></script><script defer src="' + pre + 'js/animations.js"></script><script defer src="' + pre + 'js/navigation.js"></script><script defer src="' + pre + 'js/gallery.js"></script><script defer src="' + pre + 'js/content-loader.js"></script><script defer src="' + pre + 'js/main.js"></script>\n</body></html>\n';
   }
 
   function sitemap(data, base) {

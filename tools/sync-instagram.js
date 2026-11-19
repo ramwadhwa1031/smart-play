@@ -47,7 +47,8 @@ async function run() {
   const mediaList = ((ctx && ctx.graphql_media) || [])
     .map((x) => x && x.shortcode_media)
     .filter((sm) => sm && sm.shortcode && sm.is_video)
-    .sort((a, b) => (b.taken_at_timestamp || 0) - (a.taken_at_timestamp || 0));
+    .sort((a, b) => (b.taken_at_timestamp || 0) - (a.taken_at_timestamp || 0))
+    .slice(0, 4);
 
   if (!mediaList.length) throw new Error("No video Reels returned from Instagram");
 

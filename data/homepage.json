@@ -90,19 +90,19 @@
     },
     "images": [
       {
-        "src": "assets/images/slider/slider-1-playground.jpg",
+        "src": "assets/images/slider/slider-1-playground.webp",
         "alt": "Happy children playing at Smart Start The Premium School"
       },
       {
-        "src": "assets/images/slider/slider-2-learning.jpg",
+        "src": "assets/images/slider/slider-2-learning.webp",
         "alt": "Activity-based multiple intelligence learning"
       },
       {
-        "src": "assets/images/slider/slider-3-celebration.jpg",
+        "src": "assets/images/slider/slider-3-celebration.webp",
         "alt": "Festivals and cultural celebrations at school"
       },
       {
-        "src": "assets/images/slider/slider-4-stage.jpg",
+        "src": "assets/images/slider/slider-4-stage.webp",
         "alt": "Stage confidence, martial arts and performances"
       }
     ],
@@ -276,13 +276,6 @@
         "takenAt": "2026-11-15T07:17:18.000Z",
         "url": "https://www.instagram.com/reel/DfwOYWgT3F0/",
         "embedUrl": "https://www.instagram.com/reel/DfwOYWgT3F0/embed/"
-      },
-      {
-        "shortcode": "DfwDIa2zmwj",
-        "isVideo": true,
-        "takenAt": "2026-11-15T05:39:35.000Z",
-        "url": "https://www.instagram.com/reel/DfwDIa2zmwj/",
-        "embedUrl": "https://www.instagram.com/reel/DfwDIa2zmwj/embed/"
       }
     ]
   },
