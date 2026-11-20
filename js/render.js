@@ -43,17 +43,45 @@
     if (/^warmly/i.test(raw)) return '<p class="letter__warm">' + html + "</p>";
     return "<p>" + html + "</p>";
   }
+  function brandifyText(txt) {
+    return String(txt || "").replace(/(^|[^A-Za-z0-9_@])(smart\s+start|smart|start)(?=$|[^A-Za-z0-9_@])/gi, function (_, pre, word) {
+      if (/^smart\s+start$/i.test(word)) {
+        return pre + '<span class="ss-kw"><span class="ss-s">S</span>MART <span class="ss-s">S</span>TART</span>';
+      }
+      if (/^smart$/i.test(word)) {
+        return pre + '<span class="ss-kw"><span class="ss-s">S</span>MART</span>';
+      }
+      return pre + '<span class="ss-kw"><span class="ss-s">S</span>TART</span>';
+    });
+  }
+  function brandifyHtml(html) {
+    var skip = 0;
+    return String(html || "").split(/(<[^>]+>)/g).map(function (tok) {
+      if (!tok) return "";
+      if (tok.charAt(0) === "<") {
+        if (/^<(?:script|style|option|textarea|svg|title)\b/i.test(tok) && !/\/>$/.test(tok)) skip++;
+        else if (/^<\/(?:script|style|option|textarea|svg|title)\b/i.test(tok) && skip > 0) skip--;
+        return tok;
+      }
+      return skip > 0 ? tok : brandifyText(tok);
+    }).join("");
+  }
   function plain(s) { return String(s == null ? "" : s).replace(/\[\[|\]\]/g, ""); }
   function words(s) {
     var i = 0;
     return String(s || "").split(/(\[\[.+?\]\])/).filter(Boolean).map(function (seg) {
       var h = /^\[\[(.+)\]\]$/.test(seg), t = h ? seg.slice(2, -2) : seg;
-      if (h && /^smart\s+start$/i.test(t)) return '<span class="w brandline" style="--i:' + (i++) + '"><span><span class="ss-s">S</span>MART <span class="ss-s">S</span>TART</span></span>';
-      return t.split(/\s+/).filter(Boolean).map(function (w) {
-        var inner = esc(w);
-        if (h && /^smart$/i.test(w)) inner = '<span class="ss-s">S</span>MART';
-        else if (h && /^start$/i.test(w)) inner = '<span class="ss-s">S</span>TART';
-        return '<span class="w' + (h ? " hl" : "") + (h && /^(smart|start)$/i.test(w) ? " hl--brand" : "") + '" style="--i:' + (i++) + '"><span>' + inner + "</span></span>";
+      if (/^smart\s+start$/i.test(t.trim())) return '<span class="w brandline" style="--i:' + (i++) + '"><span><span class="ss-s">S</span>MART <span class="ss-s">S</span>TART</span></span>';
+      return t.split(/(smart\s+start)/gi).filter(Boolean).map(function (part) {
+        if (/^smart\s+start$/i.test(part)) {
+          return '<span class="w brandline" style="--i:' + (i++) + '"><span><span class="ss-s">S</span>MART <span class="ss-s">S</span>TART</span></span>';
+        }
+        return part.split(/\s+/).filter(Boolean).map(function (w) {
+          var cleanW = w.replace(/^[^A-Za-z]+|[^A-Za-z]+$/g, "");
+          var isBrandWord = /^(smart|start)$/i.test(cleanW);
+          var inner = isBrandWord ? brandifyText(esc(w)) : esc(w);
+          return '<span class="w' + (h ? " hl" : "") + (h && isBrandWord ? " hl--brand" : "") + '" style="--i:' + (i++) + '"><span>' + inner + "</span></span>";
+        }).join(" ");
       }).join(" ");
     }).join(" ");
   }
@@ -1129,7 +1157,12 @@
   }
 
   function renderParts(c, pid) {
-    return { header: header(c, pid), main: (PAGES[pid] || function () { return ""; })(c), footer: footer(c), float: floating(c) };
+    return {
+      header: brandifyHtml(header(c, pid)),
+      main: brandifyHtml((PAGES[pid] || function () { return ""; })(c)),
+      footer: brandifyHtml(footer(c)),
+      float: floating(c)
+    };
   }
 
   function renderPage(data, pid, opt) {

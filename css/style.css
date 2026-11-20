@@ -962,3 +962,14 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
   .map-embed__bar{padding:1.15rem 1.2rem}
   .map-embed__frame{height:320px}
 }
+
+/* ===== v8: Global SMART START / SMART / START logo-style keyword pattern ===== */
+.ss-kw{font-family:var(--font-d);font-weight:700;text-transform:uppercase;letter-spacing:.02em;color:var(--navy);white-space:nowrap;display:inline;line-height:inherit}
+.ss-kw .ss-s{color:#FFD600;font-size:1.16em;font-weight:800;display:inline-block;line-height:1;text-shadow:-1.4px -1.4px 0 #0D3B66,1.4px -1.4px 0 #0D3B66,-1.4px 1.4px 0 #0D3B66,1.4px 1.4px 0 #0D3B66,0 2px 0 #0D3B66}
+h1 .ss-kw .ss-s,h2 .ss-kw .ss-s,.h1 .ss-kw .ss-s,.h2 .ss-kw .ss-s,.hero-quote .ss-kw .ss-s{font-size:1.2em;text-shadow:-2px -2px 0 #0D3B66,2px -2px 0 #0D3B66,-2px 2px 0 #0D3B66,2px 2px 0 #0D3B66,0 3px 0 #0D3B66}
+.eyebrow .ss-kw{font-size:1.06em;letter-spacing:.04em}
+.eyebrow .ss-kw .ss-s{font-size:1.16em;text-shadow:-1px -1px 0 #0D3B66,1px -1px 0 #0D3B66,-1px 1px 0 #0D3B66,1px 1px 0 #0D3B66}
+.hero-quote .ss-kw{background:#FFFFFF;color:var(--navy)!important;padding:.05em .44em;border-radius:12px;border:2px solid var(--navy);box-shadow:0 3px 0 rgba(13,59,102,.2);margin-inline:.12em}
+.site-footer .ss-kw,.map-embed__bar .ss-kw,.sec--quote .ss-kw,.hero--full .hero-slider .ss-kw{color:#FFFFFF}
+.site-footer .ss-kw .ss-s,.map-embed__bar .ss-kw .ss-s,.sec--quote .ss-kw .ss-s,.hero--full .hero-slider .ss-kw .ss-s{color:#FFD600;text-shadow:-1.4px -1.4px 0 #051B33,1.4px -1.4px 0 #051B33,-1.4px 1.4px 0 #051B33,1.4px 1.4px 0 #051B33,0 2px 0 #051B33}
+.hl--brand{background:none;border:0;box-shadow:none;padding:0}
