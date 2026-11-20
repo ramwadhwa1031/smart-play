@@ -158,6 +158,12 @@
           return;
         }
       }
+      var vclose = e.target.closest("[data-visit-close]");
+      var vmodal = document.getElementById("visit-modal");
+      if (vmodal && !vmodal.hidden && (vclose || e.target === vmodal)) {
+        closeVisitPopup();
+        return;
+      }
       var rclose = e.target.closest("[data-reel-close]");
       var rmodal = document.getElementById("reel-modal");
       if (rmodal && !rmodal.hidden && (rclose || e.target === rmodal)) {
@@ -249,9 +255,11 @@
       var text = lines.join("\n");
       if (b.getAttribute("data-send") === "wa") window.open("https://wa.me/" + f.dataset.wa + "?text=" + encodeURIComponent(text), "_blank", "noopener");
       else location.href = "mailto:" + f.dataset.email + "?subject=" + encodeURIComponent("Admission enquiry – " + v("name")) + "&body=" + encodeURIComponent(text);
+      if (f.id === "enq-popup-form") closeVisitPopup();
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") {
+        closeVisitPopup();
         var rmodal = document.getElementById("reel-modal");
         if (rmodal && !rmodal.hidden) {
           rmodal.hidden = true;
@@ -475,9 +483,34 @@
     }, 4200);
   }
 
+  var visitPopupTimer = null;
+  function closeVisitPopup() {
+    var m = document.getElementById("visit-modal");
+    if (!m || m.hidden) return;
+    m.hidden = true;
+    document.documentElement.style.overflow = "";
+    try { sessionStorage.setItem("ss_visit_popup_closed", "1"); } catch (e) {}
+  }
+
+  function initVisitPopup() {
+    var m = document.getElementById("visit-modal");
+    if (!m) return;
+    try {
+      if (sessionStorage.getItem("ss_visit_popup_closed") === "1") return;
+    } catch (e) {}
+    if (visitPopupTimer) clearTimeout(visitPopupTimer);
+    visitPopupTimer = setTimeout(function () {
+      var modal = document.getElementById("visit-modal");
+      var lb = document.querySelector(".lightbox");
+      if (!modal || !modal.hidden || (lb && !lb.hidden)) return;
+      modal.hidden = false;
+      document.documentElement.style.overflow = "hidden";
+    }, 1100);
+  }
+
   function init() {
     cleanUrlBar();
-    SS.nav.init(); SS.gallery.init(); SS.anim.init(); bindForm(); prefill(); startReelsAuto(); startHeroAuto(); hydrateHeroSlides(); bindProgCarousel(); bindFameCarousel(); bindGrevCarousel(); loadLiveGoogleReviews(); lazyLoadIframes(); ensureElfsight();
+    SS.nav.init(); SS.gallery.init(); SS.anim.init(); bindForm(); prefill(); startReelsAuto(); startHeroAuto(); hydrateHeroSlides(); bindProgCarousel(); bindFameCarousel(); bindGrevCarousel(); loadLiveGoogleReviews(); lazyLoadIframes(); ensureElfsight(); initVisitPopup();
     var y = document.querySelector("[data-year]"); if (y) y.textContent = new Date().getFullYear();
   }
   SS.init = init;

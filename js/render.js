@@ -378,10 +378,35 @@
       '<svg class="f-ray" viewBox="0 0 28 28" aria-hidden="true"><path d="M6 6l10 4M8 14l12 0M6 22l10-4" stroke="#FFD600" stroke-width="2.8" stroke-linecap="round"/></svg></p>' +
       "</div></div>";
   }
-  function floating(c) {
+  function floating(c, pid) {
+    var s = c.s, progs = visibleProgrammes(c);
+    var curProg = progs.filter(function (x) { return x.id === pid; })[0];
+    var selName = curProg ? curProg.name : "";
+    var popup = '<div class="visit-modal" id="visit-modal" role="dialog" aria-modal="true" aria-labelledby="visit-modal-title" hidden>' +
+      '<div class="visit-modal__card">' +
+      '<button class="visit-modal__close" type="button" data-visit-close aria-label="Close Book A Visit popup">' + icon("close") + '</button>' +
+      '<div class="visit-modal__head">' +
+      '<span class="visit-modal__pill">\u2605 Admissions Open · ' + esc(s.motto || "Play · Prepare · Pride") + '</span>' +
+      '<h2 id="visit-modal-title">Book A <span>Campus Visit</span></h2>' +
+      '<p>Meet our teachers and explore Smart Start The Premium School, Sector 24, Rohini.</p>' +
+      '</div>' +
+      '<form class="enq-form visit-modal__form" id="enq-popup-form" novalidate data-wa="' + esc(digits(s.whatsapp)) + '" data-email="' + esc(s.email) + '" data-school="' + esc(s.name) + '">' +
+      '<div class="visit-modal__row">' +
+      '<label>Parent name<input name="name" type="text" autocomplete="name" placeholder="Your full name" required></label>' +
+      '<label>Phone number<input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="10-digit mobile" required></label>' +
+      '</div>' +
+      '<label>Child\'s age or programme<select name="programme"><option value="">Not sure yet</option>' + progs.map(function (x) {
+        var sel = selName && x.name === selName ? ' selected' : '';
+        return '<option value="' + esc(x.name) + '"' + sel + '>' + esc(x.name) + ' (' + esc(x.age) + ')</option>';
+      }).join("") + '</select></label>' +
+      '<label>Your message<textarea name="message" rows="2" placeholder="Preferred date/time for campus visit or any question..."></textarea></label>' +
+      '<p class="form-err" role="alert" hidden>Please add your name and phone number.</p>' +
+      '<div class="btn-row"><button class="btn btn--green" type="button" data-send="wa"><span>Book on WhatsApp</span>' + icon("whatsapp") + '</button><button class="btn btn--purple" type="button" data-send="mail"><span>Send by email</span>' + icon("mail") + '</button></div>' +
+      '</form></div></div>';
     return '<a class="wa-float" href="' + esc(waUrl(c)) + '" target="_blank" rel="noopener" aria-label="Chat with Smart Start The Premium School on WhatsApp">' +
       '<svg class="wa-float__ic" viewBox="0 0 32 32" aria-hidden="true"><path fill="#FFFFFF" d="M16 3C9.1 3 3.5 8.5 3.5 15.3c0 2.3.6 4.5 1.8 6.4L3.4 28.6l7.1-1.8a12.7 12.7 0 0 0 5.5 1.3c6.9 0 12.5-5.5 12.5-12.4S22.9 3 16 3zm0 22.7c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.2 1.1 1.1-4.1-.3-.4a10.2 10.2 0 0 1-1.6-5.4C5.2 9.5 10 4.8 16 4.8s10.8 4.7 10.8 10.5S22 25.7 16 25.7zm5.9-7.8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.8 8.8 0 0 1-4.3-3.7c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.6s-.7-1.7-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.7 5.9 5.1 2.2.9 3.1 1 4.2.8.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>' +
       '<span>WhatsApp</span></a>' +
+      popup +
       '<div class="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden><button class="lb-close" type="button" aria-label="Close">' + icon("close") + '</button><button class="lb-prev" type="button" aria-label="Previous photo">' + icon("prev") + '</button><figure class="lb-fig"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" width="1" height="1"><figcaption></figcaption></figure><button class="lb-next" type="button" aria-label="Next photo">' + icon("next") + "</button></div>";
   }
   function pageHero(c, pid, eyebrow, title, text, extraCls) {
@@ -1210,7 +1235,7 @@
       header: brandifyHtml(header(c, pid)),
       main: brandifyHtml((PAGES[pid] || function () { return ""; })(c)),
       footer: brandifyHtml(footer(c)),
-      float: floating(c)
+      float: brandifyHtml(floating(c, pid))
     };
   }
 

@@ -1027,3 +1027,31 @@ h1 .ss-kw .ss-s,h2 .ss-kw .ss-s,.h1 .ss-kw .ss-s,.h2 .ss-kw .ss-s,.hero-quote .s
   .fame-nav--next{right:4px}
   .fame-card__body h3{font-size:1.12rem}
 }
+
+/* ===== v10: Book A Visit Initial Popup Modal (All Pages) ===== */
+.visit-modal{position:fixed;inset:0;z-index:290;background:rgba(9,30,54,.72);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:1rem}
+.visit-modal[hidden]{display:none}
+.visit-modal__card{position:relative;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;background:#FFFFFF;border-radius:30px;border:3px solid var(--yellow);box-shadow:0 24px 64px rgba(5,18,36,.42);animation:pop .32s cubic-bezier(.22,1,.36,1)}
+.visit-modal__close{position:absolute;top:12px;right:12px;z-index:5;width:42px;height:42px;border-radius:50%;border:2.5px solid var(--navy);background:var(--yellow);color:var(--navy);display:grid;place-items:center;font-size:1.25rem;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,.22);transition:transform .2s,background .2s,color .2s}
+.visit-modal__close:hover{background:var(--magenta);color:#FFFFFF;border-color:#FFFFFF;transform:rotate(90deg) scale(1.06)}
+.visit-modal__head{background:linear-gradient(145deg,#0A2E52 0%,#0D3B66 100%);background-image:var(--doodle-white),linear-gradient(145deg,#0A2E52 0%,#0D3B66 100%);background-size:320px 320px,cover;color:#FFFFFF;padding:1.4rem 3.4rem 1.25rem 1.6rem;border-bottom:4px solid var(--yellow)}
+.visit-modal__pill{display:inline-block;background:rgba(255,214,0,.18);border:1.5px solid var(--yellow);color:var(--yellow);font-weight:800;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:.24rem .78rem;border-radius:99px;margin-bottom:.55rem}
+.visit-modal__head h2{margin:0 0 .25rem;font-family:var(--font-d);font-size:clamp(1.5rem,3vw,1.95rem);line-height:1.15;color:#FFFFFF}
+.visit-modal__head h2 span{color:var(--yellow)}
+.visit-modal__head p{margin:0;color:#DCE8F7;font-size:.96rem;font-weight:600;line-height:1.45}
+.visit-modal__head .ss-kw{color:#FFFFFF}
+.visit-modal__head .ss-kw .ss-s{color:#FFD600;text-shadow:-1.2px -1.2px 0 #051B33,1.2px -1.2px 0 #051B33,-1.2px 1.2px 0 #051B33,1.2px 1.2px 0 #051B33}
+.visit-modal__form{border:0;border-radius:0;box-shadow:none;padding:1.3rem 1.55rem 1.5rem;gap:.85rem}
+.visit-modal__row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.visit-modal__form label{font-size:.96rem}
+.visit-modal__form input,.visit-modal__form select,.visit-modal__form textarea{min-height:44px;padding:.65rem .9rem;border-radius:14px}
+.visit-modal__form .btn-row{margin-top:.2rem}
+.visit-modal__form .btn{flex:1 1 auto;justify-content:center;min-height:46px;padding:.6rem 1.1rem;font-size:.98rem}
+
+@media (max-width:560px){
+  .visit-modal{padding:.65rem}
+  .visit-modal__card{border-radius:24px}
+  .visit-modal__head{padding:1.15rem 3.2rem 1rem 1.15rem}
+  .visit-modal__form{padding:1.05rem 1.15rem 1.2rem;gap:.72rem}
+  .visit-modal__row{grid-template-columns:1fr;gap:.72rem}
+}
