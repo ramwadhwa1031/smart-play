@@ -28,19 +28,33 @@
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
-  function filter(btn) {
+  function filter(btn, instant) {
     var wrap = btn.closest(".filters"), key = btn.getAttribute("data-filter");
     wrap.querySelectorAll(".chip").forEach(function (c) { var on = c === btn; c.classList.toggle("is-active", on); c.setAttribute("aria-pressed", on); });
     var targets = document.querySelectorAll(".mas, .upd-list .upd"), n = 0;
     targets.forEach(function (el) {
       var cat = el.getAttribute("data-cat"), ok = key === "all" || cat === key;
-      if (ok) { n++; el.classList.remove("is-hidden"); el.style.display = ""; el.classList.add("pop"); setTimeout(function () { el.classList.remove("pop"); }, 500); }
-      else { el.classList.add("is-hidden"); el.style.display = "none"; }
+      if (ok) {
+        n++; el.classList.remove("is-hidden"); el.style.display = "";
+        if (!instant) { el.classList.add("pop"); setTimeout(function () { el.classList.remove("pop"); }, 500); }
+      } else {
+        el.classList.add("is-hidden"); el.style.display = "none";
+      }
     });
     var c = document.querySelector("[data-count]"); if (c) c.textContent = n;
   }
 
+  function applyInitialFilter() {
+    try {
+      var cat = new URLSearchParams(location.search).get("cat");
+      if (!cat) return;
+      var chip = document.querySelector('.filters .chip[data-filter="' + cat.replace(/[^a-z0-9_-]/gi, "") + '"]');
+      if (chip) filter(chip, true);
+    } catch (e) { /* ignore */ }
+  }
+
   function init() {
+    applyInitialFilter();
     if (bound) return; bound = true;
     document.addEventListener("click", function (e) {
       var chip = e.target.closest(".filters .chip"); if (chip) { filter(chip); return; }

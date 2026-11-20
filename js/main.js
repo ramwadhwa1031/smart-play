@@ -5,6 +5,7 @@
   var formBound = false, reelTimer = null, reelPausedUntil = 0;
   var heroTimer = null, heroPausedUntil = 0, heroIdx = 0;
   var grevTimer = null, grevPausedUntil = 0;
+  var fameTimer = null, famePausedUntil = 0;
 
   function digits(s) { return String(s || "").replace(/\D/g, ""); }
 
@@ -213,6 +214,20 @@
         scrollToGrevDot(gIdx);
         return;
       }
+      var fb = e.target.closest("[data-fame-dir]");
+      if (fb) {
+        var fdir = parseInt(fb.getAttribute("data-fame-dir"), 10) || 1;
+        famePausedUntil = Date.now() + 7000;
+        stepFame(fdir);
+        return;
+      }
+      var fd = e.target.closest("[data-fame-dot]");
+      if (fd) {
+        var fIdx = parseInt(fd.getAttribute("data-fame-dot"), 10) || 0;
+        famePausedUntil = Date.now() + 7000;
+        scrollToFameDot(fIdx);
+        return;
+      }
       var pick = e.target.closest("[data-pick-prog]");
       if (pick) {
         var fPick = document.getElementById("enq-form");
@@ -413,9 +428,56 @@
     }
   }
 
+  function stepFame(dir) {
+    var track = document.querySelector("[data-fame-track]");
+    if (!track) return;
+    var cards = track.querySelectorAll(".fame-card");
+    if (cards.length < 2) return;
+    var step = cards[1].offsetLeft - cards[0].offsetLeft;
+    if (step <= 0) step = cards[0].getBoundingClientRect().width + 20;
+    var maxScroll = track.scrollWidth - track.clientWidth;
+    if (maxScroll <= 10) return;
+    if (dir > 0 && track.scrollLeft >= maxScroll - 14) {
+      track.scrollTo({ left: 0, behavior: "smooth" });
+    } else if (dir < 0 && track.scrollLeft <= 14) {
+      track.scrollTo({ left: maxScroll, behavior: "smooth" });
+    } else {
+      track.scrollBy({ left: step * dir, behavior: "smooth" });
+    }
+  }
+
+  function scrollToFameDot(idx) {
+    var track = document.querySelector("[data-fame-track]");
+    if (!track) return;
+    var cards = track.querySelectorAll(".fame-card");
+    if (!cards[idx]) return;
+    track.scrollTo({ left: cards[idx].offsetLeft - cards[0].offsetLeft, behavior: "smooth" });
+  }
+
+  function bindFameCarousel() {
+    if (fameTimer) clearInterval(fameTimer);
+    var track = document.querySelector("[data-fame-track]");
+    if (!track) return;
+    track.addEventListener("scroll", function () {
+      var cards = track.querySelectorAll(".fame-card");
+      var dots = document.querySelectorAll("[data-fame-dot]");
+      if (!cards.length || !dots.length) return;
+      var step = cards.length > 1 ? (cards[1].offsetLeft - cards[0].offsetLeft) : cards[0].offsetWidth;
+      if (step <= 0) step = cards[0].offsetWidth || 1;
+      var activeIdx = Math.min(cards.length - 1, Math.max(0, Math.round(track.scrollLeft / step)));
+      dots.forEach(function (d, i) { d.classList.toggle("is-active", i === activeIdx); });
+    }, { passive: true });
+    track.addEventListener("mouseenter", function () { famePausedUntil = Date.now() + 7000; });
+    track.addEventListener("touchstart", function () { famePausedUntil = Date.now() + 7000; }, { passive: true });
+    fameTimer = setInterval(function () {
+      if (Date.now() < famePausedUntil || document.hidden) return;
+      stepFame(1);
+    }, 4200);
+  }
+
   function init() {
     cleanUrlBar();
-    SS.nav.init(); SS.gallery.init(); SS.anim.init(); bindForm(); prefill(); startReelsAuto(); startHeroAuto(); hydrateHeroSlides(); bindProgCarousel(); bindGrevCarousel(); loadLiveGoogleReviews(); lazyLoadIframes(); ensureElfsight();
+    SS.nav.init(); SS.gallery.init(); SS.anim.init(); bindForm(); prefill(); startReelsAuto(); startHeroAuto(); hydrateHeroSlides(); bindProgCarousel(); bindFameCarousel(); bindGrevCarousel(); loadLiveGoogleReviews(); lazyLoadIframes(); ensureElfsight();
     var y = document.querySelector("[data-year]"); if (y) y.textContent = new Date().getFullYear();
   }
   SS.init = init;

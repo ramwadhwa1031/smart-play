@@ -620,6 +620,55 @@
         '<p class="lead">' + esc(pr.message[3] || pr.bio) + '</p><p class="who"><b>' + esc(pr.name) + "</b><span>" + esc(pr.designation) + "</span></p>" +
         btnl(c, h.button.label, h.button.link, "primary") + "</div></div></section>";
     },
+    fame: function (c) {
+      var f = (c.d.homepage && c.d.homepage.fame) || {};
+      var list = (f.items && f.items.length) ? f.items : visibleGallery(c).filter(function (x) { return x.category === "fame"; });
+      if (!list.length) return "";
+      var trophySvg = '<svg class="fame-trophy" viewBox="0 0 36 36" aria-hidden="true">' +
+        '<path fill="#FFD600" stroke="#0D3B66" stroke-width="1.8" stroke-linejoin="round" d="M10 6h16v8a8 8 0 0 1-16 0V6z"/>' +
+        '<path fill="none" stroke="#FFD600" stroke-width="2.6" stroke-linecap="round" d="M10 9H6.5a3.5 3.5 0 0 0 0 7H10M26 9h3.5a3.5 3.5 0 0 1 0 7H26"/>' +
+        '<path fill="#FFD600" d="M16 21h4v6h-4z"/><rect x="11" y="27" width="14" height="4" rx="2" fill="#FFD600" stroke="#0D3B66" stroke-width="1.5"/>' +
+        '<path fill="#0D3B66" d="M18 9.2l1.1 2.3 2.5.3-1.8 1.8.4 2.5L18 14.9l-2.2 1.2.4-2.5-1.8-1.8 2.5-.3z"/></svg>';
+      var badges = (f.badges || []).map(function (b) {
+        return '<div class="fame-badge"><span class="fame-badge__star" aria-hidden="true">' + icon("star") + '</span><div><b>' + esc(b.title) + '</b><small>' + esc(b.sub) + '</small></div></div>';
+      }).join("");
+      var cards = list.map(function (x, i) {
+        var title = x.title || x.caption || "Award & Recognition";
+        var org = x.org || "Smart Start The Premium School";
+        var cap = x.org ? (title + " – " + org) : (x.caption || title);
+        return '<article class="fame-card" style="--i:' + (i % 4) + '">' +
+          '<a class="fame-card__link" href="' + esc(src(c, x.src)) + '" data-caption="' + esc(cap) + '">' +
+          '<span class="fame-card__stage">' +
+          (x.year ? '<span class="fame-card__year">' + esc(x.year) + '</span>' : '') +
+          '<img src="' + esc(src(c, x.thumb || x.src)) + '" alt="' + esc(x.alt || title) + '" width="' + (x.w || 640) + '" height="' + (x.h || 480) + '" loading="lazy" decoding="async">' +
+          '<span class="fame-card__zoom">Tap to view</span>' +
+          '</span>' +
+          '<span class="fame-card__body">' +
+          '<h3>' + esc(title) + '</h3>' +
+          '<p>' + esc(org) + '</p>' +
+          '</span></a></article>';
+      }).join("");
+      var dots = list.map(function (x, i) {
+        return '<button type="button" class="fame-dot' + (i === 0 ? " is-active" : "") + '" data-fame-dot="' + i + '" aria-label="View award ' + (i + 1) + '"></button>';
+      }).join("");
+      return '<section class="sec sec--fame" id="tale-of-fame"><div class="container">' +
+        '<header class="sec-head sec-head--fame">' +
+        '<div class="fame-eyebrow">' + trophySvg + '<span>' + esc(f.eyebrow || "Tale of Fame · Awards & Recognitions") + '</span></div>' +
+        '<h2 class="h2">' + hl(f.title || "Our Proud [[Tale of Fame]]") + '</h2>' +
+        (f.text ? '<p class="lead">' + esc(f.text) + '</p>' : '') +
+        '</header>' +
+        (badges ? '<div class="fame-badges">' + badges + '</div>' : '') +
+        '<div class="fame-carousel" data-fame-carousel>' +
+        '<button class="fame-nav fame-nav--prev" type="button" data-fame-dir="-1" aria-label="Previous award">' + icon("prev") + '</button>' +
+        '<div class="fame-track" data-fame-track data-lightbox-group tabindex="0" role="region" aria-label="Tale of Fame Awards Carousel">' +
+        cards +
+        '</div>' +
+        '<button class="fame-nav fame-nav--next" type="button" data-fame-dir="1" aria-label="Next award">' + icon("next") + '</button>' +
+        '</div>' +
+        '<div class="fame-dots" data-fame-dots aria-label="Award slides">' + dots + '</div>' +
+        '<p class="center"><a class="btn btn--yellow" href="' + p(c, "gallery.html?cat=fame") + '"><span>View Full Tale of Fame in Gallery</span>' + icon("arrow") + '</a></p>' +
+        '</div></section>';
+    },
     testimonials: function (c) {
       var td = c.d.testimonials || {};
       var h = (c.d.homepage && c.d.homepage.testimonials) || {};

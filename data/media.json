@@ -436,7 +436,7 @@
       "w": 1200,
       "h": 1600,
       "bytes": 108186,
-      "category": "infra",
+      "category": "outdoor",
       "label": "Ball pit and slide",
       "alt": "Child sliding into a ball pit in the play area"
     },
@@ -458,7 +458,7 @@
       "w": 1200,
       "h": 1600,
       "bytes": 172898,
-      "category": "outdoor",
+      "category": "infra",
       "label": "Stacking cups on the grass",
       "alt": "Toddler stacking colourful cups on artificial grass outdoors"
     },
@@ -689,7 +689,7 @@
       "w": 1070,
       "h": 800,
       "bytes": 97028,
-      "category": "infra",
+      "category": "outdoor",
       "label": "Guided school excursion & cultural visit",
       "alt": "Smart Start children and teachers seated together during a guided educational visit"
     },
@@ -755,7 +755,7 @@
       "w": 1070,
       "h": 803,
       "bytes": 100018,
-      "category": "infra",
+      "category": "outdoor",
       "label": "Values & sanskar learning session",
       "alt": "Children and teachers seated together during a values and prayer visit"
     },
@@ -799,7 +799,7 @@
       "w": 960,
       "h": 1280,
       "bytes": 128592,
-      "category": "infra",
+      "category": "outdoor",
       "label": "Guided values & community visit",
       "alt": "Student participating in a cultural and values visit with family and teachers"
     },
@@ -890,6 +890,116 @@
       "category": "infra",
       "label": "Brightly painted activity room walls",
       "alt": "Family celebration inside the colourful mural-painted Smart Start activity room"
+    },
+    {
+      "id": "fame-rashtriya-garima-best-institute",
+      "path": "assets/images/fame-rashtriya-garima-best-institute.webp",
+      "thumb": "assets/images/fame-rashtriya-garima-best-institute-sm.webp",
+      "w": 1186,
+      "h": 1500,
+      "bytes": 155844,
+      "category": "fame",
+      "label": "Best Institute of the Year – North-West Delhi",
+      "alt": "Certificate of Recognition for Best Institute of the Year North-West Delhi awarded to Smart Start The Premium School and Director Dr. Parvinder Kaur at National Education Summit 3.0"
+    },
+    {
+      "id": "fame-pioneer-early-education-2025-26",
+      "path": "assets/images/fame-pioneer-early-education-2025-26.webp",
+      "thumb": "assets/images/fame-pioneer-early-education-2025-26-sm.webp",
+      "w": 1168,
+      "h": 1500,
+      "bytes": 75372,
+      "category": "fame",
+      "label": "Pioneer in Early Education Excellence Award",
+      "alt": "Pioneer in Early Education Excellence Award 2025-26 bestowed upon Smart Start The Premium School by International Eminent Educationists' Forum of India"
+    },
+    {
+      "id": "fame-pioneer-early-education-plaque",
+      "path": "assets/images/fame-pioneer-early-education-plaque.webp",
+      "thumb": "assets/images/fame-pioneer-early-education-plaque-sm.webp",
+      "w": 1485,
+      "h": 1500,
+      "bytes": 160028,
+      "category": "fame",
+      "label": "Pioneer in Early Education Golden Star Plaque",
+      "alt": "Golden star trophy plaque for Pioneer in Early Education Excellence Award 2025 honouring innovation and excellence in early education"
+    },
+    {
+      "id": "fame-wasp-school-principals-award",
+      "path": "assets/images/fame-wasp-school-principals-award.webp",
+      "thumb": "assets/images/fame-wasp-school-principals-award-sm.webp",
+      "w": 1031,
+      "h": 1495,
+      "bytes": 105192,
+      "category": "fame",
+      "label": "World Alliance of School Principals Recognition",
+      "alt": "World Alliance of School Principals Certificate of Recognition presented to Dr. Parvinder Kaur, Principal of Smart Start The Premium School"
+    },
+    {
+      "id": "fame-dr-kalam-excellence-award",
+      "path": "assets/images/fame-dr-kalam-excellence-award.webp",
+      "thumb": "assets/images/fame-dr-kalam-excellence-award-sm.webp",
+      "w": 1500,
+      "h": 1073,
+      "bytes": 115146,
+      "category": "fame",
+      "label": "Dr. Kalam Skill-Guru Excellence Award",
+      "alt": "Dr. Kalam Skill-Guru Excellence Award presented to Dr. Parvinder Kaur at DKIF Education Summit and Awards 2022-23"
+    },
+    {
+      "id": "fame-guru-shiromani-award",
+      "path": "assets/images/fame-guru-shiromani-award.webp",
+      "thumb": "assets/images/fame-guru-shiromani-award-sm.webp",
+      "w": 1103,
+      "h": 1500,
+      "bytes": 117284,
+      "category": "fame",
+      "label": "Guru Shiromani Award (2022–23)",
+      "alt": "Guru Shiromani Award 2022-23 presented to Dr. Parvinder Kaur, Principal of Smart Start The Premium School by PAAI"
+    },
+    {
+      "id": "fame-radhakrishnan-excellence-award",
+      "path": "assets/images/fame-radhakrishnan-excellence-award.webp",
+      "thumb": "assets/images/fame-radhakrishnan-excellence-award-sm.webp",
+      "w": 1500,
+      "h": 1104,
+      "bytes": 117180,
+      "category": "fame",
+      "label": "Dr. Sarvepalli Radhakrishnan Excellence Award",
+      "alt": "Dr. Sarvepalli Radhakrishnan Excellence Award 2022 certificate presented to Principal Dr. Parvinder Kaur, Smart Start The Premium School"
+    },
+    {
+      "id": "fame-jolly-phonics-certification",
+      "path": "assets/images/fame-jolly-phonics-certification.webp",
+      "thumb": "assets/images/fame-jolly-phonics-certification-sm.webp",
+      "w": 1500,
+      "h": 1117,
+      "bytes": 82626,
+      "category": "fame",
+      "label": "Jolly Phonics International Certification",
+      "alt": "Jolly Phonics Certificate of Participation awarded to Dr. Parvinder Kaur for completing the Jolly Phonics training workshop"
+    },
+    {
+      "id": "fame-brave-souls-academic-trophies",
+      "path": "assets/images/fame-brave-souls-academic-trophies.webp",
+      "thumb": "assets/images/fame-brave-souls-academic-trophies-sm.webp",
+      "w": 1080,
+      "h": 1453,
+      "bytes": 84446,
+      "category": "fame",
+      "label": "Brave Souls Teacher & Academic Excellence Trophies",
+      "alt": "Brave Souls Teacher Award 2022 golden star trophy and Academic Excellence Award trophy displayed in our honours cabinet"
+    },
+    {
+      "id": "fame-academic-excellence-award-2021",
+      "path": "assets/images/fame-academic-excellence-award-2021.webp",
+      "thumb": "assets/images/fame-academic-excellence-award-2021-sm.webp",
+      "w": 1500,
+      "h": 1122,
+      "bytes": 129080,
+      "category": "fame",
+      "label": "Academic Excellence Award (2021)",
+      "alt": "Academic Excellence Award 2021 certificate of achievement presented by Prithvi Abhyuday Educators Association-India and Maharishi University of Information Technology"
     }
   ]
 }

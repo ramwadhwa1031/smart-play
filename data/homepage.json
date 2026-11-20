@@ -26,6 +26,11 @@
       "visible": true
     },
     {
+      "id": "fame",
+      "label": "Tale of Fame",
+      "visible": true
+    },
+    {
       "id": "mi",
       "label": "Multiple Intelligence",
       "visible": true
@@ -307,5 +312,136 @@
     "eyebrow": "Get in Touch",
     "title": "We’d Love to Hear [[From You]]",
     "text": "Have a question about admissions, programmes or our school? Reach out to us anytime!"
+  },
+  "fame": {
+    "eyebrow": "Tale of Fame · Awards & Recognitions",
+    "title": "Our Proud [[Tale of Fame]]",
+    "text": "National and international honours celebrating Smart Start The Premium School and Principal Dr. Parvinder Kaur's commitment to joyful, world-class early childhood education.",
+    "badges": [
+      {
+        "title": "Best Institute of the Year",
+        "sub": "North-West Delhi · 2024"
+      },
+      {
+        "title": "Pioneer in Early Education",
+        "sub": "Excellence Award · 2025–26"
+      },
+      {
+        "title": "10+ National & Global Honours",
+        "sub": "WASP, Dr. Kalam & PAAI"
+      }
+    ],
+    "items": [
+      {
+        "id": "fame-rashtriya-garima-best-institute",
+        "year": "2024",
+        "title": "Best Institute of the Year – North-West Delhi",
+        "org": "Rashtriya Garima Award 2024 · National Education Summit 3.0",
+        "src": "assets/images/fame-rashtriya-garima-best-institute.webp",
+        "thumb": "assets/images/fame-rashtriya-garima-best-institute-sm.webp",
+        "w": 1186,
+        "h": 1500,
+        "alt": "Certificate of Recognition for Best Institute of the Year North-West Delhi awarded to Smart Start The Premium School and Director Dr. Parvinder Kaur at National Education Summit 3.0"
+      },
+      {
+        "id": "fame-pioneer-early-education-2025-26",
+        "year": "2025–26",
+        "title": "Pioneer in Early Education Excellence Award",
+        "org": "International Eminent Educationists' Forum of India (2025–26)",
+        "src": "assets/images/fame-pioneer-early-education-2025-26.webp",
+        "thumb": "assets/images/fame-pioneer-early-education-2025-26-sm.webp",
+        "w": 1168,
+        "h": 1500,
+        "alt": "Pioneer in Early Education Excellence Award 2025-26 bestowed upon Smart Start The Premium School by International Eminent Educationists' Forum of India"
+      },
+      {
+        "id": "fame-pioneer-early-education-plaque",
+        "year": "2025",
+        "title": "Pioneer in Early Education Golden Star Plaque",
+        "org": "International Eminent Educationists' Forum of India (2025)",
+        "src": "assets/images/fame-pioneer-early-education-plaque.webp",
+        "thumb": "assets/images/fame-pioneer-early-education-plaque-sm.webp",
+        "w": 1485,
+        "h": 1500,
+        "alt": "Golden star trophy plaque for Pioneer in Early Education Excellence Award 2025 honouring innovation and excellence in early education"
+      },
+      {
+        "id": "fame-wasp-school-principals-award",
+        "year": "2025",
+        "title": "World Alliance of School Principals Recognition",
+        "org": "Certificate of Recognition · WASP (New Delhi, 2025)",
+        "src": "assets/images/fame-wasp-school-principals-award.webp",
+        "thumb": "assets/images/fame-wasp-school-principals-award-sm.webp",
+        "w": 1031,
+        "h": 1495,
+        "alt": "World Alliance of School Principals Certificate of Recognition presented to Dr. Parvinder Kaur, Principal of Smart Start The Premium School"
+      },
+      {
+        "id": "fame-dr-kalam-excellence-award",
+        "year": "2022–23",
+        "title": "Dr. Kalam Skill-Guru Excellence Award",
+        "org": "Dr. Kalam International Foundation & Sushant University",
+        "src": "assets/images/fame-dr-kalam-excellence-award.webp",
+        "thumb": "assets/images/fame-dr-kalam-excellence-award-sm.webp",
+        "w": 1500,
+        "h": 1073,
+        "alt": "Dr. Kalam Skill-Guru Excellence Award presented to Dr. Parvinder Kaur at DKIF Education Summit and Awards 2022-23"
+      },
+      {
+        "id": "fame-guru-shiromani-award",
+        "year": "2022–23",
+        "title": "Guru Shiromani Award (2022–23)",
+        "org": "Prithvi Abhyuday Educators Association–India (PAAI)",
+        "src": "assets/images/fame-guru-shiromani-award.webp",
+        "thumb": "assets/images/fame-guru-shiromani-award-sm.webp",
+        "w": 1103,
+        "h": 1500,
+        "alt": "Guru Shiromani Award 2022-23 presented to Dr. Parvinder Kaur, Principal of Smart Start The Premium School by PAAI"
+      },
+      {
+        "id": "fame-radhakrishnan-excellence-award",
+        "year": "2022",
+        "title": "Dr. Sarvepalli Radhakrishnan Excellence Award",
+        "org": "PAAI & CSC Society · Nation Builder Recognition",
+        "src": "assets/images/fame-radhakrishnan-excellence-award.webp",
+        "thumb": "assets/images/fame-radhakrishnan-excellence-award-sm.webp",
+        "w": 1500,
+        "h": 1104,
+        "alt": "Dr. Sarvepalli Radhakrishnan Excellence Award 2022 certificate presented to Principal Dr. Parvinder Kaur, Smart Start The Premium School"
+      },
+      {
+        "id": "fame-jolly-phonics-certification",
+        "year": "2023",
+        "title": "Jolly Phonics International Certification",
+        "org": "Certified Jolly Phonics Training Workshop (2023)",
+        "src": "assets/images/fame-jolly-phonics-certification.webp",
+        "thumb": "assets/images/fame-jolly-phonics-certification-sm.webp",
+        "w": 1500,
+        "h": 1117,
+        "alt": "Jolly Phonics Certificate of Participation awarded to Dr. Parvinder Kaur for completing the Jolly Phonics training workshop"
+      },
+      {
+        "id": "fame-brave-souls-academic-trophies",
+        "year": "2022",
+        "title": "Brave Souls Teacher & Academic Excellence Trophies",
+        "org": "Awards & Trophies Showcase",
+        "src": "assets/images/fame-brave-souls-academic-trophies.webp",
+        "thumb": "assets/images/fame-brave-souls-academic-trophies-sm.webp",
+        "w": 1080,
+        "h": 1453,
+        "alt": "Brave Souls Teacher Award 2022 golden star trophy and Academic Excellence Award trophy displayed in our honours cabinet"
+      },
+      {
+        "id": "fame-academic-excellence-award-2021",
+        "year": "2021",
+        "title": "Academic Excellence Award (2021)",
+        "org": "PAAI & Maharishi University of Information Technology",
+        "src": "assets/images/fame-academic-excellence-award-2021.webp",
+        "thumb": "assets/images/fame-academic-excellence-award-2021-sm.webp",
+        "w": 1500,
+        "h": 1122,
+        "alt": "Academic Excellence Award 2021 certificate of achievement presented by Prithvi Abhyuday Educators Association-India and Maharishi University of Information Technology"
+      }
+    ]
   }
 }
