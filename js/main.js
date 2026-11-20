@@ -234,6 +234,18 @@
         scrollToFameDot(fIdx);
         return;
       }
+      var ptb = e.target.closest("[data-ptest-dir]");
+      if (ptb) {
+        var ptdir = parseInt(ptb.getAttribute("data-ptest-dir"), 10) || 1;
+        stepPtest(ptdir);
+        return;
+      }
+      var ptd = e.target.closest("[data-ptest-dot]");
+      if (ptd) {
+        var ptIdx = parseInt(ptd.getAttribute("data-ptest-dot"), 10) || 0;
+        scrollToPtestDot(ptIdx);
+        return;
+      }
       var pick = e.target.closest("[data-pick-prog]");
       if (pick) {
         var fPick = document.getElementById("enq-form");
@@ -253,7 +265,22 @@
       if (v("programme")) lines.push("Programme / age: " + v("programme"));
       if (v("message")) lines.push("Message: " + v("message"));
       var text = lines.join("\n");
-      if (b.getAttribute("data-send") === "wa") window.open("https://wa.me/" + f.dataset.wa + "?text=" + encodeURIComponent(text), "_blank", "noopener");
+      var mode = b.getAttribute("data-send");
+      var sheetUrl = (f.dataset.sheet || "").trim();
+      if (sheetUrl) {
+        try {
+          var payload = JSON.stringify({
+            name: v("name"),
+            phone: v("phone"),
+            programme: v("programme") || "Not sure yet",
+            message: v("message"),
+            channel: mode === "wa" ? "WhatsApp" : "Email",
+            source: (location.pathname || "/") + (f.id === "enq-popup-form" ? " (Popup)" : " (Page Form)")
+          });
+          fetch(sheetUrl, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain;charset=utf-8" }, body: payload }).catch(function () {});
+        } catch (err) {}
+      }
+      if (mode === "wa") window.open("https://wa.me/" + f.dataset.wa + "?text=" + encodeURIComponent(text), "_blank", "noopener");
       else location.href = "mailto:" + f.dataset.email + "?subject=" + encodeURIComponent("Admission enquiry – " + v("name")) + "&body=" + encodeURIComponent(text);
       if (f.id === "enq-popup-form") closeVisitPopup();
     });
@@ -505,12 +532,48 @@
       if (!modal || !modal.hidden || (lb && !lb.hidden)) return;
       modal.hidden = false;
       document.documentElement.style.overflow = "hidden";
-    }, 1100);
+    }, 20000);
+  }
+
+  function stepPtest(dir) {
+    var track = document.querySelector("[data-ptest-track]");
+    if (!track) return;
+    var cards = track.querySelectorAll(".ptest-card");
+    if (cards.length < 2) return;
+    var step = cards[1].offsetLeft - cards[0].offsetLeft;
+    if (step <= 0) step = cards[0].getBoundingClientRect().width + 16;
+    var maxScroll = track.scrollWidth - track.clientWidth;
+    if (maxScroll <= 10) return;
+    if (dir > 0 && track.scrollLeft >= maxScroll - 14) track.scrollTo({ left: 0, behavior: "smooth" });
+    else if (dir < 0 && track.scrollLeft <= 14) track.scrollTo({ left: maxScroll, behavior: "smooth" });
+    else track.scrollBy({ left: step * dir, behavior: "smooth" });
+  }
+
+  function scrollToPtestDot(idx) {
+    var track = document.querySelector("[data-ptest-track]");
+    if (!track) return;
+    var cards = track.querySelectorAll(".ptest-card");
+    if (!cards[idx]) return;
+    track.scrollTo({ left: cards[idx].offsetLeft - cards[0].offsetLeft, behavior: "smooth" });
+  }
+
+  function bindPtestCarousel() {
+    var track = document.querySelector("[data-ptest-track]");
+    if (!track) return;
+    track.addEventListener("scroll", function () {
+      var cards = track.querySelectorAll(".ptest-card");
+      var dots = document.querySelectorAll("[data-ptest-dot]");
+      if (!cards.length || !dots.length) return;
+      var step = cards.length > 1 ? (cards[1].offsetLeft - cards[0].offsetLeft) : cards[0].offsetWidth;
+      if (step <= 0) step = cards[0].offsetWidth || 1;
+      var activeIdx = Math.min(cards.length - 1, Math.max(0, Math.round(track.scrollLeft / step)));
+      dots.forEach(function (d, i) { d.classList.toggle("is-active", i === activeIdx); });
+    }, { passive: true });
   }
 
   function init() {
     cleanUrlBar();
-    SS.nav.init(); SS.gallery.init(); SS.anim.init(); bindForm(); prefill(); startReelsAuto(); startHeroAuto(); hydrateHeroSlides(); bindProgCarousel(); bindFameCarousel(); bindGrevCarousel(); loadLiveGoogleReviews(); lazyLoadIframes(); ensureElfsight(); initVisitPopup();
+    SS.nav.init(); SS.gallery.init(); SS.anim.init(); bindForm(); prefill(); startReelsAuto(); startHeroAuto(); hydrateHeroSlides(); bindProgCarousel(); bindFameCarousel(); bindPtestCarousel(); bindGrevCarousel(); loadLiveGoogleReviews(); lazyLoadIframes(); ensureElfsight(); initVisitPopup();
     var y = document.querySelector("[data-year]"); if (y) y.textContent = new Date().getFullYear();
   }
   SS.init = init;

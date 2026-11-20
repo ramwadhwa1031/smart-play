@@ -8,13 +8,23 @@
   "logo": "assets/logos/smart-start-logo.webp",
   "favicon": "assets/logos/favicon-32.png",
   "phones": [
-    { "label": "Call / WhatsApp", "number": "9717177531" },
-    { "label": "Call", "number": "8587006249" },
-    { "label": "Call", "number": "9650505210" }
+    {
+      "label": "Call / WhatsApp",
+      "number": "9717177531"
+    },
+    {
+      "label": "Call",
+      "number": "8587006249"
+    },
+    {
+      "label": "Call",
+      "number": "9650505210"
+    }
   ],
   "email": "smartstart4mykids@gmail.com",
   "whatsapp": "919717177531",
   "whatsappMessage": "Hello Smart Start The Premium School, I would like to enquire about admissions.",
+  "enquirySheetUrl": "https://script.google.com/macros/s/AKfycbx34r8XqO4MlkcVkxSewJE_EFEaAQc1AhBey6SsLoSTRFYr80N4C2U7Iyu4tSOTApSP/exec",
   "social": {
     "instagram": "https://www.instagram.com/smart_start_the_premium_school?igsh=dTEwbHJ4YWs4bHl6",
     "facebook": "https://www.facebook.com/profile.php?id=100085158252445",
@@ -41,13 +51,33 @@
     "cream": "#FFFFFF"
   },
   "nav": [
-    { "label": "Home", "href": "index.html" },
-    { "label": "About", "href": "about.html" },
-    { "label": "Philosophy", "href": "philosophy.html" },
-    { "label": "Programmes", "href": "programmes.html" },
-    { "label": "Gallery", "href": "gallery.html" },
-    { "label": "Announcements", "href": "updates.html" },
-    { "label": "Contact", "href": "contact.html" }
+    {
+      "label": "Home",
+      "href": "index.html"
+    },
+    {
+      "label": "About",
+      "href": "about.html"
+    },
+    {
+      "label": "Philosophy",
+      "href": "philosophy.html"
+    },
+    {
+      "label": "Programmes",
+      "href": "programmes.html"
+    },
+    {
+      "label": "Gallery",
+      "href": "gallery.html"
+    },
+    {
+      "label": "Announcements",
+      "href": "updates.html"
+    },
+    {
+      "label": "Contact",
+      "href": "contact.html"
+    }
   ]
 }
-

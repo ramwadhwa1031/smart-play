@@ -390,7 +390,7 @@
       '<h2 id="visit-modal-title">Book A <span>Campus Visit</span></h2>' +
       '<p>Meet our teachers and explore Smart Start The Premium School, Sector 24, Rohini.</p>' +
       '</div>' +
-      '<form class="enq-form visit-modal__form" id="enq-popup-form" novalidate data-wa="' + esc(digits(s.whatsapp)) + '" data-email="' + esc(s.email) + '" data-school="' + esc(s.name) + '">' +
+      '<form class="enq-form visit-modal__form" id="enq-popup-form" novalidate data-wa="' + esc(digits(s.whatsapp)) + '" data-email="' + esc(s.email) + '" data-school="' + esc(s.name) + '" data-sheet="' + esc(s.enquirySheetUrl || "") + '">' +
       '<div class="visit-modal__row">' +
       '<label>Parent name<input name="name" type="text" autocomplete="name" placeholder="Your full name" required></label>' +
       '<label>Phone number<input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="10-digit mobile" required></label>' +
@@ -447,11 +447,17 @@
   function updateCard(c, u, i, big) {
     var count = (u.images || []).length;
     var gal = [u.cover].concat(u.images || []).filter(Boolean).map(function (x) { return src(c, x); });
-    return '<article class="upd reveal' + (big ? " upd--big" : "") + '" style="--i:' + i + '" data-cat="' + esc(slug(u.category)) + '" data-gallery="' + esc(JSON.stringify(gal)) + '" data-title="' + esc(u.title) + '">' +
+    var dateText = u.dateLabel || fmtDate(u.date);
+    var schedHtml = (u.schedule && u.schedule.length)
+      ? '<div class="upd-sched">' + u.schedule.map(function (sc) {
+        return '<div class="upd-sched__i upd-sched__i--' + esc(sc.color || "sky") + '"><b>' + esc(sc.group) + '</b><span>' + icon("calendar") + ' ' + esc(sc.date) + '</span><small>' + icon("clock") + ' ' + esc(sc.time) + '</small></div>';
+      }).join("") + '</div>'
+      : "";
+    return '<article class="upd' + (big ? " upd--big" : "") + (u.fit === "contain" ? " upd--poster" : "") + '" style="--i:' + i + '" data-cat="' + esc(slug(u.category)) + '" data-gallery="' + esc(JSON.stringify(gal)) + '" data-title="' + esc(u.title) + '">' +
       '<button type="button" class="upd__img" aria-label="View photos: ' + esc(u.title) + '">' + img(c, { src: u.cover, alt: u.title }, { thumb: 1, sizes: big ? "(max-width:900px) 90vw, 560px" : "(max-width:700px) 90vw, 380px" }) +
-      (count ? '<span class="upd__count">+' + count + " photos</span>" : "") + "</button>" +
-      '<div class="upd__body"><p class="upd__meta"><span class="tag">' + esc(u.category) + '</span><time datetime="' + esc(u.date) + '">' + icon("calendar") + " " + fmtDate(u.date) + "</time></p>" +
-      "<h3>" + esc(u.title) + "</h3><p>" + esc(u.description) + "</p></div></article>";
+      (count ? '<span class="upd__count">+' + count + " photos</span>" : (u.fit === "contain" ? '<span class="upd__count">Tap to enlarge</span>' : "")) + "</button>" +
+      '<div class="upd__body"><p class="upd__meta"><span class="tag">' + esc(u.category) + '</span><time class="upd__date" datetime="' + esc(u.date) + '">' + icon("calendar") + " " + esc(dateText) + "</time></p>" +
+      "<h3>" + esc(u.title) + "</h3><p>" + esc(u.description) + "</p>" + schedHtml + "</div></article>";
   }
   function miTabs(c, panel) {
     var list = c.d.philosophy.intelligences || [];
@@ -588,10 +594,11 @@
         }).join("") + "</div></div></section>";
     },
     updates: function (c) {
-      var u = c.d.homepage.updates, list = sortedUpdates(c).slice(0, Math.max(3, Math.min(6, u.count || 6)));
+      var u = c.d.homepage.updates, list = sortedUpdates(c).slice(0, Math.max(3, Math.min(6, u.count || 4)));
       if (!list.length) return "";
+      var firstIsPoster = list[0] && list[0].fit === "contain";
       return wave("yellow", false) + '<section class="sec sec--upd" id="latest-updates"><div class="container">' + head(c, u.eyebrow, u.title, u.text) +
-        '<div class="upd-grid">' + list.map(function (x, i) { return updateCard(c, x, i, i === 0); }).join("") + "</div>" +
+        '<div class="upd-grid">' + list.map(function (x, i) { return updateCard(c, x, i, i === 0 && !firstIsPoster); }).join("") + "</div>" +
         '<p class="center reveal"><a class="btn btn--primary" href="' + p(c, "updates.html") + '"><span>All announcements</span>' + icon("arrow") + "</a></p></div></section>" + wave("yellow", true);
     },
     reels: function (c) {
@@ -697,8 +704,35 @@
     testimonials: function (c) {
       var td = c.d.testimonials || {};
       var h = (c.d.homepage && c.d.homepage.testimonials) || {};
+      var pReels = (td.parentReels || []).filter(function (x) { return x && (x.embedUrl || x.shortcode || x.url); });
+      var parentReelsHtml = pReels.length ? (
+        '<div class="ptest-wrap">' +
+        '<div class="ptest-top">' +
+        '<div><p class="eyebrow">Parent Video Testimonials</p><h3 class="h2 ptest-h">' + hl("Hear Directly From Our [[Happy Parents]]") + '</h3></div>' +
+        '<div class="reels-nav" aria-label="Parent testimonials navigation">' +
+        '<button class="reel-nav-btn" type="button" data-ptest-dir="-1" aria-label="Previous parent video">' + icon("prev") + '</button>' +
+        '<button class="reel-nav-btn" type="button" data-ptest-dir="1" aria-label="Next parent video">' + icon("next") + '</button>' +
+        '</div></div>' +
+        '<div class="ptest-track" data-ptest-track tabindex="0" role="region" aria-label="Parent Video Testimonials Carousel">' +
+        pReels.map(function (it, i) {
+          var code = it.shortcode || ((String(it.url || "").match(/\/(?:reel|p)\/([A-Za-z0-9_-]+)/) || [])[1]) || "";
+          var emb = it.embedUrl || (code ? ("https://www.instagram.com/reel/" + code + "/embed/") : "");
+          if (!emb) return "";
+          return '<div class="reel-card ptest-card" style="--i:' + (i % 4) + '">' +
+            '<div class="reel-card__frame">' +
+            '<iframe class="reel-iframe" data-src="' + esc(emb) + '" title="Parent Testimonial Video ' + (i + 1) + ' – Smart Start The Premium School" loading="lazy" allowtransparency="true" allow="autoplay; encrypted-media" allowfullscreen="true" frameborder="0" scrolling="no"></iframe>' +
+            '</div></div>';
+        }).join("") +
+        '</div>' +
+        '<div class="ptest-dots" data-ptest-dots aria-label="Parent testimonial slides">' +
+        pReels.map(function (_, i) {
+          return '<button type="button" class="grev-dot' + (i === 0 ? " is-active" : "") + '" data-ptest-dot="' + i + '" aria-label="Watch parent video ' + (i + 1) + '"></button>';
+        }).join("") +
+        '</div></div>'
+      ) : "";
       if (td.elfsightAppId) {
         return '<section class="sec sec--test" id="testimonials"><div class="container">' +
+          parentReelsHtml +
           head(c, td.eyebrow || h.eyebrow || "Google Reviews", td.title || h.title || "What Parents Say on [[Google Reviews]]", "Live verified parent reviews fetched directly from Google for Smart Start The Premium School, Sector 24, Rohini.") +
           '<div class="grev-widget-box">' +
           '<!-- Elfsight Google Reviews | Smart Start The Premium School -->' +
@@ -867,7 +901,7 @@
       '<p class="lead">' + esc(desc) + '</p>' +
       '<div class="hours-box"><h3>' + icon("clock") + ' Visiting hours</h3>' + hours + '<p>' + esc(s.hoursNote) + '</p></div>' +
       (s.mapsUrl ? '<a class="btn btn--sky" href="' + esc(s.mapsUrl) + '" target="_blank" rel="noopener"><span>Open Google Maps</span>' + icon("pin") + '</a>' : '') + '</div>' +
-      '<form class="enq-form" id="enq-form" novalidate data-wa="' + esc(digits(s.whatsapp)) + '" data-email="' + esc(s.email) + '" data-school="' + esc(s.name) + '">' +
+      '<form class="enq-form" id="enq-form" novalidate data-wa="' + esc(digits(s.whatsapp)) + '" data-email="' + esc(s.email) + '" data-school="' + esc(s.name) + '" data-sheet="' + esc(s.enquirySheetUrl || "") + '">' +
       '<label>Parent name<input name="name" type="text" autocomplete="name" placeholder="Enter your full name" required></label>' +
       '<label>Phone number<input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="10-digit mobile number" required></label>' +
       '<label>Child\'s age or programme<select name="programme"><option value="">Not sure yet</option>' + progs.map(function (x) {
@@ -881,7 +915,7 @@
   }
 
   function stats(c) {
-    var n = [[visibleProgrammes(c).length, "Programmes"], [(c.d.philosophy.intelligences || []).length, "Intelligences nurtured"], [((c.d.homepage.why || {}).items || []).length, "Pillars of care"]];
+    var n = [[visibleProgrammes(c).length, "Programmes"], [(c.d.philosophy.intelligences || []).length, "Intelligences nurtured"]];
     return '<ul class="stats">' + n.map(function (x) { return '<li><b data-count-to="' + x[0] + '">' + x[0] + "</b><span>" + esc(x[1]) + "</span></li>"; }).join("") + "</ul>";
   }
 

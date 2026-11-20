@@ -95,20 +95,22 @@
     },
     "images": [
       {
-        "src": "assets/images/slider/slider-1-playground.webp",
-        "alt": "Happy children playing at Smart Start The Premium School"
+        "src": "assets/images/slider/celebration-slide-1.webp",
+        "alt": "Smart Start The Premium School children and Principal Dr. Parvinder Kaur celebrating achievements",
+        "w": 1376,
+        "h": 768
       },
       {
-        "src": "assets/images/slider/slider-2-learning.webp",
-        "alt": "Activity-based multiple intelligence learning"
+        "src": "assets/images/slider/celebration-slide-2.webp",
+        "alt": "Activity-based multiple intelligence learning at Smart Start The Premium School",
+        "w": 1376,
+        "h": 768
       },
       {
-        "src": "assets/images/slider/slider-3-celebration.webp",
-        "alt": "Festivals and cultural celebrations at school"
-      },
-      {
-        "src": "assets/images/slider/slider-4-stage.webp",
-        "alt": "Stage confidence, martial arts and performances"
+        "src": "assets/images/slider/celebration-slide-3.webp",
+        "alt": "Joyful celebrations and stage confidence at Smart Start The Premium School",
+        "w": 1376,
+        "h": 768
       }
     ],
     "badge": "Play · Prepare · Pride",
@@ -233,7 +235,7 @@
     "eyebrow": "Announcements",
     "title": "What's happening at [[Smart Start The Premium School]]",
     "text": "Celebrations, events, notices and everyday moments from our school.",
-    "count": 6
+    "count": 4
   },
   "gallery": {
     "eyebrow": "School gallery",

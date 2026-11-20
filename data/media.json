@@ -1000,6 +1000,17 @@
       "category": "fame",
       "label": "Academic Excellence Award (2021)",
       "alt": "Academic Excellence Award 2021 certificate of achievement presented by Prithvi Abhyuday Educators Association-India and Maharishi University of Information Technology"
+    },
+    {
+      "id": "show-and-shine-2026",
+      "path": "assets/images/show-and-shine-2026.webp",
+      "thumb": "assets/images/show-and-shine-2026-sm.webp",
+      "w": 1000,
+      "h": 1500,
+      "bytes": 244128,
+      "category": "events",
+      "label": "Show & Shine: A Celebration of Little Talents!",
+      "alt": "Smart Start The Premium School Show and Shine poster with dates for Sparkle (20th Nov), Sunshine (21st Nov), and Rainbow (28th Nov) from 10 AM to 12 PM"
     }
   ]
 }
