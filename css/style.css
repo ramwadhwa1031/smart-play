@@ -581,7 +581,7 @@ button{font:inherit;cursor:pointer}
 .enq-form label,.field{display:grid;gap:.38rem;font-weight:800;color:var(--navy);font-size:1.05rem}
 .enq-form input,.enq-form select,.enq-form textarea{font:inherit;font-weight:700;padding:.85rem 1.05rem;border:2px solid #C5D5E6;border-radius:16px;background:#F9FCFF;color:var(--ink);width:100%;min-height:50px}
 .enq-form input:focus,.enq-form select:focus,.enq-form textarea:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 4px rgba(13,59,102,.15)}
-.form-err{color:#B3261E;font-weight:800;margin:0}.fine{font-size:.92rem;color:var(--muted);margin:0}
+.form-err{color:#B3261E;font-weight:800;margin:0}.form-ok{background:#E8F8F0;color:#0F6A44;border:2px solid #18AA6F;border-radius:14px;padding:.75rem 1rem;font-weight:800;font-size:.98rem;margin:0;line-height:1.45}.enq-form button:disabled{opacity:.62;cursor:not-allowed;pointer-events:none;transform:none!important;filter:saturate(.6)}.fine{font-size:.92rem;color:var(--muted);margin:0}
 .map-card{display:flex;align-items:center;gap:2rem;background:var(--sky-bg);border-radius:40px;padding:clamp(1.5rem,4vw,2.5rem);border:3px dashed #0288D1}
 .map-art{width:130px;height:130px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none;color:var(--magenta);font-size:4rem;box-shadow:var(--shadow);animation:bob 3s ease-in-out infinite}
 .map-card p{margin:0 0 1rem;font-weight:700;font-size:1.12rem}

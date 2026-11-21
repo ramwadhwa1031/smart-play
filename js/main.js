@@ -259,6 +259,8 @@
       var b = e.target.closest("[data-send]"); if (!b) return;
       var f = b.closest("form"), v = function (n) { return (f.elements[n].value || "").trim(); };
       var err = f.querySelector(".form-err");
+      var okEl = f.querySelector(".form-ok");
+      if (okEl) okEl.hidden = true;
       if (!v("name") || digits(v("phone")).length < 8) { err.hidden = false; (v("name") ? f.elements.phone : f.elements.name).focus(); return; }
       err.hidden = true;
       var lines = ["Hello " + f.dataset.school + ",", "I would like to enquire about admissions.", "Parent name: " + v("name"), "Phone: " + v("phone")];
@@ -267,22 +269,67 @@
       var text = lines.join("\n");
       var mode = b.getAttribute("data-send");
       var sheetUrl = (f.dataset.sheet || "").trim();
+      var payload = JSON.stringify({
+        name: v("name"),
+        phone: v("phone"),
+        programme: v("programme") || "Not sure yet",
+        message: v("message"),
+        channel: mode === "wa" ? "WhatsApp" : "Website Submit",
+        source: (location.pathname || "/") + (f.id === "enq-popup-form" ? " (Popup)" : " (Page Form)")
+      });
+      if (mode === "submit") {
+        if (b.disabled || f.dataset.submitting === "1" || f.dataset.submitted === "1") return;
+        f.dataset.submitting = "1";
+        b.disabled = true;
+        b.setAttribute("aria-disabled", "true");
+        var span = b.querySelector("span");
+        if (span && !b.dataset.origLabel) b.dataset.origLabel = span.textContent;
+        if (span) span.textContent = "Submitting...";
+        var done = function () {
+          f.dataset.submitting = "";
+          f.dataset.submitted = "1";
+          b.disabled = true;
+          b.setAttribute("aria-disabled", "true");
+          if (span) span.textContent = "Submitted";
+          if (okEl) {
+            okEl.textContent = "Thank you! Your visit enquiry has been submitted. Our admissions team will contact you shortly.";
+            okEl.hidden = false;
+          }
+          f.reset();
+          if (f.id === "enq-popup-form") {
+            setTimeout(function () { closeVisitPopup(); }, 2200);
+          }
+        };
+        if (sheetUrl) {
+          fetch(sheetUrl, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain;charset=utf-8" }, body: payload })
+            .then(done).catch(done);
+        } else {
+          done();
+        }
+        return;
+      }
       if (sheetUrl) {
         try {
-          var payload = JSON.stringify({
-            name: v("name"),
-            phone: v("phone"),
-            programme: v("programme") || "Not sure yet",
-            message: v("message"),
-            channel: mode === "wa" ? "WhatsApp" : "Email",
-            source: (location.pathname || "/") + (f.id === "enq-popup-form" ? " (Popup)" : " (Page Form)")
-          });
           fetch(sheetUrl, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain;charset=utf-8" }, body: payload }).catch(function () {});
-        } catch (err) {}
+        } catch (err2) {}
       }
       if (mode === "wa") window.open("https://wa.me/" + f.dataset.wa + "?text=" + encodeURIComponent(text), "_blank", "noopener");
       else location.href = "mailto:" + f.dataset.email + "?subject=" + encodeURIComponent("Admission enquiry – " + v("name")) + "&body=" + encodeURIComponent(text);
       if (f.id === "enq-popup-form") closeVisitPopup();
+    });
+    document.addEventListener("input", function (e) {
+      var f = e.target && e.target.closest && e.target.closest("form.enq-form");
+      if (!f || f.dataset.submitted !== "1" || f.dataset.submitting === "1") return;
+      f.dataset.submitted = "";
+      var sb = f.querySelector('[data-send="submit"]');
+      if (sb) {
+        sb.disabled = false;
+        sb.removeAttribute("aria-disabled");
+        var sp = sb.querySelector("span");
+        if (sp) sp.textContent = sb.dataset.origLabel || "Submit Enquiry";
+      }
+      var ok = f.querySelector(".form-ok");
+      if (ok) ok.hidden = true;
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") {

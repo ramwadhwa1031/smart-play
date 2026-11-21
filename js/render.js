@@ -401,7 +401,8 @@
       }).join("") + '</select></label>' +
       '<label>Your message<textarea name="message" rows="2" placeholder="Preferred date/time for campus visit or any question..."></textarea></label>' +
       '<p class="form-err" role="alert" hidden>Please add your name and phone number.</p>' +
-      '<div class="btn-row"><button class="btn btn--green" type="button" data-send="wa"><span>Book on WhatsApp</span>' + icon("whatsapp") + '</button><button class="btn btn--purple" type="button" data-send="mail"><span>Send by email</span>' + icon("mail") + '</button></div>' +
+      '<p class="form-ok" role="status" hidden></p>' +
+      '<div class="btn-row"><button class="btn btn--primary" type="button" data-send="submit"><span>Submit Enquiry</span>' + icon("check") + '</button><button class="btn btn--green" type="button" data-send="wa"><span>Book on WhatsApp</span>' + icon("whatsapp") + '</button></div>' +
       '</form></div></div>';
     return '<a class="wa-float" href="' + esc(waUrl(c)) + '" target="_blank" rel="noopener" aria-label="Chat with Smart Start The Premium School on WhatsApp">' +
       '<svg class="wa-float__ic" viewBox="0 0 32 32" aria-hidden="true"><path fill="#FFFFFF" d="M16 3C9.1 3 3.5 8.5 3.5 15.3c0 2.3.6 4.5 1.8 6.4L3.4 28.6l7.1-1.8a12.7 12.7 0 0 0 5.5 1.3c6.9 0 12.5-5.5 12.5-12.4S22.9 3 16 3zm0 22.7c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.2 1.1 1.1-4.1-.3-.4a10.2 10.2 0 0 1-1.6-5.4C5.2 9.5 10 4.8 16 4.8s10.8 4.7 10.8 10.5S22 25.7 16 25.7zm5.9-7.8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.8 8.8 0 0 1-4.3-3.7c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.6s-.7-1.7-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.7 5.9 5.1 2.2.9 3.1 1 4.2.8.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>' +
@@ -895,7 +896,7 @@
     var s = c.s, progs = visibleProgrammes(c);
     var hours = (s.hours || []).length ? '<ul class="hours">' + s.hours.map(function (h) { return "<li><span>" + esc(h.day) + "</span><b>" + esc(h.time) + "</b></li>"; }).join("") + "</ul>" : "";
     var titleHtml = hl(headingText || "Book A [[Campus Visit]]");
-    var desc = subtitleText || "Fill in the form and choose how to send it. Your message will open in WhatsApp or your email app, and nothing is sent until you press send there.";
+    var desc = subtitleText || "Fill in your details and click Submit Enquiry to book your visit directly with our admissions team, or chat with us instantly on WhatsApp.";
     return '<section class="sec sec--enq" id="enquiry"><div class="container enq">' +
       '<div class="enq__info"><p class="eyebrow">Book A Visit · Admissions Enquiry</p><h2 class="h2">' + titleHtml + '</h2>' +
       '<p class="lead">' + esc(desc) + '</p>' +
@@ -910,8 +911,9 @@
       }).join("") + '</select></label>' +
       '<label>Your message<textarea name="message" rows="4" placeholder="Preferred date/time for campus visit or any question..."></textarea></label>' +
       '<p class="form-err" role="alert" hidden>Please add your name and phone number.</p>' +
-      '<div class="btn-row"><button class="btn btn--green" type="button" data-send="wa"><span>Book on WhatsApp</span>' + icon("whatsapp") + '</button><button class="btn btn--purple" type="button" data-send="mail"><span>Send by email</span>' + icon("mail") + '</button></div>' +
-      '<p class="fine">We do not store form data on this website.</p></form></div></section>';
+      '<p class="form-ok" role="status" hidden></p>' +
+      '<div class="btn-row"><button class="btn btn--primary" type="button" data-send="submit"><span>Submit Enquiry</span>' + icon("check") + '</button><button class="btn btn--green" type="button" data-send="wa"><span>Book on WhatsApp</span>' + icon("whatsapp") + '</button></div>' +
+      '<p class="fine">Your enquiry is saved directly with our admissions team.</p></form></div></section>';
   }
 
   function stats(c) {
@@ -1107,7 +1109,7 @@
         '<div class="btn-row promise-box__btns"><a class="btn btn--primary" href="#enquiry"><span>Book A Campus Visit</span>' + icon("arrow") + '</a>' +
         '<a class="btn btn--yellow" href="' + p(c, "programmes.html") + '"><span>View All 6 Programmes</span>' + icon("arrow") + '</a></div>' +
         '</div></div></section>' : '') +
-      enquirySection(c, x.name, "Book A Visit for [[" + x.name + " Wing]]", "Fill in the form below to book a campus tour or enquire about admissions for our " + x.name + " Wing (" + x.age + "). Your enquiry opens directly in WhatsApp or email.") +
+      enquirySection(c, x.name, "Book A Visit for [[" + x.name + " Wing]]", "Fill in the form below to book a campus tour or enquire about admissions for our " + x.name + " Wing (" + x.age + "). Submit directly or chat with us on WhatsApp.") +
       '<section class="sec sec--tight"><div class="container wing-pager">' +
       (prevProg ? '<a class="wing-pager__link wing-pager__link--prev c-' + esc(prevProg.color) + '" href="' + progHref(c, prevProg.id) + '">' + icon("prev") + '<span><small>Previous Wing</small><b>' + esc(prevProg.name) + ' (' + esc(prevProg.age) + ')</b></span></a>' : '<span></span>') +
       (nextProg ? '<a class="wing-pager__link wing-pager__link--next c-' + esc(nextProg.color) + '" href="' + progHref(c, nextProg.id) + '"><span><small>Next Wing</small><b>' + esc(nextProg.name) + ' (' + esc(nextProg.age) + ')</b></span>' + icon("next") + '</a>' : '<span></span>') +
