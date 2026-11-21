@@ -398,7 +398,7 @@
       '<label>Child\'s age or programme<select name="programme"><option value="">Not sure yet</option>' + progs.map(function (x) {
         var sel = selName && x.name === selName ? ' selected' : '';
         return '<option value="' + esc(x.name) + '"' + sel + '>' + esc(x.name) + ' (' + esc(x.age) + ')</option>';
-      }).join("") + '</select></label>' +
+      }).join("") + '<option value="Day Care">Day Care</option><option value="After School Activities">After School Activities</option></select></label>' +
       '<label>Your message<textarea name="message" rows="2" placeholder="Preferred date/time for campus visit or any question..."></textarea></label>' +
       '<p class="form-err" role="alert" hidden>Please add your name and phone number.</p>' +
       '<p class="form-ok" role="status" hidden></p>' +
@@ -908,7 +908,7 @@
       '<label>Child\'s age or programme<select name="programme"><option value="">Not sure yet</option>' + progs.map(function (x) {
         var sel = selectedProg && x.name === selectedProg ? ' selected' : '';
         return '<option value="' + esc(x.name) + '"' + sel + '>' + esc(x.name) + ' (' + esc(x.age) + ')</option>';
-      }).join("") + '</select></label>' +
+      }).join("") + '<option value="Day Care">Day Care</option><option value="After School Activities">After School Activities</option></select></label>' +
       '<label>Your message<textarea name="message" rows="4" placeholder="Preferred date/time for campus visit or any question..."></textarea></label>' +
       '<p class="form-err" role="alert" hidden>Please add your name and phone number.</p>' +
       '<p class="form-ok" role="status" hidden></p>' +

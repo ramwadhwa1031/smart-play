@@ -8,7 +8,7 @@
     settings: "site-settings", homepage: "homepage", about: "about", philosophy: "philosophy", programmes: "programmes",
     gallery: "gallery", updates: "updates", centres: "centres", testimonials: "testimonials", seo: "seo", media: "media"
   };
-  var DRAFT_KEY = "ss_draft_v33", PREVIEW_KEY = "ss_preview";
+  var DRAFT_KEY = "ss_draft_v34", PREVIEW_KEY = "ss_preview";
 
   function isPreview() {
     try {
