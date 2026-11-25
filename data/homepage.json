@@ -253,36 +253,36 @@
     "username": "smart_start_the_premium_school",
     "fullName": "The Smart Pre-School you've been looking for!",
     "followersCount": 398,
-    "postsCount": 739,
-    "lastSyncedAt": "2026-11-25T03:14:27.407Z",
+    "postsCount": 742,
+    "lastSyncedAt": "2026-11-25T23:51:49.462Z",
     "items": [
+      {
+        "shortcode": "DgKQEq6Tc7N",
+        "isVideo": true,
+        "takenAt": "2026-11-25T09:53:02.000Z",
+        "url": "https://www.instagram.com/reel/DgKQEq6Tc7N/",
+        "embedUrl": "https://www.instagram.com/reel/DgKQEq6Tc7N/embed/"
+      },
+      {
+        "shortcode": "DgKP6Wczov0",
+        "isVideo": true,
+        "takenAt": "2026-11-25T09:51:18.000Z",
+        "url": "https://www.instagram.com/reel/DgKP6Wczov0/",
+        "embedUrl": "https://www.instagram.com/reel/DgKP6Wczov0/embed/"
+      },
+      {
+        "shortcode": "DgKFka8z7fT",
+        "isVideo": true,
+        "takenAt": "2026-11-25T08:20:40.000Z",
+        "url": "https://www.instagram.com/reel/DgKFka8z7fT/",
+        "embedUrl": "https://www.instagram.com/reel/DgKFka8z7fT/embed/"
+      },
       {
         "shortcode": "DgG7TjAzVtT",
         "isVideo": true,
         "takenAt": "2026-11-24T02:53:37.000Z",
         "url": "https://www.instagram.com/reel/DgG7TjAzVtT/",
         "embedUrl": "https://www.instagram.com/reel/DgG7TjAzVtT/embed/"
-      },
-      {
-        "shortcode": "DgFjIXJzQw1",
-        "isVideo": true,
-        "takenAt": "2026-11-23T14:03:01.000Z",
-        "url": "https://www.instagram.com/reel/DgFjIXJzQw1/",
-        "embedUrl": "https://www.instagram.com/reel/DgFjIXJzQw1/embed/"
-      },
-      {
-        "shortcode": "DgFOs1_BDlR",
-        "isVideo": true,
-        "takenAt": "2026-11-23T11:07:00.000Z",
-        "url": "https://www.instagram.com/reel/DgFOs1_BDlR/",
-        "embedUrl": "https://www.instagram.com/reel/DgFOs1_BDlR/embed/"
-      },
-      {
-        "shortcode": "DgFOU0tzTHX",
-        "isVideo": true,
-        "takenAt": "2026-11-23T11:02:07.000Z",
-        "url": "https://www.instagram.com/reel/DgFOU0tzTHX/",
-        "embedUrl": "https://www.instagram.com/reel/DgFOU0tzTHX/embed/"
       }
     ]
   },
