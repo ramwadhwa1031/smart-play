@@ -253,9 +253,16 @@
     "username": "smart_start_the_premium_school",
     "fullName": "The Smart Pre-School you've been looking for!",
     "followersCount": 398,
-    "postsCount": 743,
-    "lastSyncedAt": "2026-11-28T05:23:07.184Z",
+    "postsCount": 744,
+    "lastSyncedAt": "2026-11-28T16:28:26.561Z",
     "items": [
+      {
+        "shortcode": "DgSpa6ezv0t",
+        "isVideo": true,
+        "takenAt": "2026-11-28T16:08:01.000Z",
+        "url": "https://www.instagram.com/reel/DgSpa6ezv0t/",
+        "embedUrl": "https://www.instagram.com/reel/DgSpa6ezv0t/embed/"
+      },
       {
         "shortcode": "DgPE6NkT_BE",
         "isVideo": true,
@@ -276,13 +283,6 @@
         "takenAt": "2026-11-25T09:51:18.000Z",
         "url": "https://www.instagram.com/reel/DgKP6Wczov0/",
         "embedUrl": "https://www.instagram.com/reel/DgKP6Wczov0/embed/"
-      },
-      {
-        "shortcode": "DgKFka8z7fT",
-        "isVideo": true,
-        "takenAt": "2026-11-25T08:20:40.000Z",
-        "url": "https://www.instagram.com/reel/DgKFka8z7fT/",
-        "embedUrl": "https://www.instagram.com/reel/DgKFka8z7fT/embed/"
       }
     ]
   },
